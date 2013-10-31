@@ -49,7 +49,7 @@ public class Controlleur extends HttpServlet {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
 			// direction la page d'inscription
-			request.getRequestDispatcher("register.jsp").forward(request,
+			request.getRequestDispatcher("pages/register.jsp").forward(request,
 					response);
 		}
 		// si l'action est de se connecter (admin)
@@ -57,8 +57,12 @@ public class Controlleur extends HttpServlet {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
 			// direction la page d'inscription
-			request.getRequestDispatcher("login.jsp").forward(request,
+			request.getRequestDispatcher("pages/login.jsp").forward(request,
 					response);
+		}
+		//Go back to home page
+		else if(action.equals("home")){
+			request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 		}
 	}
 }

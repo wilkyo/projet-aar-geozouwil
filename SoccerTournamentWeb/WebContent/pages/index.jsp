@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="/home/zou/workspace_soccer/SoccerTournamentWeb/WebContent/css/preferences.css"/>
 <title>Home</title>
 </head>
 <body>
 	<div>It Works !</div>
-	<p><a href="pages/login.jsp">Se connecter</a></p>
-	<p><a href="pages/register.jsp">Nouvelle equipe</a></p>
+	<p><a href="index?action=connect">Se connecter</a></p>
+	<p><a href="index?action=register">Nouvelle equipe</a></p>
 </body>
 </html>

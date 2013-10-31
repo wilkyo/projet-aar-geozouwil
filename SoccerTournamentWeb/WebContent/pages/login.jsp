@@ -9,7 +9,7 @@
 </head>
 <body>
 	<p>
-		<a href="pages/home.html">Home</a>
+		<a href="login?action=home">Home</a>
 	</p>
 	<center>
 		<h3>Login to Soccer Tournement</h3>
@@ -18,11 +18,11 @@
 		<table align="center">
 			<tr>
 				<td>Login</td>
-				<td><input type="text" name="login"/></td>
+				<td><input type="text" name="login" /></td>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="text" name="password"/></td>
+				<td><input type="text" name="password" /></td>
 			</tr>
 			<tr>
 				<td></td>
