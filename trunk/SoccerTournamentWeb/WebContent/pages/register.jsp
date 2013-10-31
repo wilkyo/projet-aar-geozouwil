@@ -9,7 +9,7 @@
 </head>
 <body>
 	<p>
-		<a href="pages/home.html">Home</a>
+		<a href="register?action=home">Home</a>
 	</p>
 	<center>
 		<h1>Create a new team</h1>
