@@ -7,5 +7,7 @@
 </head>
 <body>
 	<div>It Works !</div>
+	<p><a href="pages/login.jsp">Se connecter</a></p>
+	<p><a href="pages/register.jsp">Nouvelle equipe</a></p>
 </body>
 </html>
