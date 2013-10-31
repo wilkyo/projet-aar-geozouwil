@@ -14,7 +14,7 @@
 	<center>
 		<h3>Login to Soccer Tournement</h3>
 	</center>
-	<form action="log">
+	<form action="connect">
 		<table align="center">
 			<tr>
 				<td>Login</td>
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="text" name="pass"/></td>
+				<td><input type="text" name="password"/></td>
 			</tr>
 			<tr>
 				<td></td>

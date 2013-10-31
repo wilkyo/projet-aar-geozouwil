@@ -14,7 +14,7 @@
 	<center>
 		<h1>Create a new team</h1>
 	</center>
-	<form action="newteam">
+	<form action="register">
 		<table align="center">
 			<tr>
 				<td>Equipe</td>
