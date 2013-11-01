@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/")
 public class Controlleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final String PATH = "/pages/";
 
 	/**
 	 * Default constructor.
@@ -38,10 +39,10 @@ public class Controlleur extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 
-		// si l'action est nulle
-		if (action == null) {
+		// si l'action est nulle ou l'action égale à home
+		if ((action == null) || (action == "home")) {
 			// direction la page d'accueil
-			request.getRequestDispatcher("pages/index.jsp")
+			request.getRequestDispatcher(PATH + "index.jsp")
 					.forward(request, response);
 		}
 		// si l'action est s'inscrire (représentant)
@@ -49,7 +50,7 @@ public class Controlleur extends HttpServlet {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
 			// direction la page d'inscription
-			request.getRequestDispatcher("pages/register.jsp").forward(request,
+			request.getRequestDispatcher(PATH + "register.jsp").forward(request,
 					response);
 		}
 		// si l'action est de se connecter (admin)
@@ -57,12 +58,8 @@ public class Controlleur extends HttpServlet {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
 			// direction la page d'inscription
-			request.getRequestDispatcher("pages/login.jsp").forward(request,
+			request.getRequestDispatcher(PATH + "login.jsp").forward(request,
 					response);
-		}
-		//Go back to home page
-		else if(action.equals("home")){
-			request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 		}
 	}
 }
