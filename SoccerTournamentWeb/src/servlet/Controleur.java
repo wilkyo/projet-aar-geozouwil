@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/")
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	final String PATH = "/pages/";
+	private static final String PATH = "/pages/";
+	private static final String ACTION_REGISTER = "register";
+	private static final String ACTION_LOGIN = "login";
 
 	/**
 	 * Default constructor.
@@ -40,23 +42,29 @@ public class Controleur extends HttpServlet {
 		String action = request.getParameter("action");
 
 		// si l'action est nulle ou l'action égale à home
-		if ((action == null) || (action == "home")) {
+		if ((action == null) || (action.equals("home"))) {
 			// direction la page d'accueil
-			request.getRequestDispatcher(PATH + "index.jsp")
-					.forward(request, response);
-		}
-		// si l'action est s'inscrire (représentant)
-		else if (action.equals("register")) {
-			String id = request.getParameter("login");
-			String passwd = request.getParameter("password");
-			// direction la page d'inscription
-			request.getRequestDispatcher(PATH + "register.jsp").forward(request,
+			request.getRequestDispatcher(PATH + "index.jsp").forward(request,
 					response);
 		}
-		// si l'action est de se connecter (admin)
-		else if (action.equals("connect")) {
+		// si l'action est s'inscrire (représentant)
+		else if (action.equals(ACTION_REGISTER)) {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
+			if (id != null && passwd != null) {
+				System.err.println("Registering... " + id + " -> " + passwd);
+			}
+			// direction la page d'inscription
+			request.getRequestDispatcher(PATH + "register.jsp").forward(
+					request, response);
+		}
+		// si l'action est de se connecter (admin)
+		else if (action.equals(ACTION_LOGIN)) {
+			String id = request.getParameter("login");
+			String passwd = request.getParameter("password");
+			if (id != null && passwd != null) {
+				System.err.println("Logging... " + id + " -> " + passwd);
+			}
 			// direction la page d'inscription
 			request.getRequestDispatcher(PATH + "login.jsp").forward(request,
 					response);
