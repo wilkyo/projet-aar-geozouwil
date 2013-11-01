@@ -9,12 +9,13 @@
 </head>
 <body>
 	<p>
-		<a href="login?action=home">Home</a>
+		<a href="?action=home">Home</a>
 	</p>
 	<center>
 		<h3>Login to Soccer Tournement</h3>
 	</center>
-	<form action="connect">
+	<form action="" method="post">
+		<input type="hidden" name="action" value="login" />
 		<table align="center">
 			<tr>
 				<td>Login</td>
@@ -22,7 +23,7 @@
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="text" name="password" /></td>
+				<td><input type="password" name="password" /></td>
 			</tr>
 			<tr>
 				<td></td>
