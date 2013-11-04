@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,6 +16,9 @@
 		<center>
 			<h1>Create a new team</h1>
 		</center>
+		<c:forEach begin="1" end="11" step="1" var="i">
+			<c:out value="${ i }" /> 
+		</c:forEach>
 		<form action="">
 			<input type="hidden" name="action" value="newteam" />
 			<table align="center">
