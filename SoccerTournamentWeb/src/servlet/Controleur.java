@@ -68,6 +68,8 @@ public class Controleur extends HttpServlet {
 			// direction la page d'inscription
 			request.getRequestDispatcher(PATH + "login.jsp").forward(request,
 					response);
+		} else if (action.equals("404")) {
+			System.err.println("404");
 		}
 	}
 }
