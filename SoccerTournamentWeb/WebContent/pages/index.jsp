@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css"
-	href="/home/zou/workspace_soccer/SoccerTournamentWeb/WebContent/css/preferences.css" />
+<link type="text/css" rel="stylesheet" href="styles/base.css" />
 <title>Home</title>
 </head>
 <body>
-	<div>
-		It Works !<br />
+	<div id="header">It Works !</div>
+	<div id="body">
 		<p>
-			<a href="index?action=connect">Se connecter</a>
+			<a href="?action=login">Se connecter</a>
 		</p>
 		<p>
-			<a href="index?action=register">Nouvelle equipe</a>
+			<a href="?action=newteam">Nouvelle equipe</a>
 		</p>
 	</div>
 </body>

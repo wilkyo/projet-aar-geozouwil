@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controleur
  */
-@WebServlet("/")
+@WebServlet("/index")
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PATH = "/pages/";
-	private static final String ACTION_REGISTER = "register";
+	private static final String ACTION_NEW_TEAM = "newteam";
 	private static final String ACTION_LOGIN = "login";
 
 	/**
@@ -48,14 +48,14 @@ public class Controleur extends HttpServlet {
 					response);
 		}
 		// si l'action est s'inscrire (représentant)
-		else if (action.equals(ACTION_REGISTER)) {
+		else if (action.equals(ACTION_NEW_TEAM)) {
 			String id = request.getParameter("login");
 			String passwd = request.getParameter("password");
 			if (id != null && passwd != null) {
-				System.err.println("Registering... " + id + " -> " + passwd);
+				System.err.println("Adding a team... " + id + " -> " + passwd);
 			}
 			// direction la page d'inscription
-			request.getRequestDispatcher(PATH + "register.jsp").forward(
+			request.getRequestDispatcher(PATH + "newteam.jsp").forward(
 					request, response);
 		}
 		// si l'action est de se connecter (admin)
