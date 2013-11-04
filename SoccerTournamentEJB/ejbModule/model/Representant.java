@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class Representant extends Utilisateur {
+public class Representant {
 
 	private String nom;
 	private String prenom;
