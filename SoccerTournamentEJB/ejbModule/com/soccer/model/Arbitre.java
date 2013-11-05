@@ -1,12 +1,10 @@
-package model;
+package com.soccer.model;
 
-public class Joueur {
+public class Arbitre {
 
 	private int id;
 	private String nom;
 	private String prenom;
-	private int numero;
-	private Equipe equipe;
 
 	public int getId() {
 		return id;
@@ -30,22 +28,6 @@ public class Joueur {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-	public Equipe getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
 	}
 
 }
