@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="styles/base.css" />
+<link type="text/css" rel="stylesheet" href="styles/form.css" />
 <title>Login</title>
 </head>
 <body>
@@ -18,11 +19,8 @@
 		<form action="?action=login" method="post">
 			<fieldset>
 				<legend>Connexion</legend>
-				<label for="login">Login</label>
-				<input type="text" id="login" name="login" /><br />
-				<label for="pass">Password</label>
-				<input type="password" id="pass" name="password" /><br />
-				<input type="hidden" name="validate" />
+				<input type="text" id="login" name="login" placeholder="Login"/><br />
+				<input type="password" id="pass" name="password" placeholder="Password" /><br />
 				<input type="submit" value="Se connecter" />
 			</fieldset>
 		</form>

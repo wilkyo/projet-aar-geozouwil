@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+#login, #pass{
+	border: 1px solid #D4DEF1;
+	border-radius: 3px;
+	background: #eae7e5;
+	color: #333;
+	margin: 0 0 10px;
+	padding: 10px 40px 10px 10px;
+	width: 80%;
+	text-shadow: 0.8px 1px 1px rgba(0,0,0,0.3);
+	color: #222233;
+}
+
+#nom, #prenom{
+	border: 1px solid #D4DEF1;
+	border-radius: 3px;
+	background: #eae7e5;
+	margin: 4px 2px 5px;
+	padding: 2px 5px 5px 10px;
+	width: 10%;
+	text-shadow: 0.8px 1px 1px rgba(0,0,0,0.3);
+	color: #222222;
+}
+
+#nomequipe{
+	border: 1px solid #D4DEF1;
+	border-radius: 3px;
+	background: #eae7e5;
+	margin: 4px 2px 5px;
+	padding: 2px 140px 5px 20px;
+	width: 200px;
+	text-shadow: 0.8px 1px 1px rgba(0,0,0,0.3);
+	color: #ff2222;
+}
+
+#labequipe{
+	display: block;
+}

@@ -5,6 +5,20 @@ body {
 	margin: 0;
 }
 
+input[type=submit]{
+	cursor: pointer;
+	border-radius: 2px;
+	border: none;
+	background-image: -webkit-gradient(
+						 linear,
+						 left bottom,
+						 left top,
+						 color-stop(0.5, rgb(80,102,127)),
+						 color-stop(0.5, rgb(87,109,136)),
+						 color-stop(1, rgb(106,129,155))
+						 );
+}
+
 #header {
 	background-color: rgb(180, 180, 180);
 	height: 100px;
@@ -12,15 +26,10 @@ body {
 	font-weight: bold;
 }
 
-#body {
-	
-}
 
 #body form label {
 	display: block;
 	width: 120px;
-	float: left;
-	background-color: #aacccc;
 	position: relative;
 	top: 3px;
 }
