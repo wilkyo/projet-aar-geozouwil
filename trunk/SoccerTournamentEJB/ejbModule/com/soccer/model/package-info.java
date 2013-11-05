@@ -1,4 +1,4 @@
 /**
  * The Entities.
  */
-package model;
+package com.soccer.model;

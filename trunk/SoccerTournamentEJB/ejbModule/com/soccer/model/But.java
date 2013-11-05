@@ -1,4 +1,4 @@
-package model;
+package com.soccer.model;
 
 import java.util.Calendar;
 
