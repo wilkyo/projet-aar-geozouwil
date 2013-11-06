@@ -1,4 +1,4 @@
 /**
  * For the ValueObject.
  */
-package valueobjects;
+package com.soccer.valueobjects;
