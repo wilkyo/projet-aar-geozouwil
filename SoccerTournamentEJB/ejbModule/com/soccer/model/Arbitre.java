@@ -2,6 +2,7 @@ package com.soccer.model;
 
 public class Arbitre {
 
+	
 	private int id;
 	private String nom;
 	private String prenom;
