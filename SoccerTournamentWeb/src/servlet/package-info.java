@@ -1,4 +1,0 @@
-/**
- * The Controler.
- */
-package servlet;

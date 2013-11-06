@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>Controller</servlet-name>
-		<servlet-class>servlet.Controleur</servlet-class>
+		<servlet-class>com.soccer.servlet.Controleur</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
