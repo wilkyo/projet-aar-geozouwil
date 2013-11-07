@@ -10,28 +10,28 @@ classcanvas 128170 class_ref 148394 // Représentant
 end
 classcanvas 128298 class_ref 148522 // Administrateur
   class_drawing_mode default show_context_mode default show_stereotype_properties default
-  xyz 26 290 2000
+  xyz 18 352 2000
 end
 usecasecanvas 128426 usecase_ref 128042 // Se connecter
-  xyzwh 462 383 3005 64 32 label_xy 462 415
+  xyzwh 553 394 3005 64 32 label_xy 553 426
 end
 usecasecanvas 128682 usecase_ref 128170 // Créer un tournoi
-  xyzwh 261 280 3005 64 32 label_xy 254 312
+  xyzwh 265 264 3005 64 32 label_xy 258 296
 end
 usecasecanvas 129066 usecase_ref 128298 // Affecter Arbitre
-  xyzwh 261 354 3005 64 32 label_xy 255 386
+  xyzwh 268 337 3005 64 32 label_xy 262 369
 end
-usecasecanvas 129706 usecase_ref 128426 // Consulter matchs
-  xyzwh 264 762 3005 64 32 label_xy 254 794
+usecasecanvas 129706 usecase_ref 128426 // Consulter rencontres
+  xyzwh 264 762 3005 64 32 label_xy 245 794
 end
 usecasecanvas 129834 usecase_ref 128554 // Créer un Joueur
-  xyzwh 377 10 3005 64 32 label_xy 370 42
+  xyzwh 393 14 3005 64 32 label_xy 386 46
 end
 usecasecanvas 129962 usecase_ref 128682 // Créer une Equipe
-  xyzwh 249 85 3005 64 32 label_xy 240 117
+  xyzwh 249 92 3005 64 32 label_xy 240 124
 end
 usecasecanvas 130474 usecase_ref 128810 // Créer un Représentant
-  xyzwh 379 163 3010 64 32 label_xy 356 195
+  xyzwh 392 149 3010 64 32 label_xy 369 181
 end
 usecasecanvas 130986 usecase_ref 128938 // Consulter Equipes
   xyzwh 262 695 3005 64 32 label_xy 251 727
@@ -42,17 +42,20 @@ end
 usecasecanvas 131498 usecase_ref 129194 // Consulter Tournois
   xyzwh 260 628 3005 64 32 label_xy 247 660
 end
-usecasecanvas 132650 usecase_ref 129322 // Valider un match
-  xyzwh 271 508 3005 64 32 label_xy 263 540
+usecasecanvas 132650 usecase_ref 129322 // Valider un rencontre
+  xyzwh 270 543 3005 64 32 label_xy 253 575
 end
 usecasecanvas 132778 usecase_ref 129450 // Ajouter un But
-  xyzwh 267 415 3005 64 32 label_xy 265 447
+  xyzwh 269 469 3005 64 32 label_xy 267 501
 end
-usecasecanvas 133930 usecase_ref 129578 // Définir fin match
-  xyzwh 435 511 3005 64 32 label_xy 429 543
+usecasecanvas 133930 usecase_ref 129578 // Définir fin rencontre
+  xyzwh 435 511 3005 64 32 label_xy 420 543
 end
-usecasecanvas 134186 usecase_ref 129706 // Définir début match
-  xyzwh 265 193 3011 64 32 label_xy 251 225
+usecasecanvas 134186 usecase_ref 129706 // Définir début rencontre
+  xyzwh 267 183 3011 64 32 label_xy 244 215
+end
+usecasecanvas 134826 usecase_ref 136234 // Créer un Arbitre
+  xyzwh 264 420 3005 64 32 label_xy 257 452
 end
 line 129322 ----
   from ref 128298 z 3006 to ref 128682
@@ -61,10 +64,10 @@ line 129450 ----
 line 130218 ----
   from ref 128170 z 3006 to ref 129962
 simplerelationcanvas 130346 simplerelation_ref 128042
-  from ref 129962 z 3006 stereotype "<<include>>" xyz 311 62 3000 to ref 129834
+  from ref 129962 z 3006 stereotype "<<include>>" xyz 320 67.5 3000 to ref 129834
 end
 simplerelationcanvas 130602 simplerelation_ref 128170
-  from ref 129962 z 3011 stereotype "<<include>>" xyz 317.5 138.5 3000 to ref 130474
+  from ref 129962 z 3011 stereotype "<<include>>" xyz 322 134 3000 to ref 130474
 end
 line 130858 ----
   from ref 128042 z 3006 to ref 129706
@@ -83,36 +86,43 @@ line 132394 ----
 line 132522 ----
   from ref 128298 z 3006 to ref 131242
 simplerelationcanvas 132906 simplerelation_ref 128298
-  from ref 132778 z 3006 stereotype "<<extend>>" xyz 367 412.5 3000 to ref 128426
+  from ref 132778 z 3006 stereotype "<<extend>>" xyz 413 444 3000 to ref 128426
 end
 simplerelationcanvas 133034 simplerelation_ref 128426
-  from ref 128682 z 3006 stereotype "<<extend>>" xyz 369.5 368 3000 to ref 128426
+  from ref 128682 z 3006 stereotype "<<extend>>" xyz 406.5 337.5 3000 to ref 128426
 end
 simplerelationcanvas 133162 simplerelation_ref 128554
-  from ref 129066 z 3006 stereotype "<<extend>>" xyz 364 382.5 3000 to ref 128426
+  from ref 129066 z 3006 stereotype "<<extend>>" xyz 413 379 3000 to ref 128426
 end
 simplerelationcanvas 133290 simplerelation_ref 128682
-  from ref 132650 z 3006 stereotype "<<extend>>" xyz 364.5 460.5 3000 to ref 128426
+  from ref 132650 z 3006 stereotype "<<extend>>" xyz 410 482.5 3000 to ref 128426
 end
 line 133418 ----
   from ref 128298 z 3006 to ref 132778
 line 133546 ----
   from ref 128298 z 3006 to ref 132650
 simplerelationcanvas 133674 simplerelation_ref 128810
-  from ref 132650 z 3006 stereotype "<<extend>>" xyz 271 476 3000 to ref 132778
+  from ref 132650 z 3006 stereotype "<<extend>>" xyz 271 520 3000 to ref 132778
 end
 simplerelationcanvas 133802 simplerelation_ref 128938
-  from ref 129066 z 3006 stereotype "<<extend>>" xyz 263.5 331.5 3000 to ref 128682
+  from ref 129066 z 3006 stereotype "<<extend>>" xyz 267.5 314.5 3000 to ref 128682
 end
 simplerelationcanvas 134058 simplerelation_ref 129066
-  from ref 132650 z 3006 stereotype "<<include>>" xyz 354.5 523.5 3000 to ref 133930
+  from ref 132650 z 3006 stereotype "<<include>>" xyz 353 540 3000 to ref 133930
 end
 simplerelationcanvas 134314 simplerelation_ref 129194
-  from ref 134186 z 3012 stereotype "<<extend>>" xyz 251.5 252.5 3000 to ref 128682
+  from ref 134186 z 3012 stereotype "<<extend>>" xyz 254 239 3000 to ref 128682
 end
 line 134442 ----
   from ref 128298 z 3012 to ref 134186
 simplerelationcanvas 134698 simplerelation_ref 129322
-  from ref 134186 z 3012 stereotype "<<extend>>" xyz 366 303 3000 to ref 128426
+  from ref 134186 z 3012 stereotype "<<extend>>" xyz 413.5 303 3000 to ref 128426
 end
+line 134954 ----
+  from ref 128298 z 3006 to ref 134826
+simplerelationcanvas 135082 simplerelation_ref 135850
+  from ref 134826 z 3006 stereotype "<<extend>>" xyz 411 419.5 3000 to ref 128426
+end
+line 135210 ----
+  from ref 128298 z 3006 to ref 128426
 end

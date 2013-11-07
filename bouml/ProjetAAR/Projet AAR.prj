@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 6
+  revision 10
   modified_by 42 "Willy"
 
 
@@ -59,70 +59,6 @@ format 75
       size A4
     end
 
-    class 128042 "Representant"
-      visibility package 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      attribute 142122 "id"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128042 "nom"
-	private explicit_type "string"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128170 "prenom"
-	private explicit_type "string"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128298 "equipes"
-	private explicit_type "List<Equipe>"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      classrelation 128042 // <composition>
-	relation 128042 *---
-	  a role_name "" multiplicity "1" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 128042 // <composition>
-	  b role_name "" multiplicity "1..*" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 128170 // <composition>
-      end
-    end
-
     class 128170 "Equipe"
       visibility package 
       cpp_decl ""
@@ -154,8 +90,8 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 128682 "representant"
-	private type class_ref 128042 // Representant
+      attribute 157482 "nomRepresentant"
+	private explicit_type "string"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -164,8 +100,14 @@ ${members}}
 	idl_decl ""
       end
 
-      classrelation 128170 // <composition>
-	relation_ref 128042 // <composition>
+      attribute 128682 "prenomRepresentant"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
 
       classrelation 141610 // <composition>
@@ -444,7 +386,7 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 143402 "match"
+      attribute 143402 "rencontre"
 	private type class_ref 141354 // Rencontre
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -512,7 +454,7 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 144170 "matchs"
+      attribute 144170 "rencontres"
 	private explicit_type "List<Rencontre>"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -546,11 +488,139 @@ ${members}}
     end
 
     classdiagram 134570 "EJBs"
-      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
-    class 148138 "EquipeEJB"
+    class 148138 "Utilisateur"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 128042 "getTournois"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128170 "getEquipes"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tournoi" type class_ref 141610 // Tournoi
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128426 "getJoueurs"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "equipe" type class_ref 128170 // Equipe
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128298 "getRencontres"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tournoi" type class_ref 141610 // Tournoi
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128554 "getEquipes"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 155050 "UtilisateurLocal"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 150058 // <generalisation>
+	relation 148906 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150058 // <generalisation>
+	  b parent class_ref 148138 // Utilisateur
+      end
+    end
+
+    class 155178 "UtilisateurRemote"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 149930 // <generalisation>
+	relation 148778 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 149930 // <generalisation>
+	  b parent class_ref 148138 // Utilisateur
+      end
+    end
+
+    class 155306 "UtilisateurSessionBean"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
@@ -561,6 +631,410 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
+      classrelation 157098 // <realization>
+	relation 155946 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157098 // <realization>
+	  b parent class_ref 155178 // UtilisateurRemote
+      end
+
+      classrelation 157226 // <realization>
+	relation 156074 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157226 // <realization>
+	  b parent class_ref 155050 // UtilisateurLocal
+      end
+    end
+
+    class 155434 "Administrateur"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 129322 "connexion"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "login" explicit_type "string"
+	  param in name "password" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128682 "creerTournoi"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128810 "setDebutRencontre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "heureDebut" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128938 "ajouterArbitre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nom" explicit_type "string"
+	  param in name "prenom" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129066 "affecterArbitre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "arbitre" type class_ref 141226 // Arbitre
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129194 "ajouterBut"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "auteur" type class_ref 134698 // Joueur
+	  param in name "heure" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129450 "validerRencontre"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "heureFin" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 161962 "AdministrateurRemote"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 156586 // <generalisation>
+	relation 155434 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156586 // <generalisation>
+	  b parent class_ref 155434 // Administrateur
+      end
+    end
+
+    class 162090 "AdministrateurLocal"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 156714 // <generalisation>
+	relation 155562 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156714 // <generalisation>
+	  b parent class_ref 155434 // Administrateur
+      end
+    end
+
+    class 162218 "AdministrateurSessionBean"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 156842 // <realization>
+	relation 155690 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156842 // <realization>
+	  b parent class_ref 161962 // AdministrateurRemote
+      end
+
+      classrelation 156970 // <realization>
+	relation 155818 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156970 // <realization>
+	  b parent class_ref 162090 // AdministrateurLocal
+      end
+    end
+
+    class 162346 "Representant"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 135978 "creerEquipe"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "nomEquipe" explicit_type "string"
+	  param in name "nomRepresentant" explicit_type "string"
+	  param in name "prenomRepresentant" explicit_type "string"
+	  param in name "joueurs" explicit_type "string[]"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 162474 "RepresentantLocal"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 157738 // <generalisation>
+	relation 156586 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157738 // <generalisation>
+	  b parent class_ref 162346 // Representant
+      end
+    end
+
+    class 162602 "RepresentantRemote"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 157610 // <generalisation>
+	relation 156458 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157610 // <generalisation>
+	  b parent class_ref 162346 // Representant
+      end
+    end
+
+    class 162730 "RepresentantSessionBean"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 157354 // <realization>
+	relation 156202 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157354 // <realization>
+	  b parent class_ref 162602 // RepresentantRemote
+      end
+
+      classrelation 157482 // <realization>
+	relation 156330 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157482 // <realization>
+	  b parent class_ref 162474 // RepresentantLocal
+      end
+    end
+
+    class 162858 "SoccerTournamentFacade"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 162986 "SoccerTournamentFacadeLocal"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 158250 // <generalisation>
+	relation 157098 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 158250 // <generalisation>
+	  b parent class_ref 162858 // SoccerTournamentFacade
+      end
+    end
+
+    class 163114 "SoccerTournamentFacadeRemote"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 158122 // <generalisation>
+	relation 156970 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 158122 // <generalisation>
+	  b parent class_ref 162858 // SoccerTournamentFacade
+      end
+    end
+
+    class 163242 "SoccerTournamentFacadeSessionBean"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 157866 // <realization>
+	relation 156714 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157866 // <realization>
+	  b parent class_ref 163114 // SoccerTournamentFacadeRemote
+      end
+
+      classrelation 157994 // <realization>
+	relation 156842 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157994 // <realization>
+	  b parent class_ref 162986 // SoccerTournamentFacadeLocal
+      end
     end
   end
 
@@ -698,7 +1172,7 @@ ${members}}
       end
     end
 
-    usecase 128426 "Consulter matchs"
+    usecase 128426 "Consulter rencontres"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -842,7 +1316,7 @@ ${members}}
       show_infonote default drawing_language default show_stereotype_properties default
     end
 
-    usecase 129322 "Valider un match"
+    usecase 129322 "Valider un rencontre"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -874,7 +1348,7 @@ ${members}}
       simplerelation 129066
 	-_->
 	  stereotype "include"
-	  on usecase_ref 129578 // Définir fin match
+	  on usecase_ref 129578 // Définir fin rencontre
       end
     end
 
@@ -902,7 +1376,7 @@ ${members}}
       end
     end
 
-    usecase 129578 "Définir fin match"
+    usecase 129578 "Définir fin rencontre"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -921,7 +1395,7 @@ ${members}}
       show_infonote default drawing_language default show_stereotype_properties default
     end
 
-    usecase 129706 "Définir début match"
+    usecase 129706 "Définir début rencontre"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -945,6 +1419,30 @@ ${members}}
       end
 
       simplerelation 129322
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128042 // Se connecter
+      end
+    end
+
+    usecase 136234 "Créer un Arbitre"
+      //use case diagram settings
+      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+      //sequence diagram settings
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      //collaboration diagram settings
+      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+      //class diagram settings
+      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      //object diagram settings
+       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+      //state diagram settings
+      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+      show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+      //activity diagram settings
+      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+      show_infonote default drawing_language default show_stereotype_properties default
+      simplerelation 135850
 	-_->
 	  stereotype "extend"
 	  on usecase_ref 128042 // Se connecter
