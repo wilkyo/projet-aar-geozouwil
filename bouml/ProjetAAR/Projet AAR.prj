@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 10
+  revision 11
   modified_by 42 "Willy"
 
 
@@ -148,6 +148,16 @@ ${members}}
 	idl_decl ""
       end
 
+      attribute 135594 "equipe"
+	private type class_ref 128170 // Equipe
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
       attribute 135338 "nom"
 	private explicit_type "string"
 	cpp_decl ""
@@ -168,8 +178,8 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 135594 "equipe"
-	private type class_ref 128170 // Equipe
+      attribute 164010 "numero"
+	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -254,7 +264,17 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 142762 "equipeA"
+      attribute 164138 "tournoi"
+	private type class_ref 141610 // Tournoi
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142762 "hotes"
 	private type class_ref 128170 // Equipe
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -264,7 +284,7 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 142890 "equipeB"
+      attribute 142890 "visiteurs"
 	private type class_ref 128170 // Equipe
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -959,6 +979,181 @@ ${members}};
 "
       explicit_switch_type ""
       
+      operation 142506 "creerEquipe"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "nomEquipe" explicit_type "string"
+	  param in name "nomRepresentant" explicit_type "string"
+	  param in name "prenomRepresentant" explicit_type "string"
+	  param in name "joueurs" explicit_type "string[]"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 142634 "getTournois"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 142762 "getEquipes"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tournoi" type class_ref 141610 // Tournoi
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 142890 "getJoueurs"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "equipe" type class_ref 128170 // Equipe
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143018 "getRencontres"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tournoi" type class_ref 141610 // Tournoi
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143146 "getEquipes"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143274 "connexion"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "login" explicit_type "string"
+	  param in name "password" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143402 "creerTournoi"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143530 "setDebutRencontre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "heureDebut" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143658 "ajouterArbitre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nom" explicit_type "string"
+	  param in name "prenom" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143786 "affecterArbitre"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "arbitre" type class_ref 141226 // Arbitre
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143914 "ajouterBut"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "auteur" type class_ref 134698 // Joueur
+	  param in name "heure" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144042 "validerRencontre"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "heureFin" explicit_type "date"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     class 162986 "SoccerTournamentFacadeLocal"
