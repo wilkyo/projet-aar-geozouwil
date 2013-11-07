@@ -5,13 +5,31 @@ import java.util.List;
 
 public class Rencontre {
 
+	private int id;
+	private Tournoi tournoi;
 	private Equipe hotes;
 	private Equipe visiteurs;
 	private Arbitre arbitre;
+	private int tour;
 	private Calendar debut;
 	private Calendar fin;
 	private List<But> buts;
-	private Tournoi tournoi;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Tournoi getTournoi() {
+		return tournoi;
+	}
+
+	public void setTournoi(Tournoi tournoi) {
+		this.tournoi = tournoi;
+	}
 
 	public Equipe getHotes() {
 		return hotes;
@@ -37,6 +55,14 @@ public class Rencontre {
 		this.arbitre = arbitre;
 	}
 
+	public int getTour() {
+		return tour;
+	}
+
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+
 	public Calendar getDebut() {
 		return debut;
 	}
@@ -59,14 +85,6 @@ public class Rencontre {
 
 	public void setButs(List<But> buts) {
 		this.buts = buts;
-	}
-
-	public Tournoi getTournoi() {
-		return tournoi;
-	}
-
-	public void setTournoi(Tournoi tournoi) {
-		this.tournoi = tournoi;
 	}
 
 }

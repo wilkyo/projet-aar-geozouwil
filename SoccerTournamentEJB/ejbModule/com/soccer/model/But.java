@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class But {
 
 	private int id;
-	private Rencontre match;
+	private Rencontre recontre;
 	private Joueur auteur;
 	private Calendar heure;
 
@@ -17,12 +17,12 @@ public class But {
 		this.id = id;
 	}
 
-	public Rencontre getMatch() {
-		return match;
+	public Rencontre getRencontre() {
+		return recontre;
 	}
 
-	public void setMatch(Rencontre match) {
-		this.match = match;
+	public void setRencontre(Rencontre rencontre) {
+		this.recontre = rencontre;
 	}
 
 	public Joueur getAuteur() {
