@@ -6,8 +6,8 @@ public class Equipe {
 
 	private String nom;
 	private List<Joueur> joueurs;
-	private Representant representant;
-	private int numero;
+	private String nomRepresentant;
+	private String prenomRepresentant;
 
 	public String getNom() {
 		return nom;
@@ -25,20 +25,20 @@ public class Equipe {
 		this.joueurs = joueurs;
 	}
 
-	public Representant getRepresentant() {
-		return representant;
+	public String getNomRepresentant() {
+		return nomRepresentant;
 	}
 
-	public void setRepresentant(Representant representant) {
-		this.representant = representant;
+	public void setNomRepresentant(String nomRepresentant) {
+		this.nomRepresentant = nomRepresentant;
 	}
 
-	public int getNumero() {
-		return numero;
+	public String getPrenomRepresentant() {
+		return prenomRepresentant;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setPrenomRepresentant(String prenomRepresentant) {
+		this.prenomRepresentant = prenomRepresentant;
 	}
 
 }

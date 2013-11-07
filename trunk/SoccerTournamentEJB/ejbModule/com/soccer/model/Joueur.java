@@ -3,10 +3,10 @@ package com.soccer.model;
 public class Joueur {
 
 	private int id;
+	private Equipe equipe;
 	private String nom;
 	private String prenom;
 	private int numero;
-	private Equipe equipe;
 
 	public int getId() {
 		return id;
@@ -14,6 +14,14 @@ public class Joueur {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Equipe getEquipe() {
+		return equipe;
+	}
+
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
 
 	public String getNom() {
@@ -38,14 +46,6 @@ public class Joueur {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
-	}
-
-	public Equipe getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
 	}
 
 }
