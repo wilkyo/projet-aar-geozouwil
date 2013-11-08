@@ -1,72 +1,52 @@
 format 75
 
-classcanvas 128170 class_ref 128170 // Equipe
+classcanvas 128042 class_ref 169770 // VOTournoi
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 278 458 2000
+  xyz 47 44 2000
 end
-classcanvas 128426 class_ref 134698 // Joueur
+classcanvas 128170 class_ref 169898 // VOBut
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 571 451 2000
+  xyz 699 100 2000
 end
-classcanvas 129194 class_ref 141226 // Arbitre
+classcanvas 128298 class_ref 170026 // VOJoueur
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 31 243 2000
+  xyz 706 314 2000
 end
-classcanvas 129322 class_ref 141354 // Rencontre
+classcanvas 128554 class_ref 170154 // VOEquipe
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 304 196 2000
+  xyz 405 307 2000
 end
-classcanvas 129834 class_ref 141482 // But
+classcanvas 128810 class_ref 170282 // VORencontre
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 553 236 2000
+  xyz 405 51 2000
 end
-classcanvas 130218 class_ref 141610 // Tournoi
+classcanvas 129322 class_ref 170410 // VORencontreLight
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 274 4 2000
+  xyz 77 181 2000
 end
-relationcanvas 129450 relation_ref 141226 // <composition>
-  from ref 128170 z 2001 to ref 128426
+relationcanvas 128426 relation_ref 164010 // <aggregation>
+  from ref 128170 z 2001 to ref 128298
   no_role_a no_role_b
-  multiplicity_a_pos 554 513 3000 multiplicity_b_pos 448 513 3000
+  multiplicity_a_pos 738 295 3000 multiplicity_b_pos 740 171 3000
 end
-relationcanvas 129578 relation_ref 141354 // <aggregation>
-  from ref 129322 z 2001 to ref 128170
+relationcanvas 128682 relation_ref 164138 // <composition>
+  from ref 128554 z 2001 to ref 128298
   no_role_a no_role_b
-  multiplicity_a_pos 343 439 3000 multiplicity_b_pos 331 379 3000
+  multiplicity_a_pos 691 361 3000 multiplicity_b_pos 575 361 3000
 end
-relationcanvas 129706 relation_ref 141482 // <aggregation>
-  from ref 129322 z 2001 to ref 129194
+relationcanvas 128938 relation_ref 164266 // <aggregation>
+  from ref 128810 z 2001 to ref 128554
   no_role_a no_role_b
-  multiplicity_a_pos 137 290 3000 multiplicity_b_pos 287 290 3000
+  multiplicity_a_pos 458 288 3000 multiplicity_b_pos 470 218 3000
 end
-relationcanvas 129962 relation_ref 141610 // <composition>
-  from ref 129322 z 2001 to ref 129834
+relationcanvas 129194 relation_ref 164522 // <composition>
+  from ref 128810 z 2001 to ref 128170
   no_role_a no_role_b
-  multiplicity_a_pos 536 291 3000 multiplicity_b_pos 420 291 3000
+  multiplicity_a_pos 672 138 3000 multiplicity_b_pos 573 138 3000
 end
-relationcanvas 130090 relation_ref 141738 // <aggregation>
-  from ref 129834 z 2001 to ref 128426
+relationcanvas 129450 relation_ref 164650 // <composition>
+  from ref 128042 z 2001 to ref 129322
   no_role_a no_role_b
-  multiplicity_a_pos 604 432 3000 multiplicity_b_pos 602 339 3000
-end
-relationcanvas 130346 relation_ref 141866 // <composition>
-  from ref 130218 z 2001 to ref 129322
-  no_role_a no_role_b
-  multiplicity_a_pos 340 177 3000 multiplicity_b_pos 330 91 3000
-end
-relationcanvas 130602 relation_ref 163626 // <aggregation>
-  from ref 129834 z 2001 to ref 129322
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
-end
-relationcanvas 130730 relation_ref 163754 // <aggregation>
-  from ref 128426 z 2001 to ref 128170
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
-end
-relationcanvas 130858 relation_ref 163882 // <aggregation>
-  from ref 129322 z 2001 to ref 130218
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
+  multiplicity_a_pos 133 162 3000 multiplicity_b_pos 123 115 3000
 end
 end

@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 11
+  revision 13
   modified_by 42 "Willy"
 
 
@@ -125,6 +125,10 @@ ${members}}
       classrelation 141994 // <aggregation>
 	relation_ref 141354 // <aggregation>
       end
+
+      classrelation 165162 // <aggregation>
+	relation_ref 163754 // <aggregation>
+      end
     end
 
     class 134698 "Joueur"
@@ -194,6 +198,18 @@ ${members}}
 
       classrelation 142762 // <aggregation>
 	relation_ref 141738 // <aggregation>
+      end
+
+      classrelation 165034 // <aggregation>
+	relation 163754 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165034 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165162 // <aggregation>
       end
     end
 
@@ -315,7 +331,7 @@ ${members}}
       end
 
       attribute 143914 "debut"
-	private explicit_type "date"
+	private explicit_type "Calendar"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -325,7 +341,7 @@ ${members}}
       end
 
       attribute 144042 "fin"
-	private explicit_type "date"
+	private explicit_type "Calendar"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -383,6 +399,22 @@ ${members}}
       classrelation 143018 // <composition>
 	relation_ref 141866 // <composition>
       end
+
+      classrelation 164906 // <aggregation>
+	relation_ref 163626 // <aggregation>
+      end
+
+      classrelation 165290 // <aggregation>
+	relation 163882 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165290 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165418 // <aggregation>
+      end
     end
 
     class 141482 "But"
@@ -427,7 +459,7 @@ ${members}}
       end
 
       attribute 143658 "heure"
-	private explicit_type "date"
+	private explicit_type "Calendar"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -450,6 +482,18 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 142762 // <aggregation>
+      end
+
+      classrelation 164778 // <aggregation>
+	relation 163626 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 164778 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 164906 // <aggregation>
       end
     end
 
@@ -484,18 +528,6 @@ ${members}}
 	idl_decl ""
       end
 
-      classrelation 142890 // <composition>
-	relation 141866 *---
-	  a role_name "" multiplicity "1..*" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 142890 // <composition>
-	  b role_name "" multiplicity "1" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 143018 // <composition>
-      end
-
       attribute 150826 "tourActuel"
 	private explicit_type "int"
 	cpp_decl ""
@@ -504,6 +536,22 @@ ${members}}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      classrelation 142890 // <composition>
+	relation 141866 *---
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142890 // <composition>
+	  b role_name "" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143018 // <composition>
+      end
+
+      classrelation 165418 // <aggregation>
+	relation_ref 163882 // <aggregation>
       end
     end
 
@@ -528,7 +576,7 @@ ${members}};
       explicit_switch_type ""
       
       operation 128042 "getTournois"
-	public explicit_return_type ""
+	public explicit_return_type "List<VOTournoi>"
 	nparams 0
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -540,9 +588,9 @@ ${members}};
       end
 
       operation 128170 "getEquipes"
-	public explicit_return_type ""
+	public explicit_return_type "List<VOEquipe>"
 	nparams 1
-	  param in name "tournoi" type class_ref 141610 // Tournoi
+	  param in name "nomTournoi" explicit_type "string"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -553,9 +601,9 @@ ${members}};
       end
 
       operation 128426 "getJoueurs"
-	public explicit_return_type ""
+	public explicit_return_type "List<VOJoueur>"
 	nparams 1
-	  param in name "equipe" type class_ref 128170 // Equipe
+	  param in name "nomEquipe" explicit_type "string"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -566,9 +614,22 @@ ${members}};
       end
 
       operation 128298 "getRencontres"
-	public explicit_return_type ""
+	public explicit_return_type "List<VORencontreLight>"
 	nparams 1
-	  param in name "tournoi" type class_ref 141610 // Tournoi
+	  param in name "nomTournoi" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150698 "getRencontre"
+	public explicit_return_type "List<VORencontre>"
+	nparams 1
+	  param in name "idRencontre" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -579,9 +640,9 @@ ${members}};
       end
 
       operation 128554 "getEquipes"
-	public explicit_return_type ""
+	public explicit_return_type "List<VOEquipe>"
 	nparams 1
-	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "idRencontre" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -712,8 +773,8 @@ ${members}};
       operation 128810 "setDebutRencontre"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "rencontre" type class_ref 141354 // Rencontre
-	  param in name "heureDebut" explicit_type "date"
+	  param in name "idRencontre" explicit_type "int"
+	  param in name "debut" explicit_type "Calendar"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
@@ -740,8 +801,8 @@ ${members}};
       operation 129066 "affecterArbitre"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "arbitre" type class_ref 141226 // Arbitre
-	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "idArbitre" explicit_type "int"
+	  param in name "idRencontre" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
@@ -754,9 +815,9 @@ ${members}};
       operation 129194 "ajouterBut"
 	public explicit_return_type ""
 	nparams 3
-	  param in name "rencontre" type class_ref 141354 // Rencontre
-	  param in name "auteur" type class_ref 134698 // Joueur
-	  param in name "heure" explicit_type "date"
+	  param in name "idRencontre" explicit_type "int"
+	  param in name "idAuteur" explicit_type "int"
+	  param in name "heure" explicit_type "Calendar"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
   ${body}}
@@ -769,7 +830,7 @@ ${members}};
       operation 129450 "validerRencontre"
 	public explicit_return_type ""
 	nparams 1
-	  param in name "heureFin" explicit_type "date"
+	  param in name "fin" explicit_type "Calendar"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -873,13 +934,14 @@ ${members}};
       
       operation 135978 "creerEquipe"
 	public explicit_return_type ""
-	nparams 4
+	nparams 5
 	  param in name "nomEquipe" explicit_type "string"
 	  param in name "nomRepresentant" explicit_type "string"
 	  param in name "prenomRepresentant" explicit_type "string"
-	  param in name "joueurs" explicit_type "string[]"
+	  param in name "nomJoueurs" explicit_type "string[]"
+	  param in name "prenomJoueurs" explicit_type "string[]"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -979,15 +1041,16 @@ ${members}};
 "
       explicit_switch_type ""
       
-      operation 142506 "creerEquipe"
+      operation 157866 "creerEquipe"
 	public explicit_return_type ""
-	nparams 4
+	nparams 5
 	  param in name "nomEquipe" explicit_type "string"
 	  param in name "nomRepresentant" explicit_type "string"
 	  param in name "prenomRepresentant" explicit_type "string"
-	  param in name "joueurs" explicit_type "string[]"
+	  param in name "nomJoueurs" explicit_type "string[]"
+	  param in name "prenomJoueurs" explicit_type "string[]"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1007,10 +1070,10 @@ ${members}};
 	
       end
 
-      operation 142762 "getEquipes"
-	public explicit_return_type ""
+      operation 157226 "getEquipes"
+	public explicit_return_type "List<VOEquipe>"
 	nparams 1
-	  param in name "tournoi" type class_ref 141610 // Tournoi
+	  param in name "nomTournoi" explicit_type "string"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -1020,10 +1083,10 @@ ${members}};
 	
       end
 
-      operation 142890 "getJoueurs"
-	public explicit_return_type ""
+      operation 157354 "getJoueurs"
+	public explicit_return_type "List<VOJoueur>"
 	nparams 1
-	  param in name "equipe" type class_ref 128170 // Equipe
+	  param in name "nomEquipe" explicit_type "string"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -1033,10 +1096,10 @@ ${members}};
 	
       end
 
-      operation 143018 "getRencontres"
-	public explicit_return_type ""
+      operation 157482 "getRencontres"
+	public explicit_return_type "List<VORencontreLight>"
 	nparams 1
-	  param in name "tournoi" type class_ref 141610 // Tournoi
+	  param in name "nomTournoi" explicit_type "string"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -1046,10 +1109,23 @@ ${members}};
 	
       end
 
-      operation 143146 "getEquipes"
-	public explicit_return_type ""
+      operation 157610 "getRencontre"
+	public explicit_return_type "List<VORencontre>"
 	nparams 1
-	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "idRencontre" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157738 "getEquipes"
+	public explicit_return_type "List<VOEquipe>"
+	nparams 1
+	  param in name "idRencontre" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -1073,7 +1149,7 @@ ${members}};
 	
       end
 
-      operation 143402 "creerTournoi"
+      operation 157994 "creerTournoi"
 	public explicit_return_type ""
 	nparams 0
 	
@@ -1085,11 +1161,11 @@ ${members}};
 	
       end
 
-      operation 143530 "setDebutRencontre"
+      operation 158122 "setDebutRencontre"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "rencontre" type class_ref 141354 // Rencontre
-	  param in name "heureDebut" explicit_type "date"
+	  param in name "idRencontre" explicit_type "int"
+	  param in name "debut" explicit_type "Calendar"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
@@ -1099,7 +1175,7 @@ ${members}};
 	
       end
 
-      operation 143658 "ajouterArbitre"
+      operation 158250 "ajouterArbitre"
 	public explicit_return_type ""
 	nparams 2
 	  param in name "nom" explicit_type "string"
@@ -1113,11 +1189,11 @@ ${members}};
 	
       end
 
-      operation 143786 "affecterArbitre"
+      operation 158378 "affecterArbitre"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "arbitre" type class_ref 141226 // Arbitre
-	  param in name "rencontre" type class_ref 141354 // Rencontre
+	  param in name "idArbitre" explicit_type "int"
+	  param in name "idRencontre" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
@@ -1127,12 +1203,12 @@ ${members}};
 	
       end
 
-      operation 143914 "ajouterBut"
+      operation 158506 "ajouterBut"
 	public explicit_return_type ""
 	nparams 3
-	  param in name "rencontre" type class_ref 141354 // Rencontre
-	  param in name "auteur" type class_ref 134698 // Joueur
-	  param in name "heure" explicit_type "date"
+	  param in name "idRencontre" explicit_type "int"
+	  param in name "idAuteur" explicit_type "int"
+	  param in name "heure" explicit_type "Calendar"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
   ${body}}
@@ -1229,6 +1305,403 @@ ${members}}
 	    java "${type}"
 	    classrelation_ref 157994 // <realization>
 	  b parent class_ref 162986 // SoccerTournamentFacadeLocal
+      end
+    end
+
+    classdiagram 141226 "ValueObjects"
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 169770 "VOTournoi"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 170666 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 170794 "rencontres"
+	private explicit_type "List<VORencontreLight>"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 166826 // <composition>
+	relation 164650 *---
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166826 // <composition>
+	  b role_name "" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166954 // <composition>
+      end
+    end
+
+    class 169898 "VOBut"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 170922 "auteur"
+	private type class_ref 170026 // VOJoueur
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171434 "heure"
+	private explicit_type "Calendar"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 165546 // <aggregation>
+	relation 164010 o---
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165546 // <aggregation>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165674 // <aggregation>
+      end
+
+      classrelation 166698 // <composition>
+	relation_ref 164522 // <composition>
+      end
+    end
+
+    class 170026 "VOJoueur"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 171050 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171178 "prenom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171306 "numero"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 165674 // <aggregation>
+	relation_ref 164010 // <aggregation>
+      end
+
+      classrelation 165930 // <composition>
+	relation_ref 164138 // <composition>
+      end
+    end
+
+    class 170154 "VOEquipe"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 171562 "nom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171690 "joueurs"
+	private explicit_type "List<VOJoueur>"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171818 "nomRepresentant"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 171946 "prenomRepresentant"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 165802 // <composition>
+	relation 164138 *---
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165802 // <composition>
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165930 // <composition>
+      end
+
+      classrelation 166186 // <aggregation>
+	relation_ref 164266 // <aggregation>
+      end
+    end
+
+    class 170282 "VORencontre"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 172074 "hotes"
+	private type class_ref 170154 // VOEquipe
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172202 "visiteurs"
+	private type class_ref 170154 // VOEquipe
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172330 "arbitre"
+	private type class_ref 141226 // Arbitre
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172458 "tour"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172586 "debut"
+	private explicit_type "Calendar"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172714 "fin"
+	private explicit_type "Calendar"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172842 "butsHotes"
+	private explicit_type "List<VOBut>"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 172970 "butsVisiteurs"
+	private explicit_type "List<VOBut>"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 166058 // <aggregation>
+	relation 164266 o---
+	  a role_name "" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166058 // <aggregation>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166186 // <aggregation>
+      end
+
+      classrelation 166570 // <composition>
+	relation 164522 *---
+	  a role_name "" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166570 // <composition>
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166698 // <composition>
+      end
+    end
+
+    class 170410 "VORencontreLight"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 173098 "hotes"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 173226 "visiteurs"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 173354 "scoreHotes"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 173482 "scoreVisiteurs"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 173610 "dateRencontre"
+	private explicit_type "Calendar"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 166954 // <composition>
+	relation_ref 164650 // <composition>
       end
     end
   end
