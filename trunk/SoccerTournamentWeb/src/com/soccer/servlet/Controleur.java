@@ -47,23 +47,18 @@ public class Controleur extends HttpServlet {
 			request.getRequestDispatcher(PATH + "index.jsp").forward(request,
 					response);
 		}
-		// si l'action est s'inscrire (représentant)
+		// si l'action est l'inscription d'une équipe
 		else if (action.equals(ACTION_NEW_TEAM)) {
-			String id = request.getParameter("login");
-			String passwd = request.getParameter("password");
-			if (id != null && passwd != null) {
-				System.err.println("Adding a team... " + id + " -> " + passwd);
-			}
-			// direction la page d'inscription
-			request.getRequestDispatcher(PATH + "newteam.jsp").forward(
-					request, response);
+			// direction la page d'inscription d'une équipe
+			request.getRequestDispatcher(PATH + "newteam.jsp").forward(request,
+					response);
 		}
-		// si l'action est de se connecter (admin)
+		// si l'action est de se connecter ( pour l'admin)
 		else if (action.equals(ACTION_LOGIN)) {
-			String id = request.getParameter("login");
+			String login = request.getParameter("login");
 			String passwd = request.getParameter("password");
-			if (id != null && passwd != null) {
-				System.err.println("Logging... " + id + " -> " + passwd);
+			if (login != null && passwd != null) {
+				System.err.println("Logging... " + login + " -> " + passwd);
 			}
 			// direction la page d'inscription
 			request.getRequestDispatcher(PATH + "login.jsp").forward(request,
