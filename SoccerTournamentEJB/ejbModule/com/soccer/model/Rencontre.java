@@ -15,76 +15,95 @@ public class Rencontre {
 	private Calendar fin;
 	private List<But> buts;
 
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	/**
+	 * @return the tournoi
+	 */
 	public Tournoi getTournoi() {
 		return tournoi;
 	}
 
-	public void setTournoi(Tournoi tournoi) {
-		this.tournoi = tournoi;
-	}
-
+	/**
+	 * @return the hotes
+	 */
 	public Equipe getHotes() {
 		return hotes;
 	}
 
-	public void setHotes(Equipe hotes) {
-		this.hotes = hotes;
-	}
-
+	/**
+	 * @return the visiteurs
+	 */
 	public Equipe getVisiteurs() {
 		return visiteurs;
 	}
 
-	public void setVisiteurs(Equipe visiteurs) {
-		this.visiteurs = visiteurs;
-	}
-
+	/**
+	 * @return the arbitre
+	 */
 	public Arbitre getArbitre() {
 		return arbitre;
 	}
 
-	public void setArbitre(Arbitre arbitre) {
-		this.arbitre = arbitre;
-	}
-
+	/**
+	 * @return the tour
+	 */
 	public int getTour() {
 		return tour;
 	}
 
-	public void setTour(int tour) {
-		this.tour = tour;
-	}
-
+	/**
+	 * @return the debut
+	 */
 	public Calendar getDebut() {
 		return debut;
 	}
 
-	public void setDebut(Calendar debut) {
-		this.debut = debut;
-	}
-
+	/**
+	 * @return the fin
+	 */
 	public Calendar getFin() {
 		return fin;
 	}
 
-	public void setFin(Calendar fin) {
-		this.fin = fin;
-	}
-
+	/**
+	 * @return the buts
+	 */
 	public List<But> getButs() {
 		return buts;
 	}
 
-	public void setButs(List<But> buts) {
-		this.buts = buts;
+	/**
+	 * Gets the hosts score.
+	 * 
+	 * @return the hosts score.
+	 */
+	public int getScoreHotes() {
+		int score = 0;
+		for (But b : buts) {
+			if (b.getAuteur().getEquipe() == hotes)
+				score++;
+		}
+		return score;
+	}
+
+	/**
+	 * Gets the visitors score.
+	 * 
+	 * @return the visitors score.
+	 */
+	public int getScoreVisiteurs() {
+		int score = 0;
+		for (But b : buts) {
+			if (b.getAuteur().getEquipe() == visiteurs)
+				score++;
+		}
+		return score;
 	}
 
 }
