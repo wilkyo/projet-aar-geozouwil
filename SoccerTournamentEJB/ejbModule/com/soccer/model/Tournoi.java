@@ -9,58 +9,64 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Tournoi  implements Serializable {
-	
+public class Tournoi implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
 	private String nom;
 	private int tourActuel;
-	@OneToMany(mappedBy="tournoi",cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "tournoi", cascade = { CascadeType.ALL })
 	private List<Rencontre> rencontres;
-	
+
 	/**
 	 * @return the nom
 	 */
+	@Id
 	public String getNom() {
 		return nom;
 	}
+
 	/**
-	 * @param nom the nom to set
+	 * @param nom
+	 *            the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	/**
 	 * @return the tourActuel
 	 */
 	public int getTourActuel() {
 		return tourActuel;
 	}
+
 	/**
-	 * @param tourActuel the tourActuel to set
+	 * @param tourActuel
+	 *            the tourActuel to set
 	 */
 	public void setTourActuel(int tourActuel) {
 		this.tourActuel = tourActuel;
 	}
+
 	/**
 	 * Got all Match
 	 * 
 	 * @return the rencontres
 	 */
-	
+	@OneToMany(mappedBy = "tournoi", cascade = { CascadeType.ALL })
 	public List<Rencontre> getRencontres() {
 		return rencontres;
 	}
+
 	/**
-	 * @param rencontres the rencontres to set
+	 * @param rencontres
+	 *            the rencontres to set
 	 */
 	public void setRencontres(List<Rencontre> rencontres) {
 		this.rencontres = rencontres;
 	}
-	
-	
 
 }

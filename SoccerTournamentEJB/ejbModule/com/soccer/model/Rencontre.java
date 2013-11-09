@@ -4,40 +4,49 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
-public class Rencontre  implements Serializable  {
-	
+public class Rencontre implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue
 	private int id;
 	@ManyToOne
 	private Tournoi tournoi;
-	@OneToMany
+	@ManyToOne
 	private Equipe hotes;
-	@OneToMany
+	@ManyToOne
 	private Equipe visiteurs;
 	private Arbitre arbitre;
 	private int tour;
 	private Calendar debut;
 	private Calendar fin;
-	@OneToMany
 	private List<But> buts;
 
 	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -49,26 +58,57 @@ public class Rencontre  implements Serializable  {
 	}
 
 	/**
+	 * @param tournoi
+	 *            the tournoi to set
+	 */
+	public void setTournoi(Tournoi tournoi) {
+		this.tournoi = tournoi;
+	}
+
+	/**
 	 * @return the hotes
 	 */
-	
 	public Equipe getHotes() {
 		return hotes;
 	}
 
 	/**
+	 * @param hotes
+	 *            the hotes to set
+	 */
+	public void setHotes(Equipe hotes) {
+		this.hotes = hotes;
+	}
+
+	/**
 	 * @return the visiteurs
 	 */
-	
 	public Equipe getVisiteurs() {
 		return visiteurs;
 	}
 
 	/**
+	 * @param visiteurs
+	 *            the visiteurs to set
+	 */
+	public void setVisiteurs(Equipe visiteurs) {
+		this.visiteurs = visiteurs;
+	}
+
+	/**
 	 * @return the arbitre
 	 */
+	@ManyToOne
 	public Arbitre getArbitre() {
 		return arbitre;
+	}
+
+	/**
+	 * @param arbitre
+	 *            the arbitre to set
+	 */
+	public void setArbitre(Arbitre arbitre) {
+		this.arbitre = arbitre;
 	}
 
 	/**
@@ -79,10 +119,26 @@ public class Rencontre  implements Serializable  {
 	}
 
 	/**
+	 * @param tour
+	 *            the tour to set
+	 */
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+
+	/**
 	 * @return the debut
 	 */
 	public Calendar getDebut() {
 		return debut;
+	}
+
+	/**
+	 * @param debut
+	 *            the debut to set
+	 */
+	public void setDebut(Calendar debut) {
+		this.debut = debut;
 	}
 
 	/**
@@ -93,11 +149,27 @@ public class Rencontre  implements Serializable  {
 	}
 
 	/**
+	 * @param fin
+	 *            the fin to set
+	 */
+	public void setFin(Calendar fin) {
+		this.fin = fin;
+	}
+
+	/**
 	 * @return the buts
 	 */
-	
+	@OneToMany(mappedBy = "rencontre", cascade = CascadeType.ALL)
 	public List<But> getButs() {
 		return buts;
+	}
+
+	/**
+	 * @param buts
+	 *            the buts to set
+	 */
+	public void setButs(List<But> buts) {
+		this.buts = buts;
 	}
 
 	/**
@@ -105,6 +177,7 @@ public class Rencontre  implements Serializable  {
 	 * 
 	 * @return the hosts score.
 	 */
+	@Transient
 	public int getScoreHotes() {
 		int score = 0;
 		for (But b : buts) {
@@ -119,6 +192,7 @@ public class Rencontre  implements Serializable  {
 	 * 
 	 * @return the visitors score.
 	 */
+	@Transient
 	public int getScoreVisiteurs() {
 		int score = 0;
 		for (But b : buts) {

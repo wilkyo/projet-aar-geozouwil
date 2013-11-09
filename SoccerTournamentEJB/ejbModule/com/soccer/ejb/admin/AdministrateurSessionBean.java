@@ -1,9 +1,8 @@
 package com.soccer.ejb.admin;
 
 import java.util.Calendar;
+
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  * Session Bean implementation class AdministrateurSessionBean
