@@ -17,6 +17,7 @@ public class Joueur  implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
+	@ManyToOne
 	private Equipe equipe;
 	private String nom;
 	private String prenom;
@@ -37,7 +38,7 @@ public class Joueur  implements Serializable {
 	/**
 	 * @return the equipe
 	 */
-	@ManyToOne
+	
 	public Equipe getEquipe() {
 		return equipe;
 	}

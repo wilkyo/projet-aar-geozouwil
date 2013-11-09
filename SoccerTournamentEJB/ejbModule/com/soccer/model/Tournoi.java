@@ -18,6 +18,7 @@ public class Tournoi  implements Serializable {
 	@Id
 	private String nom;
 	private int tourActuel;
+	@OneToMany(mappedBy="tournoi",cascade={CascadeType.ALL})
 	private List<Rencontre> rencontres;
 	
 	/**
@@ -49,7 +50,7 @@ public class Tournoi  implements Serializable {
 	 * 
 	 * @return the rencontres
 	 */
-	@OneToMany(mappedBy="tournoi",cascade={CascadeType.ALL})
+	
 	public List<Rencontre> getRencontres() {
 		return rencontres;
 	}

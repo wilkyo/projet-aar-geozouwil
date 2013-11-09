@@ -20,13 +20,17 @@ public class Rencontre  implements Serializable  {
 	@Id
 	@GeneratedValue
 	private int id;
+	@ManyToOne
 	private Tournoi tournoi;
+	@OneToMany
 	private Equipe hotes;
+	@OneToMany
 	private Equipe visiteurs;
 	private Arbitre arbitre;
 	private int tour;
 	private Calendar debut;
 	private Calendar fin;
+	@OneToMany
 	private List<But> buts;
 
 	/**
@@ -39,7 +43,7 @@ public class Rencontre  implements Serializable  {
 	/**
 	 * @return the tournoi
 	 */
-	@ManyToOne
+	
 	public Tournoi getTournoi() {
 		return tournoi;
 	}
@@ -47,7 +51,7 @@ public class Rencontre  implements Serializable  {
 	/**
 	 * @return the hotes
 	 */
-	@OneToMany
+	
 	public Equipe getHotes() {
 		return hotes;
 	}
@@ -55,7 +59,7 @@ public class Rencontre  implements Serializable  {
 	/**
 	 * @return the visiteurs
 	 */
-	@OneToMany
+	
 	public Equipe getVisiteurs() {
 		return visiteurs;
 	}
@@ -91,7 +95,7 @@ public class Rencontre  implements Serializable  {
 	/**
 	 * @return the buts
 	 */
-	@OneToMany
+	
 	public List<But> getButs() {
 		return buts;
 	}
