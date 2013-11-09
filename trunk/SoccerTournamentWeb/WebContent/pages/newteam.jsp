@@ -20,10 +20,13 @@
 		<form method="post" action="?action=ajout">
 			<fieldset>
 				<legend>
-					Nom de l'Equipe
+					Equipe
 				</legend>
-				<label id="labequipe">Equipe</label>
-				<input type="text" id="nomequipe" name="nouveau"/>				
+				<label id="labequipe">Nom de l'Equipe</label>
+				<input type="text" id="nomequipe" name="nouveau"/>	
+				<label id="labrep">Représentant</label>			
+				<input type="text" class="nom" id="nomrep" placeholder="nom"/>
+				<input type="text" class="prenom" id="prenomrep" placeholder="prenom"/>	
 			</fieldset>
 			<fieldset>
 				<legend>
