@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <link type="text/css" rel="stylesheet" href="styles/base.css" />
+<link type="text/css" rel="stylesheet" href="styles/images.css" />
 <title>Home</title>
 </head>
 <body>
-	<div id="header">It Works !</div>
+	<div id="header">Welcome!</div>
 	<div id="body">
 		<p>
-			<a href="?action=login">Se connecter</a>
+			<a href="?action=login"><img id="imLog" alt="Se connecter" src="images/login.png"></a>
 		</p>
 		<p>
-			<a href="?action=newteam">Nouvelle equipe</a>
+			<a href="?action=newteam"><img id="imPass" alt="Nouvelle equipe" src="images/team.png"></a>
 		</p>
 	</div>
 </body>

@@ -17,7 +17,7 @@
 		<p>
 			<a href="?action=home">Home</a>
 		</p>
-		<form action="">
+		<form method="post" action="?action=ajout">
 			<fieldset>
 				<legend>
 					Nom de l'Equipe
@@ -30,9 +30,9 @@
 					Les joueurs
 				</legend>
 				<c:forEach begin="1" end="11" step="1" var="i">				
-					<label>Joueur ${i}</label>
-					<input type="text" id="nom" name="nom${i}" placeholder="nom"/>
-					<input type="text" id="prenom" name="prenom${i}" placeholder="prenom"/><br/>
+					<label for="nom${i}">Joueur ${i}</label>
+					<input type="text" class="nom" id="nom${i}" name="nom[]" placeholder="nom"/>
+					<input type="text" class="prenom" id="prenom" name="prenom[]" placeholder="prenom"/><br/>
 				</c:forEach>
 				<input type="submit" value="Ajout" />
 			</fieldset>			
