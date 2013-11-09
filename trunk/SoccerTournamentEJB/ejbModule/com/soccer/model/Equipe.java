@@ -17,6 +17,7 @@ public class Equipe  implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String nom;
+	@OneToMany(mappedBy="equipe",cascade={CascadeType.ALL})
 	private List<Joueur> joueurs;
 	private String nomRepresentant;
 	private String prenomRepresentant;
@@ -64,7 +65,7 @@ public class Equipe  implements Serializable  {
 	 * 
 	 * @return the joueurs
 	 */
-	@OneToMany(mappedBy="equipe",cascade={CascadeType.ALL})
+	
 	public List<Joueur> getJoueurs() {
 		return joueurs;
 	}

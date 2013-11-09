@@ -18,7 +18,9 @@ public class But  implements Serializable  {
 	@Id
 	@GeneratedValue
 	private int id;
+	@ManyToOne
 	private Rencontre recontre;
+	@ManyToOne
 	private Joueur auteur;
 	private Calendar heure;
 	
@@ -37,7 +39,7 @@ public class But  implements Serializable  {
 	/**
 	 * @return the recontre
 	 */
-	@ManyToOne
+	
 	public Rencontre getRecontre() {
 		return recontre;
 	}
@@ -50,7 +52,7 @@ public class But  implements Serializable  {
 	/**
 	 * @return the auteur
 	 */
-	@ManyToOne
+	
 	public Joueur getAuteur() {
 		return auteur;
 	}
