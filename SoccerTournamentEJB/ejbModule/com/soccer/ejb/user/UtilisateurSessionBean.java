@@ -2,6 +2,8 @@ package com.soccer.ejb.user;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import com.soccer.valueobjects.*;
 
 /**
@@ -10,6 +12,9 @@ import com.soccer.valueobjects.*;
 @Stateless
 public class UtilisateurSessionBean implements UtilisateurRemote,
 		UtilisateurLocal {
+
+	@PersistenceContext(unitName = "soccerTournament")
+	EntityManager em;
 
 	/**
 	 * Default constructor.

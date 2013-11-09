@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import com.soccer.valueobjects.*;
 
 /**
@@ -12,6 +14,9 @@ import com.soccer.valueobjects.*;
 @Stateless
 public class SoccerTournamentFacadeSessionBean implements
 		SoccerTournamentFacadeRemote, SoccerTournamentFacadeLocal {
+
+	@PersistenceContext(unitName = "soccerTournament")
+	EntityManager em;
 
 	/**
 	 * Default constructor.
