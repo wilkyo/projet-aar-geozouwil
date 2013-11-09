@@ -1,10 +1,24 @@
 package com.soccer.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
-public class Rencontre {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
+public class Rencontre  implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
 	private int id;
 	private Tournoi tournoi;
 	private Equipe hotes;
@@ -25,6 +39,7 @@ public class Rencontre {
 	/**
 	 * @return the tournoi
 	 */
+	@ManyToOne
 	public Tournoi getTournoi() {
 		return tournoi;
 	}
@@ -32,6 +47,7 @@ public class Rencontre {
 	/**
 	 * @return the hotes
 	 */
+	@OneToMany
 	public Equipe getHotes() {
 		return hotes;
 	}
@@ -39,6 +55,7 @@ public class Rencontre {
 	/**
 	 * @return the visiteurs
 	 */
+	@OneToMany
 	public Equipe getVisiteurs() {
 		return visiteurs;
 	}
@@ -74,6 +91,7 @@ public class Rencontre {
 	/**
 	 * @return the buts
 	 */
+	@OneToMany
 	public List<But> getButs() {
 		return buts;
 	}
