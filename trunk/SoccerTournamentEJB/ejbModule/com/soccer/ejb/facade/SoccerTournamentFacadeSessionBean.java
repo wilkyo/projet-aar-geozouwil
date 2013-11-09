@@ -3,10 +3,13 @@ package com.soccer.ejb.facade;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import com.soccer.valueobjects.*;
+
+import com.soccer.valueobjects.VOEquipe;
+import com.soccer.valueobjects.VOJoueur;
+import com.soccer.valueobjects.VORencontre;
+import com.soccer.valueobjects.VORencontreLight;
 
 /**
  * Session Bean implementation class SoccerTournamentFacadeSessionBean
@@ -24,6 +27,7 @@ public class SoccerTournamentFacadeSessionBean implements
 	 */
 	public SoccerTournamentFacadeSessionBean() {
 		// TODO Auto-generated constructor stub
+		System.out.println("Hello");
 	}
 
 	@Override
@@ -31,7 +35,8 @@ public class SoccerTournamentFacadeSessionBean implements
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs) {
 		// TODO Auto-generated method stub
-
+		System.out.println(nomEquipe + "; " + nomRepresentant + " "
+				+ prenomRepresentant);
 	}
 
 	@Override
