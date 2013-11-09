@@ -12,7 +12,7 @@
 	color: #222233;
 }
 
-#nom, #prenom{
+.nom, .prenom{
 	border: 1px solid #D4DEF1;
 	border-radius: 3px;
 	background: #eae7e5;

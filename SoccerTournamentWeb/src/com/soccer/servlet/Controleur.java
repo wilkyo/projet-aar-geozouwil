@@ -16,6 +16,8 @@ public class Controleur extends HttpServlet {
 	private static final String PATH = "/pages/";
 	private static final String ACTION_NEW_TEAM = "newteam";
 	private static final String ACTION_LOGIN = "login";
+	private static final String ACTION_ADD = "ajout";
+
 
 	/**
 	 * Default constructor.
@@ -40,6 +42,7 @@ public class Controleur extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+		System.out.println(action);
 
 		// si l'action est nulle ou l'action égale à home
 		if ((action == null) || (action.equals("home"))) {
@@ -52,6 +55,12 @@ public class Controleur extends HttpServlet {
 			// direction la page d'inscription d'une équipe
 			request.getRequestDispatcher(PATH + "newteam.jsp").forward(request,
 					response);
+		}
+		//Nouvelle equipe
+		else if(action.equals(ACTION_ADD)){
+			String []nom=request.getParameterValues("nom[]");
+			String []prenom=request.getParameterValues("prenom[]");
+			System.out.println(nom.length);
 		}
 		// si l'action est de se connecter ( pour l'admin)
 		else if (action.equals(ACTION_LOGIN)) {
