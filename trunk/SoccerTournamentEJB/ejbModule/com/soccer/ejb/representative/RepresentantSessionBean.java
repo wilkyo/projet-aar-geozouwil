@@ -11,8 +11,9 @@ import javax.persistence.PersistenceContext;
 public class RepresentantSessionBean implements RepresentantRemote,
 		RepresentantLocal {
 
-	@PersistenceContext(unitName = "soccerTournament")
-	EntityManager em;
+	/*
+	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
+	 */
 
 	/**
 	 * Default constructor.
