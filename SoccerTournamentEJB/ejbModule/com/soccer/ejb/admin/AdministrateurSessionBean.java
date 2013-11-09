@@ -12,8 +12,9 @@ import javax.persistence.PersistenceContext;
 public class AdministrateurSessionBean implements AdministrateurRemote,
 		AdministrateurLocal {
 
-	@PersistenceContext(unitName = "soccerTournament")
-	EntityManager em;
+	/*
+	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
+	 */
 
 	/**
 	 * Default constructor.

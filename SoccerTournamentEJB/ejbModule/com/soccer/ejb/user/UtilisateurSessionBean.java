@@ -13,8 +13,9 @@ import com.soccer.valueobjects.*;
 public class UtilisateurSessionBean implements UtilisateurRemote,
 		UtilisateurLocal {
 
-	@PersistenceContext(unitName = "soccerTournament")
-	EntityManager em;
+	/*
+	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
+	 */
 
 	/**
 	 * Default constructor.

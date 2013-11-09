@@ -15,8 +15,9 @@ import com.soccer.valueobjects.*;
 public class SoccerTournamentFacadeSessionBean implements
 		SoccerTournamentFacadeRemote, SoccerTournamentFacadeLocal {
 
-	@PersistenceContext(unitName = "soccerTournament")
-	EntityManager em;
+	/*
+	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
+	 */
 
 	/**
 	 * Default constructor.
