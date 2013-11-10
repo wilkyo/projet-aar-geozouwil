@@ -11,6 +11,7 @@ public interface SoccerTournamentFacade {
 	 * Initializes the Database.
 	 */
 	public void initDB();
+	public void initDBBouchon();
 
 	public void creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,

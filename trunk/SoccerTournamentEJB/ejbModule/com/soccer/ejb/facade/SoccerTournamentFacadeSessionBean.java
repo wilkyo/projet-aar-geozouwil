@@ -1,5 +1,7 @@
 package com.soccer.ejb.facade;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +11,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
 
 import com.soccer.SoccerTournamentBouchon;
 import com.soccer.ejb.admin.AdministrateurLocal;
@@ -22,6 +29,7 @@ import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
 import com.soccer.valueobjects.VORencontreLight;
 import com.soccer.valueobjects.VOTournoi;
+import com.soccer.xml.EquipeHandler;
 
 /**
  * Session Bean implementation class SoccerTournamentFacadeSessionBean
@@ -45,14 +53,38 @@ public class SoccerTournamentFacadeSessionBean implements
 	@Override
 	public void initDB() {
 		try {
+			SAXParserFactory parserFactory = SAXParserFactory.newInstance();
+			parserFactory.setValidating(true);
+			SAXParser parser = parserFactory.newSAXParser();
+			File fichier;
+			String path = "../standalone/deployments/SoccerTournament.ear/SoccerTournamentEJB.jar/META-INF/data/";
+
+			fichier = new File(path + "equipes.xml");
+			EquipeHandler manager = new EquipeHandler();
+			parser.parse(fichier, manager);
+			for (Equipe e : manager.getEquipes()) {
+				for (Joueur j : e.getJoueurs())
+					em.persist(j);
+				em.persist(e);
+			}
+			System.out.println("Equipes chargées.");
+
+		} catch (ParserConfigurationException pce) {
+			System.out
+					.println("Erreur de configuration du parseur Lors de l'appel à SAXParser()");
+		} catch (SAXException se) {
+			System.out.println("Erreur de parsing Lors de l'appel à parse()");
+		} catch (IOException ioe) {
+			System.out
+					.println("Erreur d'entrée/sortie Lors de l'appel à parse()");
+		}
+	}
+
+	public void initDBBouchon() {
+		try {
 			mutex.acquire();
 			if (!dbInitialized) {
-				for (Equipe e : SoccerTournamentBouchon.creerEquipes()) {
-					for (Joueur j : e.getJoueurs())
-						em.persist(j);
-					em.persist(e);
-				}
-				for(Arbitre ar:SoccerTournamentBouchon.creerArbitres()){
+				for (Arbitre ar : SoccerTournamentBouchon.creerArbitres()) {
 					em.persist(ar);
 				}
 				dbInitialized = true;
@@ -67,8 +99,7 @@ public class SoccerTournamentFacadeSessionBean implements
 	 * Default constructor.
 	 */
 	public SoccerTournamentFacadeSessionBean() {
-		// TODO Auto-generated constructor stub
-		System.out.println("Hello");
+		System.out.println("SoccerTournamentFacadeSessionBean()");
 	}
 
 	@Override
