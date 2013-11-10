@@ -18,11 +18,19 @@ import com.soccer.ejb.facade.SoccerTournamentFacadeLocal;
 public class Controleur extends HttpServlet {
 	public static final long serialVersionUID = 1L;
 	public static final String WEB_PATH = "/SoccerTournamentWeb/";
-	public static final String PAGES_PATH = "pages/";
 	public static final String CSS_PATH = "styles/";
+	public static final String PAGES_PATH = "pages/";
+	public static final String INCLUDES_PATH = "includes/";
+
+	public static final String SERVLET_PATH = "index?action=";
+	public static final String ACTION_HOME = "home";
 	public static final String ACTION_NEW_TEAM = "newteam";
 	public static final String ACTION_LOGIN = "login";
-	public static final String ACTION_ADD = "ajout";
+
+	public static final String JSP_HOME = "index.jsp";
+	public static final String JSP_LOGIN = "login.jsp";
+	public static final String JSP_NEW_TEAM = "newteam.jsp";
+	public static final String JSP_404 = "404.jsp";
 
 	@EJB
 	private SoccerTournamentFacadeLocal facade;
@@ -53,12 +61,12 @@ public class Controleur extends HttpServlet {
 		facade.initDB();
 
 		String action = request.getParameter("action");
-		System.out.println(action);
+		System.out.println("Action=" + action);
 
 		// si l'action est nulle ou l'action égale à home
-		if ((action == null) || (action.equals("home"))) {
+		if ((action == null) || (action.equals(ACTION_HOME))) {
 			// direction la page d'accueil
-			request.getRequestDispatcher(PAGES_PATH + "index.jsp").forward(
+			request.getRequestDispatcher(PAGES_PATH + JSP_HOME).forward(
 					request, response);
 		}
 		// si l'action est l'inscription d'une équipe
@@ -74,26 +82,42 @@ public class Controleur extends HttpServlet {
 			if (nomEquipe != null && nomRepresentant != null
 					&& prenomRepresentant != null && nomsJoueurs != null
 					&& prenomsJoueurs != null && numeroJoueurs != null) {
-				facade.creerEquipe(nomEquipe, nomRepresentant,
+				if (facade.creerEquipe(nomEquipe, nomRepresentant,
 						prenomRepresentant, nomsJoueurs, prenomsJoueurs,
-						toIntegerArray(numeroJoueurs));
-			}
-			// direction la page d'inscription d'une équipe
-			request.getRequestDispatcher(PAGES_PATH + "newteam.jsp").forward(
-					request, response);
+						toIntegerArray(numeroJoueurs)))
+					request.getRequestDispatcher(SERVLET_PATH + ACTION_HOME)
+							.forward(request, response);
+				else {
+					request.setAttribute("exists", true);
+					request.getRequestDispatcher(PAGES_PATH + JSP_NEW_TEAM)
+							.forward(request, response);
+				}
+			} else
+				// direction la page d'inscription d'une équipe
+				request.getRequestDispatcher(PAGES_PATH + JSP_NEW_TEAM)
+						.forward(request, response);
 		}
-		// si l'action est de se connecter ( pour l'admin)
+		// si l'action est de se connecter (pour l'admin)
 		else if (action.equals(ACTION_LOGIN)) {
 			String login = request.getParameter("login");
-			String passwd = request.getParameter("password");
-			if (login != null && passwd != null) {
-				System.err.println("Logging... " + login + " -> " + passwd);
-			}
-			// direction la page d'inscription
-			request.getRequestDispatcher(PAGES_PATH + "login.jsp").forward(
-					request, response);
+			String password = request.getParameter("password");
+			if (login != null && password != null) {
+				if (facade.connexion(login, password)) {
+					request.getSession().setAttribute("admin", login);
+					request.getRequestDispatcher(SERVLET_PATH + ACTION_HOME)
+							.forward(request, response);
+				} else {
+					request.setAttribute("error", true);
+					request.getRequestDispatcher(PAGES_PATH + JSP_LOGIN)
+							.forward(request, response);
+				}
+			} else
+				// direction la page d'inscription
+				request.getRequestDispatcher(PAGES_PATH + JSP_LOGIN).forward(
+						request, response);
 		} else if (action.equals("404")) {
-			System.err.println("404");
+			request.getRequestDispatcher(PAGES_PATH + JSP_404).forward(request,
+					response);
 		}
 	}
 
