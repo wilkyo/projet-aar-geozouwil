@@ -3,10 +3,8 @@ package com.soccer.ejb.facade;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Semaphore;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,9 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.SAXException;
-
 import com.soccer.SoccerTournamentBouchon;
 import com.soccer.ejb.admin.AdministrateurLocal;
 import com.soccer.ejb.representative.RepresentantLocal;
@@ -122,89 +118,76 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
-	public void creerEquipe(String nomEquipe, String nomRepresentant,
+	public boolean creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs, int[] numeroJoueurs) {
-		representant.creerEquipe(nomEquipe, nomRepresentant,
+		return representant.creerEquipe(nomEquipe, nomRepresentant,
 				prenomRepresentant, nomJoueurs, prenomJoueurs, numeroJoueurs);
 	}
 
 	@Override
 	public List<VOTournoi> getTournois() {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getTournois();
 	}
 
 	@Override
 	public List<VOEquipe> getEquipes(String nomTournoi) {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getEquipes(nomTournoi);
 	}
 
 	@Override
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getJoueurs(nomEquipe);
 	}
 
 	@Override
 	public List<VORencontreLight> getRencontres(String nomTournoi) {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getRencontres(nomTournoi);
 	}
 
 	@Override
 	public List<VORencontre> getRencontre(int idRencontre) {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getRencontre(idRencontre);
 	}
 
 	@Override
 	public List<VOEquipe> getEquipes(int idRencontre) {
-		// TODO Auto-generated method stub
-		return null;
+		return utilisateur.getEquipes(idRencontre);
 	}
 
 	@Override
 	public boolean connexion(String login, String password) {
-		// TODO Auto-generated method stub
-		return false;
+		return administrateur.connexion(login, password);
 	}
 
 	@Override
 	public void creerTournoi() {
-		// TODO Auto-generated method stub
-
+		administrateur.creerTournoi();
 	}
 
 	@Override
 	public void setDebutRencontre(int idRencontre, Calendar debut) {
-		// TODO Auto-generated method stub
-
+		administrateur.setDebutRencontre(idRencontre, debut);
 	}
 
 	@Override
 	public void ajouterArbitre(String nom, String prenom) {
-		// TODO Auto-generated method stub
-
+		administrateur.ajouterArbitre(nom, prenom);
 	}
 
 	@Override
 	public void affecterArbitre(int idArbitre, int idRencontre) {
-		// TODO Auto-generated method stub
-
+		administrateur.affecterArbitre(idArbitre, idRencontre);
 	}
 
 	@Override
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure) {
-		// TODO Auto-generated method stub
-
+		administrateur.ajouterBut(idRencontre, idAuteur, heure);
 	}
 
 	@Override
-	public void validerRencontre(Date heureFin) {
-		// TODO Auto-generated method stub
-
+	public void validerRencontre(Calendar heureFin) {
+		administrateur.validerRencontre(heureFin);
 	}
 
 }
