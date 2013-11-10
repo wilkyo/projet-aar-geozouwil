@@ -24,7 +24,7 @@
 					Equipe
 				</legend>
 				<label id="labequipe">Nom de l'Equipe</label>
-				<input type="text" id="nomequipe" name="nomEquipe"/>	
+				<input type="text" id="nomequipe" name="nomEquipe" placeholder="Nom de l'Equipe" required="required"/>	
 				<label id="labrep">Représentant</label>			
 				<input type="text" class="nom" id="nomRepresentant" name="nomRepresentant"
 					placeholder="Nom" />
@@ -35,6 +35,8 @@
 				<legend> Les joueurs </legend>
 				<c:forEach begin="1" end="11" step="1" var="i">
 					<label for="nom${i}">Joueur ${i}</label>
+					<input type="text" class="numero" id="numero" name="numero[]"
+						placeholder="N°" maxlength="2" width="5" />
 					<input type="text" class="nom" id="nom${i}" name="nom[]"
 						placeholder="Nom" />
 					<input type="text" class="prenom" id="prenom" name="prenom[]"

@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: #452388;
+	background-color: #344547;
 	margin: 0;
 }
 
@@ -34,5 +34,5 @@ input[type=submit]{
 }
 
 #body form input {
-	width: 120px;
+	
 }
