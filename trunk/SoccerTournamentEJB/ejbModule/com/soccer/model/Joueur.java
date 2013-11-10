@@ -15,7 +15,6 @@ public class Joueur implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	@ManyToOne
 	private Equipe equipe;
 	private String nom;
 	private String prenom;
@@ -41,7 +40,7 @@ public class Joueur implements Serializable {
 	/**
 	 * @return the equipe
 	 */
-	
+	@ManyToOne
 	public Equipe getEquipe() {
 		return equipe;
 	}
