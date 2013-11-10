@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE equipes SYSTEM "equipes.dtd">
+<Equipes>
+	<Equipe nom="Paris Saint-Germain" nomRepresentant="Blanc"
+		prenomRepresentant="Laurent">
+		<Joueur nom="Douchez" prenom="Nicolas" numero="1" />
+		<Joueur nom="Silva" prenom="Thiago" numero="2" />
+		<Joueur nom="" prenom="Marquinhos" numero="5" />
+	</Equipe>
+	<Equipe nom="Olympique de Marseille" nomRepresentant="Baup"
+		prenomRepresentant="Élie">
+		<Joueur nom="Gennaro" prenom="Bracigliano" numero="1" />
+		<Joueur nom="André" prenom="Ayew" numero="10" />
+		<Joueur nom="Jordan" prenom="Ayew" numero="11" />
+	</Equipe>
+</Equipes>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT Equipes (Equipe*)>
+
+<!ELEMENT Equipe (Joueur+)>
+	<!ATTLIST Equipe nom CDATA #REQUIRED>
+	<!ATTLIST Equipe nomRepresentant CDATA #REQUIRED>
+	<!ATTLIST Equipe prenomRepresentant CDATA #REQUIRED>
+
+<!ELEMENT Joueur (#PCDATA)>
+	<!ATTLIST Joueur nom CDATA #REQUIRED>
+	<!ATTLIST Joueur prenom CDATA #REQUIRED>
+	<!ATTLIST Joueur numero CDATA #IMPLIED>
+
+

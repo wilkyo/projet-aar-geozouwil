@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Equipe implements Serializable {
 
+	public static final String XML_EQUIPES = "Equipes";
 	public static final String XML_EQUIPE = "Equipe";
 	public static final String XML_EQUIPE_NOM = "nom";
 	public static final String XML_EQUIPE_NOM_REPRESENTANT = "nomRepresentant";
@@ -92,7 +93,7 @@ public class Equipe implements Serializable {
 
 	public String toXML() {
 		StringBuffer res = new StringBuffer("<" + XML_EQUIPE + " "
-				+ XML_EQUIPE_NOM_REPRESENTANT + "=\"" + nom + "\" "
+				+ XML_EQUIPE_NOM + "=\"" + nom + "\" "
 				+ XML_EQUIPE_NOM_REPRESENTANT + "=\"" + nomRepresentant + "\" "
 				+ XML_EQUIPE_PRENOM_REPRESENTANT + "=\"" + prenomRepresentant
 				+ "\">\n");
