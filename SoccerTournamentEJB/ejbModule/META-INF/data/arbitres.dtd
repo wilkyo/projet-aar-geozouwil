@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT Arbitres (Arbitre*)>
+
+<!ELEMENT Arbitre (#PCDATA)>
+	<!ATTLIST Arbitre nom CDATA #REQUIRED>
+	<!ATTLIST Arbitre prenom CDATA #REQUIRED>
+
+
