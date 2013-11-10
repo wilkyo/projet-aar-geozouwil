@@ -7,6 +7,11 @@ import com.soccer.valueobjects.*;
 
 public interface SoccerTournamentFacade {
 
+	/**
+	 * Initializes the Database.
+	 */
+	public void initDB();
+
 	public void creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs);

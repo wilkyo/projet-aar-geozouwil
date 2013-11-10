@@ -3,9 +3,15 @@ package com.soccer.ejb.facade;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import com.soccer.SoccerTournamentBouchon;
+import com.soccer.model.Equipe;
+import com.soccer.model.Joueur;
 import com.soccer.valueobjects.VOEquipe;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
@@ -18,9 +24,29 @@ import com.soccer.valueobjects.VORencontreLight;
 public class SoccerTournamentFacadeSessionBean implements
 		SoccerTournamentFacadeRemote, SoccerTournamentFacadeLocal {
 
-	/*
-	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
-	 */
+	private boolean dbInitialized = false;
+	private Semaphore mutex = new Semaphore(1);
+
+	@PersistenceContext(unitName = "soccerTournament")
+	EntityManager em;
+
+	@Override
+	public void initDB() {
+		try {
+			mutex.acquire();
+			if (!dbInitialized) {
+				for (Equipe e : SoccerTournamentBouchon.creerEquipes()) {
+					for(Joueur j : e.getJoueurs())
+						em.persist(j);
+					em.persist(e);
+				}
+				dbInitialized = true;
+			}
+			mutex.release();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Default constructor.
