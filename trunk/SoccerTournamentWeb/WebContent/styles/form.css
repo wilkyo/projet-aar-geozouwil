@@ -7,7 +7,7 @@
 	color: #333;
 	margin: 0 0 10px;
 	padding: 10px 40px 10px 10px;
-	width: 80%;
+	width: 10%;
 	text-shadow: 0.8px 1px 1px rgba(0,0,0,0.3);
 	color: #222233;
 }
@@ -36,7 +36,7 @@
 	float: left;
 }
 
-#nomequipe{
+#nomEquipe{
 	border: 1px solid #D4DEF1;
 	border-radius: 3px;
 	background: #eae7e5;

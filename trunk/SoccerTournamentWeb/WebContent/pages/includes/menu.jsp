@@ -3,7 +3,7 @@
 <div id="menu">
 	<ul>
 		<li><a href="?action=home"><img id="imLog" alt="Accueil"
-				title="Accueil" src="images/login.png"
+				title="Accueil" src="images/home.png"
 				<%=request.getParameter("action").equals(
 					Controleur.ACTION_HOME) ? " class=\"active\"" : ""%>></a></li>
 		<li><a href="?action=login"><img id="imLog"
