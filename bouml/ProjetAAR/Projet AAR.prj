@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 13
+  revision 15
   modified_by 42 "Willy"
 
 
@@ -934,14 +934,15 @@ ${members}};
       
       operation 135978 "creerEquipe"
 	public explicit_return_type ""
-	nparams 5
+	nparams 6
 	  param in name "nomEquipe" explicit_type "string"
 	  param in name "nomRepresentant" explicit_type "string"
 	  param in name "prenomRepresentant" explicit_type "string"
 	  param in name "nomJoueurs" explicit_type "string[]"
 	  param in name "prenomJoueurs" explicit_type "string[]"
+	  param in name "numeroJoueurs" explicit_type "int[]"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1041,16 +1042,29 @@ ${members}};
 "
       explicit_switch_type ""
       
+      operation 165034 "initDB"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 157866 "creerEquipe"
 	public explicit_return_type ""
-	nparams 5
+	nparams 6
 	  param in name "nomEquipe" explicit_type "string"
 	  param in name "nomRepresentant" explicit_type "string"
 	  param in name "prenomRepresentant" explicit_type "string"
 	  param in name "nomJoueurs" explicit_type "string[]"
 	  param in name "prenomJoueurs" explicit_type "string[]"
+	  param in name "numeroJoueurs" explicit_type "int[]"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1650,6 +1664,16 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
+      attribute 180138 "id"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
       attribute 173098 "hotes"
 	private explicit_type "string"
 	cpp_decl ""
