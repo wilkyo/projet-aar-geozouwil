@@ -11,6 +11,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Equipe implements Serializable {
 
+	public static final String XML_EQUIPE = "Equipe";
+	public static final String XML_EQUIPE_NOM = "nom";
+	public static final String XML_EQUIPE_NOM_REPRESENTANT = "nomRepresentant";
+	public static final String XML_EQUIPE_PRENOM_REPRESENTANT = "prenomRepresentant";
+	public static final String XML_EQUIPE_JOUEURS = "Joueurs";
+
 	/**
 	 * 
 	 */
@@ -82,6 +88,18 @@ public class Equipe implements Serializable {
 	 */
 	public void setJoueurs(List<Joueur> joueurs) {
 		this.joueurs = joueurs;
+	}
+
+	public String toXML() {
+		StringBuffer res = new StringBuffer("<" + XML_EQUIPE + " "
+				+ XML_EQUIPE_NOM_REPRESENTANT + "=\"" + nom + "\" "
+				+ XML_EQUIPE_NOM_REPRESENTANT + "=\"" + nomRepresentant + "\" "
+				+ XML_EQUIPE_PRENOM_REPRESENTANT + "=\"" + prenomRepresentant
+				+ "\">\n");
+		for (Joueur j : joueurs)
+			res.append("\t" + j.toXML() + "\n");
+		res.append("</" + XML_EQUIPE + ">");
+		return res.toString();
 	}
 
 }

@@ -23,9 +23,10 @@ public class RepresentantSessionBean implements RepresentantRemote,
 	@Override
 	public void creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
-			String[] prenomJoueurs) {
+			String[] prenomJoueurs, int[] numeroJoueurs) {
 		// TODO Auto-generated method stub
-
+		System.out.println(nomEquipe + "; " + nomRepresentant + " "
+				+ prenomRepresentant);
 	}
 
 }

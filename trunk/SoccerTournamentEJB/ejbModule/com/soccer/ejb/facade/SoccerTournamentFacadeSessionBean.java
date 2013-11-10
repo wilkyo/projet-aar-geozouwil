@@ -5,17 +5,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.soccer.SoccerTournamentBouchon;
+import com.soccer.ejb.admin.AdministrateurLocal;
+import com.soccer.ejb.representative.RepresentantLocal;
+import com.soccer.ejb.user.UtilisateurLocal;
 import com.soccer.model.Equipe;
 import com.soccer.model.Joueur;
 import com.soccer.valueobjects.VOEquipe;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
 import com.soccer.valueobjects.VORencontreLight;
+import com.soccer.valueobjects.VOTournoi;
 
 /**
  * Session Bean implementation class SoccerTournamentFacadeSessionBean
@@ -28,7 +33,13 @@ public class SoccerTournamentFacadeSessionBean implements
 	private Semaphore mutex = new Semaphore(1);
 
 	@PersistenceContext(unitName = "soccerTournament")
-	EntityManager em;
+	private EntityManager em;
+	@EJB
+	private RepresentantLocal representant;
+	@EJB
+	private AdministrateurLocal administrateur;
+	@EJB
+	private UtilisateurLocal utilisateur;
 
 	@Override
 	public void initDB() {
@@ -36,7 +47,7 @@ public class SoccerTournamentFacadeSessionBean implements
 			mutex.acquire();
 			if (!dbInitialized) {
 				for (Equipe e : SoccerTournamentBouchon.creerEquipes()) {
-					for(Joueur j : e.getJoueurs())
+					for (Joueur j : e.getJoueurs())
 						em.persist(j);
 					em.persist(e);
 				}
@@ -59,16 +70,15 @@ public class SoccerTournamentFacadeSessionBean implements
 	@Override
 	public void creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
-			String[] prenomJoueurs) {
-		// TODO Auto-generated method stub
-		System.out.println(nomEquipe + "; " + nomRepresentant + " "
-				+ prenomRepresentant);
+			String[] prenomJoueurs, int[] numeroJoueurs) {
+		representant.creerEquipe(nomEquipe, nomRepresentant,
+				prenomRepresentant, nomJoueurs, prenomJoueurs, numeroJoueurs);
 	}
 
 	@Override
-	public void getTournois() {
+	public List<VOTournoi> getTournois() {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	@Override
