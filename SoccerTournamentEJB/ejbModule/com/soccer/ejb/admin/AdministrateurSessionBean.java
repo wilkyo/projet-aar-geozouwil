@@ -20,11 +20,13 @@ public class AdministrateurSessionBean implements AdministrateurRemote,
 	 */
 	public AdministrateurSessionBean() {
 		// TODO Auto-generated constructor stub
+		System.out.println("Je suis l'administrateur");
 	}
 
 	@Override
 	public boolean connexion(String login, String password) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

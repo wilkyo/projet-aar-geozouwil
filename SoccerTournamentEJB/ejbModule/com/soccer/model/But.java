@@ -16,9 +16,7 @@ public class But implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	@ManyToOne
 	private Rencontre rencontre;
-	@ManyToOne
 	private Joueur auteur;
 	private Calendar heure;
 
@@ -42,7 +40,7 @@ public class But implements Serializable {
 	/**
 	 * @return the rencontre
 	 */
-
+	@ManyToOne
 	public Rencontre getRencontre() {
 		return rencontre;
 	}
@@ -58,7 +56,7 @@ public class But implements Serializable {
 	/**
 	 * @return the auteur
 	 */
-
+	@ManyToOne
 	public Joueur getAuteur() {
 		return auteur;
 	}

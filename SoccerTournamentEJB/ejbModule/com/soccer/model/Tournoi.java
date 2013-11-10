@@ -17,7 +17,6 @@ public class Tournoi implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nom;
 	private int tourActuel;
-	@OneToMany(mappedBy = "tournoi", cascade = { CascadeType.ALL })
 	private List<Rencontre> rencontres;
 
 	/**
@@ -65,6 +64,7 @@ public class Tournoi implements Serializable {
 	 * @param rencontres
 	 *            the rencontres to set
 	 */
+	@OneToMany(mappedBy = "tournoi", cascade = { CascadeType.ALL })
 	public void setRencontres(List<Rencontre> rencontres) {
 		this.rencontres = rencontres;
 	}
