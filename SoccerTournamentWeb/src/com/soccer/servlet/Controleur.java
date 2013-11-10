@@ -49,6 +49,9 @@ public class Controleur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// Initializes the DB
+		facade.initDB();
+
 		String action = request.getParameter("action");
 		System.out.println(action);
 
@@ -66,12 +69,14 @@ public class Controleur extends HttpServlet {
 					.getParameter("prenomRepresentant");
 			String[] nomsJoueurs = request.getParameterValues("nom[]");
 			String[] prenomsJoueurs = request.getParameterValues("prenom[]");
+			String[] numeroJoueurs = request.getParameterValues("numero[]");
 			// Nouvelle equipe
 			if (nomEquipe != null && nomRepresentant != null
 					&& prenomRepresentant != null && nomsJoueurs != null
-					&& prenomsJoueurs != null) {
+					&& prenomsJoueurs != null && numeroJoueurs != null) {
 				facade.creerEquipe(nomEquipe, nomRepresentant,
-						prenomRepresentant, nomsJoueurs, prenomsJoueurs);
+						prenomRepresentant, nomsJoueurs, prenomsJoueurs,
+						toIntegerArray(numeroJoueurs));
 			}
 			// direction la page d'inscription d'une équipe
 			request.getRequestDispatcher(PAGES_PATH + "newteam.jsp").forward(
@@ -90,5 +95,24 @@ public class Controleur extends HttpServlet {
 		} else if (action.equals("404")) {
 			System.err.println("404");
 		}
+	}
+
+	/**
+	 * Casts the String Array into an Integer Array.
+	 * 
+	 * @param array
+	 *            String Array.
+	 * @return Integer Array.
+	 */
+	private int[] toIntegerArray(String[] array) {
+		int[] res = new int[array.length];
+		for (int i = 0; i < res.length; i++) {
+			try {
+				res[i] = Integer.parseInt(array[i]);
+			} catch (java.lang.NumberFormatException e) {
+				res[i] = 0;
+			}
+		}
+		return res;
 	}
 }
