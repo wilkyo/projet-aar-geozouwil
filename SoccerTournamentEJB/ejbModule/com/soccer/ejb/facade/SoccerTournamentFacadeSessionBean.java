@@ -20,6 +20,8 @@ import com.soccer.ejb.user.UtilisateurLocal;
 import com.soccer.model.Arbitre;
 import com.soccer.model.Equipe;
 import com.soccer.model.Joueur;
+import com.soccer.model.Rencontre;
+import com.soccer.model.Tournoi;
 import com.soccer.valueobjects.VOEquipe;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
@@ -76,6 +78,8 @@ public class SoccerTournamentFacadeSessionBean implements
 						em.persist(a);
 					}
 					System.out.println("Arbitres chargés.");
+					
+					
 
 				} catch (ParserConfigurationException pce) {
 					System.out
@@ -102,6 +106,7 @@ public class SoccerTournamentFacadeSessionBean implements
 					em.persist(ar);
 					System.out.println(ar.toXML());
 				}
+				
 				dbInitialized = true;
 			}
 			mutex.release();
@@ -132,12 +137,16 @@ public class SoccerTournamentFacadeSessionBean implements
 
 	@Override
 	public List<VOEquipe> getEquipes(String nomTournoi) {
+		// TODO Auto-generated method stub
 		return utilisateur.getEquipes(nomTournoi);
+
 	}
 
 	@Override
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
+		// TODO Auto-generated method stub
 		return utilisateur.getJoueurs(nomEquipe);
+
 	}
 
 	@Override
@@ -146,7 +155,7 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
-	public List<VORencontre> getRencontre(int idRencontre) {
+	public VORencontre getRencontre(int idRencontre) {
 		return utilisateur.getRencontre(idRencontre);
 	}
 
