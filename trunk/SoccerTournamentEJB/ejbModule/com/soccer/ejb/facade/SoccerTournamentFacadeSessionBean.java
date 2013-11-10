@@ -14,6 +14,7 @@ import com.soccer.SoccerTournamentBouchon;
 import com.soccer.ejb.admin.AdministrateurLocal;
 import com.soccer.ejb.representative.RepresentantLocal;
 import com.soccer.ejb.user.UtilisateurLocal;
+import com.soccer.model.Arbitre;
 import com.soccer.model.Equipe;
 import com.soccer.model.Joueur;
 import com.soccer.valueobjects.VOEquipe;
@@ -50,6 +51,9 @@ public class SoccerTournamentFacadeSessionBean implements
 					for (Joueur j : e.getJoueurs())
 						em.persist(j);
 					em.persist(e);
+				}
+				for(Arbitre ar:SoccerTournamentBouchon.creerArbitres()){
+					em.persist(ar);
 				}
 				dbInitialized = true;
 			}
