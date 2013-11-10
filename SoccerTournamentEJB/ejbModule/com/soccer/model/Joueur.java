@@ -10,6 +10,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Joueur implements Serializable {
 
+	public static final String XML_JOUEUR = "Joueur";
+	public static final String XML_JOUEUR_NOM = "nom";
+	public static final String XML_JOUEUR_PRENOM = "prenom";
+	public static final String XML_JOUEUR_NUMERO = "numero";
+
 	/**
 	 * 
 	 */
@@ -96,6 +101,12 @@ public class Joueur implements Serializable {
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public String toXML() {
+		return "<" + XML_JOUEUR + " " + XML_JOUEUR_NOM + "=\"" + nom + "\" "
+				+ XML_JOUEUR_PRENOM + "=\"" + prenom + "\" "
+				+ XML_JOUEUR_NUMERO + "=\"" + numero + "\" />";
 	}
 
 }

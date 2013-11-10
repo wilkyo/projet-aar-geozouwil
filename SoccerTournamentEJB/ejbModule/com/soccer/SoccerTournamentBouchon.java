@@ -71,6 +71,8 @@ public class SoccerTournamentBouchon {
 		equipes.add(a);
 		equipes.add(b);
 
+		System.out.println(a.toXML());
+		System.out.println(b.toXML());
 		return equipes;
 	}
 }

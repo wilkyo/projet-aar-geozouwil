@@ -14,9 +14,9 @@ public interface SoccerTournamentFacade {
 
 	public void creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
-			String[] prenomJoueurs);
+			String[] prenomJoueurs, int[] numeroJoueurs);
 
-	public void getTournois();
+	public List<VOTournoi> getTournois();
 
 	public List<VOEquipe> getEquipes(String nomTournoi);
 
