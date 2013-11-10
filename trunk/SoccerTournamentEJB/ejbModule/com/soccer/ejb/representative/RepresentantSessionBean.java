@@ -1,6 +1,14 @@
 package com.soccer.ejb.representative;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import com.soccer.model.Equipe;
+import com.soccer.model.Joueur;
 
 /**
  * Session Bean implementation class RepresentantSessionBean
@@ -9,9 +17,8 @@ import javax.ejb.Stateless;
 public class RepresentantSessionBean implements RepresentantRemote,
 		RepresentantLocal {
 
-	/*
-	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
-	 */
+	@PersistenceContext(unitName = "soccerTournament")
+	EntityManager em;
 
 	/**
 	 * Default constructor.
@@ -21,12 +28,36 @@ public class RepresentantSessionBean implements RepresentantRemote,
 	}
 
 	@Override
-	public void creerEquipe(String nomEquipe, String nomRepresentant,
+	public boolean creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs, int[] numeroJoueurs) {
-		// TODO Auto-generated method stub
 		System.out.println(nomEquipe + "; " + nomRepresentant + " "
 				+ prenomRepresentant);
-	}
 
+		// si le nom de l'équipe existe déja
+		if (em.find(Equipe.class, nomEquipe) != null) {
+			System.out.println("L'équipe existe déja !!!!");
+			return false;
+		}
+		// sinon on crée une nouvelle équipe
+		else {
+			Equipe newTeam = new Equipe();
+			newTeam.setNom(nomEquipe);
+			newTeam.setNomRepresentant(nomRepresentant);
+			newTeam.setPrenomRepresentant(prenomRepresentant);
+			List<Joueur> lesjoueurs = new ArrayList<Joueur>();
+			for (int i = 0; i < nomJoueurs.length; i++) {
+				Joueur j = new Joueur();
+				j.setNom(nomJoueurs[i]);
+				j.setPrenom(prenomJoueurs[i]);
+				j.setNumero(numeroJoueurs[i]);
+				j.setEquipe(newTeam);
+				em.persist(j);
+				lesjoueurs.add(j);
+			}
+			newTeam.setJoueurs(lesjoueurs);
+			em.persist(newTeam);
+			return true;
+		}
+	}
 }
