@@ -19,12 +19,9 @@ public class Rencontre implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	@ManyToOne
-	private Tournoi tournoi;
-	@ManyToOne
-	private Equipe hotes;
-	@ManyToOne
+	private int id;	
+	private Tournoi tournoi;	
+	private Equipe hotes;	
 	private Equipe visiteurs;
 	private Arbitre arbitre;
 	private int tour;
@@ -52,7 +49,7 @@ public class Rencontre implements Serializable {
 	/**
 	 * @return the tournoi
 	 */
-	
+	@ManyToOne
 	public Tournoi getTournoi() {
 		return tournoi;
 	}
@@ -76,6 +73,7 @@ public class Rencontre implements Serializable {
 	 * @param hotes
 	 *            the hotes to set
 	 */
+	@ManyToOne
 	public void setHotes(Equipe hotes) {
 		this.hotes = hotes;
 	}
@@ -83,6 +81,7 @@ public class Rencontre implements Serializable {
 	/**
 	 * @return the visiteurs
 	 */
+	@ManyToOne
 	public Equipe getVisiteurs() {
 		return visiteurs;
 	}

@@ -25,7 +25,7 @@ public interface SoccerTournamentFacade {
 
 	public List<VORencontreLight> getRencontres(String nomTournoi);
 
-	public List<VORencontre> getRencontre(int idRencontre);
+	public VORencontre getRencontre(int idRencontre);
 
 	public List<VOEquipe> getEquipes(int idRencontre);
 
