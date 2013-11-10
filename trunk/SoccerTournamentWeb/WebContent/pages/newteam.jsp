@@ -10,25 +10,27 @@
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>base.css" />
 <link type="text/css" rel="stylesheet"
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>form.css" />
+<link type="text/css" rel="stylesheet"
+	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>menu.css" />
 <title>New Team</title>
 </head>
 <body>
 	<div id="header">Nouvelle Equipe</div>
+	<jsp:include page="includes/menu.jsp" />
 	<div id="body">
-		<p>
-			<a href="?action=home">Home</a>
-		</p>
 		<form method="post" action="?action=<%=Controleur.ACTION_NEW_TEAM%>">
 			<fieldset>
-				<legend>
-					Equipe
-				</legend>
-				<label id="labequipe">Nom de l'Equipe</label>
-				<input type="text" id="nomequipe" name="nomEquipe" placeholder="Nom de l'Equipe" required="required"/>	
-				<label id="labrep">Représentant</label>			
-				<input type="text" class="nom" id="nomRepresentant" name="nomRepresentant"
-					placeholder="Nom" />
-				<input type="text" class="prenom" id="prenomRepresentant" name="prenomRepresentant"
+				<legend> Equipe </legend>
+				<label id="labequipe">Nom de l'Equipe</label> <input type="text"
+					id="nomEquipe" name="nomEquipe" placeholder="Nom de l'Equipe"
+					required="required" />
+				<c:if test="${exists}"><br />
+					<span class="error">Ce nom d'équipe est déjà pris !</span>
+				</c:if>
+				<label id="labrep">Représentant</label> <input type="text"
+					class="nom" id="nomRepresentant" name="nomRepresentant"
+					placeholder="Nom" /> <input type="text" class="prenom"
+					id="prenomRepresentant" name="prenomRepresentant"
 					placeholder="Prénom" />
 			</fieldset>
 			<fieldset>
@@ -46,6 +48,12 @@
 				<input type="submit" value="Ajout" />
 			</fieldset>
 		</form>
+		<c:if test="${exists}">
+		<script type="text/javascript">
+			var elt = document.getElementById("nomEquipe");
+			elt.value = '<%=request.getParameter("nomEquipe")%>';
+		</script>
+		</c:if>
 	</div>
 </body>
 </html>
