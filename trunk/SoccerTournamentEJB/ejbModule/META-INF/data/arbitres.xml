@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE equipes SYSTEM "arbitres.dtd">
+<Arbitres>
+	<Arbitre nom="Robert" prenom="Wurtz" />
+	<Arbitre nom="Héliès" prenom="Robert" />
+	<Arbitre nom="Kitabdjian" prenom="Michel" />
+</Arbitres>

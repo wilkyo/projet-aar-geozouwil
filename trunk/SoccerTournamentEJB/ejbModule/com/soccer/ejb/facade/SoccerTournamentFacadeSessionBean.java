@@ -29,6 +29,7 @@ import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
 import com.soccer.valueobjects.VORencontreLight;
 import com.soccer.valueobjects.VOTournoi;
+import com.soccer.xml.ArbitresHandler;
 import com.soccer.xml.EquipeHandler;
 
 /**
@@ -52,31 +53,48 @@ public class SoccerTournamentFacadeSessionBean implements
 
 	@Override
 	public void initDB() {
+		// initDBBouchon();
 		try {
-			SAXParserFactory parserFactory = SAXParserFactory.newInstance();
-			parserFactory.setValidating(true);
-			SAXParser parser = parserFactory.newSAXParser();
-			File fichier;
-			String path = "../standalone/deployments/SoccerTournament.ear/SoccerTournamentEJB.jar/META-INF/data/";
+			mutex.acquire();
+			if (!dbInitialized) {
+				try {
+					SAXParserFactory parserFactory = SAXParserFactory
+							.newInstance();
+					SAXParser parser = parserFactory.newSAXParser();
+					File fichier;
+					String path = "../standalone/deployments/SoccerTournament.ear/SoccerTournamentEJB.jar/META-INF/data/";
 
-			fichier = new File(path + "equipes.xml");
-			EquipeHandler manager = new EquipeHandler();
-			parser.parse(fichier, manager);
-			for (Equipe e : manager.getEquipes()) {
-				for (Joueur j : e.getJoueurs())
-					em.persist(j);
-				em.persist(e);
+					fichier = new File(path + "equipes.xml");
+					EquipeHandler equipeManager = new EquipeHandler();
+					parser.parse(fichier, equipeManager);
+					for (Equipe e : equipeManager.getEquipes()) {
+						for (Joueur j : e.getJoueurs())
+							em.persist(j);
+						em.persist(e);
+					}
+					System.out.println("Equipes chargées.");
+					fichier = new File(path + "arbitres.xml");
+					ArbitresHandler arbitresManager = new ArbitresHandler();
+					parser.parse(fichier, arbitresManager);
+					for (Arbitre a : arbitresManager.getArbitres()) {
+						em.persist(a);
+					}
+					System.out.println("Arbitres chargés.");
+
+				} catch (ParserConfigurationException pce) {
+					System.out
+							.println("Erreur de configuration du parseur Lors de l'appel à SAXParser()");
+				} catch (SAXException se) {
+					System.out.println(se.getMessage());
+				} catch (IOException ioe) {
+					System.out
+							.println("Erreur d'entrée/sortie Lors de l'appel à parse()");
+				}
+				dbInitialized = true;
 			}
-			System.out.println("Equipes chargées.");
-
-		} catch (ParserConfigurationException pce) {
-			System.out
-					.println("Erreur de configuration du parseur Lors de l'appel à SAXParser()");
-		} catch (SAXException se) {
-			System.out.println("Erreur de parsing Lors de l'appel à parse()");
-		} catch (IOException ioe) {
-			System.out
-					.println("Erreur d'entrée/sortie Lors de l'appel à parse()");
+			mutex.release();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -86,6 +104,7 @@ public class SoccerTournamentFacadeSessionBean implements
 			if (!dbInitialized) {
 				for (Arbitre ar : SoccerTournamentBouchon.creerArbitres()) {
 					em.persist(ar);
+					System.out.println(ar.toXML());
 				}
 				dbInitialized = true;
 			}

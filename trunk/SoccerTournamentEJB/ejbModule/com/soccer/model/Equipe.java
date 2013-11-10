@@ -91,6 +91,11 @@ public class Equipe implements Serializable {
 		this.joueurs = joueurs;
 	}
 
+	/**
+	 * Returns the XML representation of a team.
+	 * 
+	 * @return String of the XML representation of a team.
+	 */
 	public String toXML() {
 		StringBuffer res = new StringBuffer("<" + XML_EQUIPE + " "
 				+ XML_EQUIPE_NOM + "=\"" + nom + "\" "

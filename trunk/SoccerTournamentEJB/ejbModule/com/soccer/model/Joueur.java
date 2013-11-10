@@ -103,10 +103,14 @@ public class Joueur implements Serializable {
 		this.numero = numero;
 	}
 
+	/**
+	 * Returns the XML representation of a player.
+	 * 
+	 * @return String of the XML representation of a player.
+	 */
 	public String toXML() {
 		return "<" + XML_JOUEUR + " " + XML_JOUEUR_NOM + "=\"" + nom + "\" "
 				+ XML_JOUEUR_PRENOM + "=\"" + prenom + "\" "
 				+ XML_JOUEUR_NUMERO + "=\"" + numero + "\" />";
 	}
-
 }
