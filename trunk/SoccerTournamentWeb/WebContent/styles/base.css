@@ -33,6 +33,10 @@ input[type=submit]{
 	top: 3px;
 }
 
+.clear {
+	clear: both;
+}
+
 .error {
 	font-weight: bold;
 	color: red;
