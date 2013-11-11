@@ -42,12 +42,17 @@ public class TournoiTag extends TagSupport {
 							+ "</h2>");
 			int cpt = 1;
 			for (VORencontreLight r : tournoi.getRencontres()) {
-				pageContext.getOut().write(
-						"<div class=\"bloc_rencontre\">" + r.getHotes()
-								+ " VS " + r.getVisiteurs() + "<br />"
-								+ r.getScoreHotes() + " - "
-								+ r.getScoreVisiteurs() + "<br />"
-								+ r.getDateRencontre() + "</div>");
+				pageContext.getOut().write("<div class=\"bloc_rencontre\">");
+				if (r.isFake()) {
+					pageContext.getOut().write("En attente");
+				} else {
+					pageContext.getOut().write(
+							r.getHotes() + " VS " + r.getVisiteurs() + "<br />"
+									+ r.getScoreHotes() + " - "
+									+ r.getScoreVisiteurs() + "<br />"
+									+ r.getDateRencontre());
+				}
+				pageContext.getOut().write("</div>");
 				cpt++;
 				if (Integer.lowestOneBit(cpt) == cpt) {
 					pageContext.getOut().write("<br />");
