@@ -3,6 +3,13 @@ package com.soccer.ejb.admin;
 import java.util.Calendar;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import com.soccer.model.Arbitre;
+import com.soccer.model.But;
+import com.soccer.model.Joueur;
+import com.soccer.model.Rencontre;
 
 /**
  * Session Bean implementation class AdministrateurSessionBean
@@ -11,23 +18,27 @@ import javax.ejb.Stateless;
 public class AdministrateurSessionBean implements AdministrateurRemote,
 		AdministrateurLocal {
 
-	/*
-	 * @PersistenceContext(unitName = "soccerTournament") EntityManager em;
-	 */
+	private static final String login = "admin";
+	private static final String password = "root";
+
+	@PersistenceContext(unitName = "soccerTournament")
+	EntityManager em;
 
 	/**
 	 * Default constructor.
 	 */
 	public AdministrateurSessionBean() {
-		// TODO Auto-generated constructor stub
 		System.out.println("Je suis l'administrateur");
 	}
 
 	@Override
 	public boolean connexion(String login, String password) {
-		// TODO Auto-generated method stub
-		
-		return false;
+		if (login.equals(AdministrateurSessionBean.login)
+				&& password.equals(AdministrateurSessionBean.password)) {
+			System.out.println("Connexion de l'administrateur ...");
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
@@ -38,26 +49,41 @@ public class AdministrateurSessionBean implements AdministrateurRemote,
 
 	@Override
 	public void setDebutRencontre(int idRencontre, Calendar debut) {
-		// TODO Auto-generated method stub
-
+		Rencontre r = new Rencontre();
+		r = em.find(Rencontre.class, idRencontre);
+		r.setDebut(debut);
+		em.persist(r);
 	}
 
 	@Override
 	public void ajouterArbitre(String nom, String prenom) {
-		// TODO Auto-generated method stub
-
+		Arbitre a = new Arbitre();
+		a.setNom(nom);
+		a.setPrenom(prenom);
+		em.persist(a);
 	}
 
 	@Override
 	public void affecterArbitre(int idArbitre, int idRencontre) {
-		// TODO Auto-generated method stub
-
+		Rencontre r = new Rencontre();
+		Arbitre a = new Arbitre();
+		r = em.find(Rencontre.class, idRencontre);
+		a = em.find(Arbitre.class, idArbitre);
+		r.setArbitre(a);
+		em.persist(r);
 	}
 
 	@Override
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure) {
-		// TODO Auto-generated method stub
-
+		But b = new But();
+		b.setHeure(heure);
+		Rencontre r = new Rencontre();
+		r = em.find(Rencontre.class, idRencontre);
+		b.setRencontre(r);
+		Joueur j = new Joueur();
+		j = em.find(Joueur.class, idAuteur);
+		b.setAuteur(j);
+		em.persist(b);
 	}
 
 	@Override
