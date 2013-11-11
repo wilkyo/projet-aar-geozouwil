@@ -65,6 +65,7 @@ public class Controleur extends HttpServlet {
 
 		// si l'action est nulle ou l'action égale à home
 		if ((action == null) || (action.equals(ACTION_HOME))) {
+			request.setAttribute("tournois", facade.getTournois());
 			// direction la page d'accueil
 			request.getRequestDispatcher(PAGES_PATH + JSP_HOME).forward(
 					request, response);
