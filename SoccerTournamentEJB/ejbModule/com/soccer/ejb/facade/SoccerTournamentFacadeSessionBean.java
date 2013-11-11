@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Semaphore;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,7 +13,9 @@ import javax.persistence.PersistenceContext;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
 import org.xml.sax.SAXException;
+
 import com.soccer.SoccerTournamentBouchon;
 import com.soccer.ejb.admin.AdministrateurLocal;
 import com.soccer.ejb.representative.RepresentantLocal;
@@ -38,6 +41,7 @@ public class SoccerTournamentFacadeSessionBean implements
 		SoccerTournamentFacadeRemote, SoccerTournamentFacadeLocal {
 
 	private boolean dbInitialized = false;
+	private boolean dbInitialized2 = false;
 	private Semaphore mutex = new Semaphore(1);
 
 	@PersistenceContext(unitName = "soccerTournament")
@@ -51,7 +55,6 @@ public class SoccerTournamentFacadeSessionBean implements
 
 	@Override
 	public void initDB() {
-		// initDBBouchon();
 		try {
 			mutex.acquire();
 			if (!dbInitialized) {
@@ -78,9 +81,6 @@ public class SoccerTournamentFacadeSessionBean implements
 						em.persist(a);
 					}
 					System.out.println("Arbitres chargés.");
-					
-					
-
 				} catch (ParserConfigurationException pce) {
 					System.out
 							.println("Erreur de configuration du parseur Lors de l'appel à SAXParser()");
@@ -96,18 +96,26 @@ public class SoccerTournamentFacadeSessionBean implements
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		initDBBouchon();
 	}
 
 	public void initDBBouchon() {
 		try {
 			mutex.acquire();
-			if (!dbInitialized) {
-				for (Arbitre ar : SoccerTournamentBouchon.creerArbitres()) {
-					em.persist(ar);
-					System.out.println(ar.toXML());
+			if (dbInitialized && !dbInitialized2) {
+				List<Tournoi> tournois = SoccerTournamentBouchon.creerTouroi(
+						(List<Arbitre>) em.createQuery("FROM Arbitre a")
+								.getResultList(), (List<Equipe>) em
+								.createQuery("FROM Equipe e").getResultList());
+				for (Tournoi tournoi : tournois) {
+					for (Rencontre r : tournoi.getRencontres()) {
+						em.persist(r);
+					}
+					em.persist(tournoi);
+					// System.out.println(tournoi.toXML());
 				}
-				
-				dbInitialized = true;
+
+				dbInitialized2 = true;
 			}
 			mutex.release();
 		} catch (InterruptedException e) {
@@ -137,16 +145,12 @@ public class SoccerTournamentFacadeSessionBean implements
 
 	@Override
 	public List<VOEquipe> getEquipes(String nomTournoi) {
-		// TODO Auto-generated method stub
 		return utilisateur.getEquipes(nomTournoi);
-
 	}
 
 	@Override
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
-		// TODO Auto-generated method stub
 		return utilisateur.getJoueurs(nomEquipe);
-
 	}
 
 	@Override

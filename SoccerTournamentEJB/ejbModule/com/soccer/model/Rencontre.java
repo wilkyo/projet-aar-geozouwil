@@ -65,6 +65,7 @@ public class Rencontre implements Serializable {
 	/**
 	 * @return the hotes
 	 */
+	@ManyToOne
 	public Equipe getHotes() {
 		return hotes;
 	}
@@ -73,7 +74,6 @@ public class Rencontre implements Serializable {
 	 * @param hotes
 	 *            the hotes to set
 	 */
-	@ManyToOne
 	public void setHotes(Equipe hotes) {
 		this.hotes = hotes;
 	}
