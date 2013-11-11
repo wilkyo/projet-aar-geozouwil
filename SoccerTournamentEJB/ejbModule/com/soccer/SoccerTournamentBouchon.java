@@ -15,21 +15,24 @@ public class SoccerTournamentBouchon {
 		// Tournoi 1
 		Tournoi tour = new Tournoi();
 		tour.setNom("Tournoi2013");
+		tour.setNbEquipes(4);
 
-		Rencontre rc = new Rencontre();
-		rc.setArbitre(arbitres.get(0));
-		rc.setTournoi(tour);
-		rc.setHotes(equipes.get(0));
-		rc.setVisiteurs(equipes.get(1));
+		Rencontre rc1 = new Rencontre();
+		rc1.setArbitre(arbitres.get(0));
+		rc1.setTournoi(tour);
+		rc1.setHotes(equipes.get(0));
+		rc1.setVisiteurs(equipes.get(1));
+		Rencontre rc2 = new Rencontre();
+		rc2.setArbitre(arbitres.get(1));
+		rc2.setTournoi(tour);
+		rc2.setHotes(equipes.get(1));
+		rc2.setVisiteurs(equipes.get(0));
 
 		// Tournoi 2
 		Tournoi tour2 = new Tournoi();
 		tour2.setNom("Tournoi2014");
-		Rencontre rc2 = new Rencontre();
-		rc2.setArbitre(arbitres.get(1));
-		rc2.setTournoi(tour2);
-		rc2.setHotes(equipes.get(1));
-		rc2.setVisiteurs(equipes.get(0));
+		tour2.setNbEquipes(8);
+		
 		Rencontre rc3 = new Rencontre();
 		rc3.setArbitre(arbitres.get(1));
 		rc3.setTournoi(tour2);
@@ -50,30 +53,16 @@ public class SoccerTournamentBouchon {
 		rc6.setTournoi(tour2);
 		rc6.setHotes(equipes.get(0));
 		rc6.setVisiteurs(equipes.get(1));
-		Rencontre rc7 = new Rencontre();
-		rc7.setArbitre(arbitres.get(2));
-		rc7.setTournoi(tour2);
-		rc7.setHotes(equipes.get(1));
-		rc7.setVisiteurs(equipes.get(0));
-		Rencontre rc8 = new Rencontre();
-		rc8.setArbitre(arbitres.get(2));
-		rc8.setTournoi(tour2);
-		rc8.setHotes(equipes.get(1));
-		rc8.setVisiteurs(equipes.get(0));
 
 		List<Rencontre> lrc = new ArrayList<Rencontre>();
-		lrc.add(rc);
+		lrc.add(rc1);
 		lrc.add(rc2);
-		lrc.add(rc4);
 		tour.setRencontres(lrc);
 		List<Rencontre> lrc2 = new ArrayList<Rencontre>();
-		lrc2.add(rc2);
 		lrc2.add(rc3);
 		lrc2.add(rc4);
 		lrc2.add(rc5);
 		lrc2.add(rc6);
-		lrc2.add(rc7);
-		lrc2.add(rc8);
 		tour2.setRencontres(lrc2);
 
 		List<Tournoi> lesTours = new ArrayList<Tournoi>();

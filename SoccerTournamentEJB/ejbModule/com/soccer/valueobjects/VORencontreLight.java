@@ -7,7 +7,7 @@ import com.soccer.model.Rencontre;
 /**
  * ValueObject of Rencontre in a light version.
  */
-public class VORencontreLight {
+public class VORencontreLight implements Comparable<VORencontreLight> {
 
 	/**
 	 * Identifier of the match.
@@ -46,8 +46,13 @@ public class VORencontreLight {
 		this.visiteurs = rencontre.getVisiteurs().getNom();
 		this.scoreHotes = rencontre.getScoreHotes();
 		this.scoreVisiteurs = rencontre.getScoreVisiteurs();
-		;
 		this.dateRencontre = rencontre.getDebut();
+	}
+
+	/**
+	 * Initializes a fake VORencontreLight.
+	 */
+	public VORencontreLight() {
 	}
 
 	/**
@@ -90,5 +95,25 @@ public class VORencontreLight {
 	 */
 	public Calendar getDateRencontre() {
 		return dateRencontre;
+	}
+
+	/**
+	 * Returns true if this is a fake match.
+	 * 
+	 * @return The existence of the match.
+	 */
+	public boolean isFake() {
+		return this.getHotes() == null;
+	}
+
+	@Override
+	public int compareTo(VORencontreLight o) {
+		if (this.isFake())
+			return -1;
+		else if (o.isFake())
+			return 1;
+		else {
+			return 0;
+		}
 	}
 }

@@ -16,6 +16,7 @@ public class Tournoi implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String nom;
+	private int nbEquipes;
 	private int tourActuel;
 	private List<Rencontre> rencontres;
 
@@ -33,6 +34,21 @@ public class Tournoi implements Serializable {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	/**
+	 * @return the nbEquipes
+	 */
+	public int getNbEquipes() {
+		return nbEquipes;
+	}
+
+	/**
+	 * @param nbEquipes
+	 *            the nbEquipes to set
+	 */
+	public void setNbEquipes(int nbEquipes) {
+		this.nbEquipes = nbEquipes;
 	}
 
 	/**
