@@ -19,7 +19,7 @@
 }
 /* Fin Menu */
 
-img{
+#menu ul li a img {
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
 	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
 	box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
@@ -28,20 +28,15 @@ img{
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	background-color:#455658;
-}
-
-
-#imLog{
-	width: 100px;
+	width: 80px;
+	padding: 0 10px;
 	float: left;
-	padding-left: 10px;
-	padding-right: 10px; 
+	margin-left: 16px;
+}
+
+#imLog {
 }
 
 
-#imPass{
-	width: 100px;
-	padding-left: 10px;
-	padding-right: 10px;
-	
+#imPass {
 }
