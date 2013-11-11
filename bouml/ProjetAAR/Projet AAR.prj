@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 15
+  revision 18
   modified_by 42 "Willy"
 
 
@@ -627,7 +627,7 @@ ${members}};
       end
 
       operation 150698 "getRencontre"
-	public explicit_return_type "List<VORencontre>"
+	public return_type class_ref 170282 // VORencontre
 	nparams 1
 	  param in name "idRencontre" explicit_type "int"
 	
@@ -933,7 +933,7 @@ ${members}};
       explicit_switch_type ""
       
       operation 135978 "creerEquipe"
-	public explicit_return_type ""
+	public explicit_return_type "bool"
 	nparams 6
 	  param in name "nomEquipe" explicit_type "string"
 	  param in name "nomRepresentant" explicit_type "string"
@@ -1073,7 +1073,7 @@ ${members}};
       end
 
       operation 142634 "getTournois"
-	public explicit_return_type ""
+	public explicit_return_type "List<VOTournoi>"
 	nparams 0
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -1124,7 +1124,7 @@ ${members}};
       end
 
       operation 157610 "getRencontre"
-	public explicit_return_type "List<VORencontre>"
+	public return_type class_ref 170282 // VORencontre
 	nparams 1
 	  param in name "idRencontre" explicit_type "int"
 	
