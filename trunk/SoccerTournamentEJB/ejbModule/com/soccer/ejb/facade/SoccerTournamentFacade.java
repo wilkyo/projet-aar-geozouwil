@@ -2,6 +2,7 @@ package com.soccer.ejb.facade;
 
 import java.util.Calendar;
 import java.util.List;
+
 import com.soccer.valueobjects.*;
 
 public interface SoccerTournamentFacade {
@@ -28,6 +29,10 @@ public interface SoccerTournamentFacade {
 	public VORencontre getRencontre(int idRencontre);
 
 	public List<VOEquipe> getEquipes(int idRencontre);
+
+	public VOEquipe getEquipe(String nomEquipe);
+
+	public List<VOEquipe> getEquipes();
 
 	public boolean connexion(String login, String password);
 

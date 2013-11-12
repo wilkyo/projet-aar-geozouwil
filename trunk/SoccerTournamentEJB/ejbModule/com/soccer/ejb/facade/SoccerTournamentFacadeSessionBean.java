@@ -169,6 +169,16 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
+	public VOEquipe getEquipe(String nomEquipe) {
+		return utilisateur.getEquipe(nomEquipe);
+	}
+
+	@Override
+	public List<VOEquipe> getEquipes() {
+		return utilisateur.getEquipes();
+	}
+
+	@Override
 	public boolean connexion(String login, String password) {
 		return administrateur.connexion(login, password);
 	}
