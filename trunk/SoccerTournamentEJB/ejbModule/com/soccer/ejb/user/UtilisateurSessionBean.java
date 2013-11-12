@@ -53,7 +53,7 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	public List<VOEquipe> getEquipes(String nomTournoi) {
 		// TODO Auto-generated method stub
 		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
-		Tournoi tournoi = em.find(Tournoi.class, nomTournoi);
+		Tournoi tournoi = (Tournoi) em.find(Tournoi.class, nomTournoi);
 		List<Rencontre> rencontres = tournoi.getRencontres();
 		for (Rencontre r : rencontres) {
 			VOEquipe voEquipeHote = new VOEquipe(r.getHotes());
@@ -68,7 +68,7 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
 		// TODO Auto-generated method stub
 		List<VOJoueur> listVOJoueur = new ArrayList<VOJoueur>();
-		Equipe equipe = em.find(Equipe.class, nomEquipe);
+		Equipe equipe = (Equipe) em.find(Equipe.class, nomEquipe);
 		List<Joueur> joueurs = equipe.getJoueurs();
 		for (Joueur j : joueurs) {
 			VOJoueur voJoueur = new VOJoueur(j);
@@ -81,8 +81,8 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	public List<VORencontreLight> getRencontres(String nomTournoi) {
 		// TODO Auto-generated method stub
 		List<VORencontreLight> listVORencontreLight = new ArrayList<VORencontreLight>();
-		Tournoi t = em.find(Tournoi.class, nomTournoi);
-		List<Rencontre> rencontres = t.getRencontres();
+		Tournoi tournoi = (Tournoi) em.find(Tournoi.class, nomTournoi);
+		List<Rencontre> rencontres = tournoi.getRencontres();
 		for (Rencontre r : rencontres) {
 			VORencontreLight voRencontreLight = new VORencontreLight(r);
 			listVORencontreLight.add(voRencontreLight);
@@ -93,7 +93,7 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	@Override
 	public VORencontre getRencontre(int idRencontre) {
 		// TODO Auto-generated method stub
-		Rencontre r = em.find(Rencontre.class, idRencontre);
+		Rencontre r = (Rencontre) em.find(Rencontre.class, idRencontre);
 		VORencontre voRencontre = new VORencontre(r);
 		return voRencontre;
 	}
@@ -102,7 +102,7 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	public List<VOEquipe> getEquipes(int idRencontre) {
 		// TODO Auto-generated method stub
 		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
-		Rencontre r = em.find(Rencontre.class, idRencontre);
+		Rencontre r = (Rencontre) em.find(Rencontre.class, idRencontre);
 		VOEquipe voEquipeHote = new VOEquipe(r.getHotes());
 		VOEquipe voEquipeVisiteur = new VOEquipe(r.getVisiteurs());
 
@@ -113,7 +113,7 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 
 	@Override
 	public VOEquipe getEquipe(String nomEquipe) {
-		Equipe e = em.find(Equipe.class, nomEquipe);
+		Equipe e = (Equipe) em.find(Equipe.class, nomEquipe);
 		return new VOEquipe(e);
 	}
 

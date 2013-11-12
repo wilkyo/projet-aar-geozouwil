@@ -46,6 +46,6 @@ public interface SoccerTournamentFacade {
 
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure);
 
-	public void validerRencontre(Calendar heureFin);
+	public void validerRencontre(Calendar heureFin,int idRencontre);
 
 }
