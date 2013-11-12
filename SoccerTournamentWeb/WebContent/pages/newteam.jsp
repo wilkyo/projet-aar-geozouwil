@@ -18,7 +18,7 @@
 	<div id="header">Nouvelle Equipe</div>
 	<jsp:include page="includes/menu.jsp" />
 	<div id="body">
-		<form method="post" action="?action=<%=Controleur.ACTION_NEW_TEAM%>">
+		<form method="post" action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_TEAM%>">
 			<fieldset>
 				<legend> Equipe </legend>
 				<label id="labequipe">Nom de l'Equipe</label> <input type="text"

@@ -29,6 +29,9 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_TEAM = "team";
 	public static final String ACTION_NEW_TEAM = "newteam";
 	public static final String ACTION_LOGIN = "login";
+	public static final String ACTION_ADMIN_HOME = "adminhome";
+	public static final String ACTION_CREATE_TOURNAMENT = "createtournament";
+	public static final String ACTION_TOURNAMENT = "tournament";
 	public static final String ACTION_MATCH = "match";
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
@@ -37,8 +40,10 @@ public class Controleur extends HttpServlet {
 	public static final String JSP_TEAM = "team.jsp";
 	public static final String JSP_MATCH = "match.jsp";
 	public static final String JSP_NEW_TEAM = "newteam.jsp";
-	public static final String JSP_LOGIN = "login.jsp";
 	public static final String JSP_FAQ = "faq.jsp";
+	public static final String JSP_LOGIN = "login.jsp";
+	public static final String JSP_ADMIN_HOME = "adminindex.jsp";
+	public static final String JSP_TOURNAMENT = "tournament.jsp";
 	public static final String JSP_404 = "404.jsp";
 	public static final String JSP_REDIRECT = "redirect.jsp";
 
@@ -87,9 +92,9 @@ public class Controleur extends HttpServlet {
 			String idEquipe = request.getParameter("id");
 			System.out.println(idEquipe);
 			if (idEquipe != null) {
-				// request.setAttribute("equipe", facade.getEquipe(idEquipe));
+				request.setAttribute("equipe", facade.getEquipe(idEquipe));
 			} else {
-				// request.setAttribute("equipes", facade.getEquipes());
+				request.setAttribute("equipes", facade.getEquipes());
 			}
 			dispatcher = jsp(JSP_TEAM);
 		}
@@ -137,7 +142,7 @@ public class Controleur extends HttpServlet {
 			if (login != null && password != null) {
 				if (facade.connexion(login, password)) {
 					request.getSession().setAttribute(SESSION_ADMIN, login);
-					dispatcher = redirect(ACTION_HOME);
+					dispatcher = redirect(ACTION_ADMIN_HOME);
 				} else {
 					request.setAttribute("error", true);
 					dispatcher = jsp(JSP_LOGIN);
@@ -148,14 +153,39 @@ public class Controleur extends HttpServlet {
 			} else
 				// direction la page d'inscription
 				dispatcher = jsp(JSP_LOGIN);
-		} else if (action.equals("redirect")) {
-			request.setAttribute("redirect", request.getParameter("redirect"));
-			dispatcher = jsp(JSP_REDIRECT);
 		} else if (action.equals(ACTION_FAQ)) {
 			dispatcher = jsp(JSP_FAQ);
 		} else if (action.equals(ACTION_404)) {
 			dispatcher = jsp(JSP_404);
+		} else if (request.getSession().getAttribute(SESSION_ADMIN) != null) {
+			if (action.equals(ACTION_ADMIN_HOME)) {
+				request.setAttribute("tournois", facade.getTournois());
+				request.setAttribute("equipes", facade.getEquipes());
+				dispatcher = jsp(JSP_ADMIN_HOME);
+			} else if (action.equals(ACTION_CREATE_TOURNAMENT)) {
+				String nom = request.getParameter("nom");
+				System.out.println(nom);
+				if (nom != null) {
+					facade.creerTournoi(nom);
+					dispatcher = redirect(ACTION_ADMIN_HOME);
+				}
+			} else if (action.equals(ACTION_TOURNAMENT)) {
+				String nomTournoi = request.getParameter("id");
+				System.out.println(nomTournoi);
+				if (nomTournoi != null) {
+					request.setAttribute("rencontres",
+							facade.getRencontres(nomTournoi));
+					dispatcher = jsp(JSP_TOURNAMENT);
+				} else
+					dispatcher = redirect(ACTION_404);
+			}
 		}
+		// S'il faut rediriger...
+		if (action.equals("redirect")) {
+			request.setAttribute("redirect", request.getParameter("redirect"));
+			dispatcher = jsp(JSP_REDIRECT);
+		}
+		// Sinon, la page n'existe pas.
 		if (dispatcher.equals("")) {
 			dispatcher = redirect(ACTION_404);
 		}
