@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 18
+  revision 19
   modified_by 42 "Willy"
 
 
@@ -651,6 +651,31 @@ ${members}};
 	
 	
       end
+
+      operation 171562 "getEquipes"
+	public explicit_return_type "List<VOEquipe>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171690 "getEquipe"
+	public return_type class_ref 170154 // VOEquipe
+	nparams 1
+	  param in name "nomEquipe" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     class 155050 "UtilisateurLocal"
@@ -760,9 +785,10 @@ ${members}};
 
       operation 128682 "creerTournoi"
 	public explicit_return_type ""
-	nparams 0
+	nparams 1
+	  param in name "nomTournoi" explicit_type "string"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1149,6 +1175,31 @@ ${members}};
 	
       end
 
+      operation 171818 "getEquipes"
+	public explicit_return_type "List<VOEquipe>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171946 "getEquipe"
+	public return_type class_ref 170154 // VOEquipe
+	nparams 1
+	  param in name "nomEquipe" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 143274 "connexion"
 	public explicit_return_type "bool"
 	nparams 2
@@ -1165,9 +1216,10 @@ ${members}};
 
       operation 157994 "creerTournoi"
 	public explicit_return_type ""
-	nparams 0
+	nparams 1
+	  param in name "nomTournoi" explicit_type "string"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
