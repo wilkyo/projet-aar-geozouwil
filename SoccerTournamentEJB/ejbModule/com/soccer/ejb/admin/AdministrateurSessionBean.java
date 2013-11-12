@@ -10,6 +10,7 @@ import com.soccer.model.Arbitre;
 import com.soccer.model.But;
 import com.soccer.model.Joueur;
 import com.soccer.model.Rencontre;
+import com.soccer.model.Tournoi;
 
 /**
  * Session Bean implementation class AdministrateurSessionBean
@@ -44,7 +45,15 @@ public class AdministrateurSessionBean implements AdministrateurRemote,
 	@Override
 	public void creerTournoi(String nomTournoi) {
 		// TODO Auto-generated method stub
-
+		if(em.find(Tournoi.class, nomTournoi)!=null){
+			System.out.println("Tournoi existe déjà (en cours ou terminé....)");
+		}
+		else{
+			Tournoi newTournoi=new Tournoi();
+			newTournoi.setNom(nomTournoi);
+			em.persist(newTournoi);
+		}		
+		
 	}
 
 	@Override
@@ -87,9 +96,11 @@ public class AdministrateurSessionBean implements AdministrateurRemote,
 	}
 
 	@Override
-	public void validerRencontre(Calendar fin) {
+	public void validerRencontre(Calendar fin,int idRencontre) {
 		// TODO Auto-generated method stub
-
+		Rencontre r=new Rencontre();
+		r=em.find(Rencontre.class, idRencontre);
+		r.setFin(fin);
 	}
 
 }
