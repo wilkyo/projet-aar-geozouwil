@@ -184,8 +184,8 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
-	public void creerTournoi() {
-		administrateur.creerTournoi();
+	public void creerTournoi(String nomTournoi) {
+		administrateur.creerTournoi(nomTournoi);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class AdministrateurSessionBean implements AdministrateurRemote,
 	}
 
 	@Override
-	public void creerTournoi() {
+	public void creerTournoi(String nomTournoi) {
 		// TODO Auto-generated method stub
 
 	}

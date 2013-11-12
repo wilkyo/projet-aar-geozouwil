@@ -4,5 +4,4 @@ import javax.ejb.Remote;
 
 @Remote
 public interface RepresentantRemote extends Representant {
-
 }

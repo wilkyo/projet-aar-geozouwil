@@ -36,7 +36,7 @@ public interface SoccerTournamentFacade {
 
 	public boolean connexion(String login, String password);
 
-	public void creerTournoi();
+	public void creerTournoi(String nomTournoi);
 
 	public void setDebutRencontre(int idRencontre, Calendar debut);
 
