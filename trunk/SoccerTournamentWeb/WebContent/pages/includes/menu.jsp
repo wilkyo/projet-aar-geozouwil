@@ -15,7 +15,7 @@
 					: ""%>></a></li>
 		<li><a
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM%>"><img
-				id="imPass" alt="Équipes" title="Équipes" src="images/team.png"
+				id="imPass" alt="Équipes" title="Équipes" src="images/equipes.png"
 				<%=action.equals(Controleur.ACTION_TEAM) ? " class=\"active\""
 					: ""%>></a></li>
 		<c:if test="<%=logged%>">
@@ -23,7 +23,7 @@
 				href="<%=Controleur.SERVLET_PATH
 						+ Controleur.ACTION_ADMIN_HOME%>"><img
 					id="imLog" alt="Accueil Admin" title="Accueil Admin"
-					src="images/home.png"
+					src="images/homeAdmin.png"
 					<%=action.equals(Controleur.ACTION_ADMIN_HOME) ? " class=\"active\""
 						: ""%>></a></li>
 			<li>
@@ -40,7 +40,7 @@
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_LOGIN%>"><img
 				id="imLog" alt="Se connecter"
 				title="<%=logged ? "Se déconnecter" : "Se connecter"%>"
-				src="images/<%=logged ? "login.png" : "login.png"%>"
+				src="images/<%=logged ? "deconnecte.png" : "login.png"%>"
 				<%=action.equals(Controleur.ACTION_LOGIN) ? " class=\"active\""
 					: ""%>></a></li>
 	</ul>
