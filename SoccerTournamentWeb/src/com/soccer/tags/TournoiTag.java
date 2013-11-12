@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import com.soccer.servlet.Controleur;
 import com.soccer.valueobjects.VORencontreLight;
 import com.soccer.valueobjects.VOTournoi;
 
@@ -42,12 +43,16 @@ public class TournoiTag extends TagSupport {
 							+ "</h2>");
 			int cpt = 1;
 			for (VORencontreLight r : tournoi.getRencontres()) {
-				pageContext.getOut().write("<div class=\"bloc_rencontre\">");
 				if (r.isFake()) {
-					pageContext.getOut().write("En attente");
+					pageContext.getOut().write(
+							"<div class=\"bloc_rencontre\">En attente");
 				} else {
 					pageContext.getOut().write(
-							r.getHotes() + " VS " + r.getVisiteurs() + "<br />"
+							"<div class=\"bloc_rencontre not_fake\" onclick=\"window.location='"
+									+ Controleur.SERVLET_PATH
+									+ Controleur.ACTION_MATCH + "&id="
+									+ r.getId() + "';\">" + r.getHotes()
+									+ " VS " + r.getVisiteurs() + "<br />"
 									+ r.getScoreHotes() + " - "
 									+ r.getScoreVisiteurs() + "<br />"
 									+ r.getDateRencontre());
