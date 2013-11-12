@@ -40,9 +40,10 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	public List<VOTournoi> getTournois() {
 		// TODO Auto-generated method stub
 		List<VOTournoi> listVOTournoi = new ArrayList<VOTournoi>();
-		List<Tournoi> tournois=em.createQuery("From Tournoi t").getResultList();
-		for(Tournoi tr:tournois){
-			VOTournoi voTour=new VOTournoi(tr);
+		List<Tournoi> tournois = em.createQuery("From Tournoi t")
+				.getResultList();
+		for (Tournoi tr : tournois) {
+			VOTournoi voTour = new VOTournoi(tr);
 			listVOTournoi.add(voTour);
 		}
 		return listVOTournoi;
@@ -51,12 +52,12 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	@Override
 	public List<VOEquipe> getEquipes(String nomTournoi) {
 		// TODO Auto-generated method stub
-		List<VOEquipe> listVOEquipe=new ArrayList<VOEquipe>();
-		Tournoi tournoi=em.find(Tournoi.class, nomTournoi);
-		List<Rencontre> rencontres=tournoi.getRencontres();
-		for(Rencontre r:rencontres){
-			VOEquipe voEquipeHote=new VOEquipe(r.getHotes());
-			VOEquipe voEquipeVisiteur=new VOEquipe(r.getVisiteurs());			
+		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
+		Tournoi tournoi = em.find(Tournoi.class, nomTournoi);
+		List<Rencontre> rencontres = tournoi.getRencontres();
+		for (Rencontre r : rencontres) {
+			VOEquipe voEquipeHote = new VOEquipe(r.getHotes());
+			VOEquipe voEquipeVisiteur = new VOEquipe(r.getVisiteurs());
 			listVOEquipe.add(voEquipeHote);
 			listVOEquipe.add(voEquipeVisiteur);
 		}
@@ -66,11 +67,11 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	@Override
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
 		// TODO Auto-generated method stub
-		List<VOJoueur> listVOJoueur=new ArrayList<VOJoueur>();
-		Equipe equipe=em.find(Equipe.class, nomEquipe);
-		List<Joueur> joueurs=equipe.getJoueurs();
-		for(Joueur j:joueurs){
-			VOJoueur voJoueur=new VOJoueur(j);
+		List<VOJoueur> listVOJoueur = new ArrayList<VOJoueur>();
+		Equipe equipe = em.find(Equipe.class, nomEquipe);
+		List<Joueur> joueurs = equipe.getJoueurs();
+		for (Joueur j : joueurs) {
+			VOJoueur voJoueur = new VOJoueur(j);
 			listVOJoueur.add(voJoueur);
 		}
 		return listVOJoueur;
@@ -79,11 +80,11 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	@Override
 	public List<VORencontreLight> getRencontres(String nomTournoi) {
 		// TODO Auto-generated method stub
-		List<VORencontreLight> listVORencontreLight=new ArrayList<VORencontreLight>();
-		Tournoi t=em.find(Tournoi.class, nomTournoi);
-		List<Rencontre> rencontres=t.getRencontres();
-		for(Rencontre r:rencontres){
-			VORencontreLight voRencontreLight=new VORencontreLight(r);
+		List<VORencontreLight> listVORencontreLight = new ArrayList<VORencontreLight>();
+		Tournoi t = em.find(Tournoi.class, nomTournoi);
+		List<Rencontre> rencontres = t.getRencontres();
+		for (Rencontre r : rencontres) {
+			VORencontreLight voRencontreLight = new VORencontreLight(r);
 			listVORencontreLight.add(voRencontreLight);
 		}
 		return listVORencontreLight;
@@ -92,22 +93,36 @@ public class UtilisateurSessionBean implements UtilisateurRemote,
 	@Override
 	public VORencontre getRencontre(int idRencontre) {
 		// TODO Auto-generated method stub
-		Rencontre r=em.find(Rencontre.class, idRencontre);
-		VORencontre voRencontre=new VORencontre(r);
+		Rencontre r = em.find(Rencontre.class, idRencontre);
+		VORencontre voRencontre = new VORencontre(r);
 		return voRencontre;
 	}
 
 	@Override
 	public List<VOEquipe> getEquipes(int idRencontre) {
 		// TODO Auto-generated method stub
-		List<VOEquipe> listVOEquipe=new ArrayList<VOEquipe>();
-		Rencontre r=em.find(Rencontre.class, idRencontre);
-		VOEquipe voEquipeHote=new VOEquipe(r.getHotes());
-		VOEquipe voEquipeVisiteur=new VOEquipe(r.getVisiteurs());
-		
+		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
+		Rencontre r = em.find(Rencontre.class, idRencontre);
+		VOEquipe voEquipeHote = new VOEquipe(r.getHotes());
+		VOEquipe voEquipeVisiteur = new VOEquipe(r.getVisiteurs());
+
 		listVOEquipe.add(voEquipeHote);
 		listVOEquipe.add(voEquipeVisiteur);
 		return listVOEquipe;
+	}
+
+	@Override
+	public VOEquipe getEquipe(String nomEquipe) {
+		Equipe e = em.find(Equipe.class, nomEquipe);
+		return new VOEquipe(e);
+	}
+
+	@Override
+	public List<VOEquipe> getEquipes() {
+		List<VOEquipe> equipes = new ArrayList<VOEquipe>();
+		for (Object e : em.createQuery("FROM Equipe e").getResultList())
+			equipes.add(new VOEquipe((Equipe) e));
+		return equipes;
 	}
 
 }
