@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="/WEB-INF/tlds/c.tld" prefix="c"%>
+<%@ taglib uri="/WEB-INF/tlds/custom.tld" prefix="custom"%>
 <%@ page import="com.soccer.servlet.Controleur"%>
-<%
-	boolean logged = request.getSession().getAttribute("admin") != null;
-%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,23 +11,19 @@
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>base.css" />
 <link type="text/css" rel="stylesheet"
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>menu.css" />
-<title>Équipe<%=request.getParameter("id") == null ? "s" : ""%></title>
+<title>Home</title>
 </head>
 <body>
-	<div id="header">
-		Équipe<%=request.getParameter("id") == null ? "s" : ""%></div>
+	<div id="header"><%=request.getParameter("id")%></div>
 	<jsp:include page="includes/menu.jsp" />
 	<div id="body">
-		<c:if test="${equipe != null}">
-			<!-- Une équipe -->
-			${equipe.nom}
-		</c:if>
-		<c:if test="${equipes != null}">
-			<!-- Les équipes -->
-			<c:forEach items="${equipes}" var="equipe">
-				${equipe.nom}
-			</c:forEach>
-		</c:if>
+		<c:forEach items="${rencontres}" var="rencontre">
+			<jsp:useBean id="rencontre"
+				class="com.soccer.valueobjects.VORencontreLight" scope="page" />
+			<%=rencontre.getId()%>
+			<br />
+			<c:out value="${rencontre.id}" />
+		</c:forEach>
 	</div>
 	<jsp:include page="includes/footer.jsp" />
 </body>

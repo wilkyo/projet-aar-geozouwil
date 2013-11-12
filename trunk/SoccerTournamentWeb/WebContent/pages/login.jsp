@@ -23,7 +23,7 @@
 		<c:if test="${error}">
 			<span class="error">Mauvais login ou mot de passe !</span>
 		</c:if>
-		<form action="?action=login" method="post">
+		<form action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_LOGIN%>" method="post">
 			<fieldset>
 				<legend>Connexion</legend>
 				<input type="text" id="login" name="login" placeholder="Login" required="required" /><br />

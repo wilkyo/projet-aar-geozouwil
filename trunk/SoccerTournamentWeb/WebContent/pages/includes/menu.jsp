@@ -19,6 +19,14 @@
 				<%=action.equals(Controleur.ACTION_TEAM) ? " class=\"active\""
 					: ""%>></a></li>
 		<c:if test="<%=logged%>">
+			<li><a
+				href="<%=Controleur.SERVLET_PATH
+						+ Controleur.ACTION_ADMIN_HOME%>"><img
+					id="imLog" alt="Accueil Admin" title="Accueil Admin"
+					src="images/home.png"
+					<%=action.equals(Controleur.ACTION_ADMIN_HOME) ? " class=\"active\""
+						: ""%>></a></li>
+			<li>
 		</c:if>
 		<c:if test="<%=!logged%>">
 			<li><a
