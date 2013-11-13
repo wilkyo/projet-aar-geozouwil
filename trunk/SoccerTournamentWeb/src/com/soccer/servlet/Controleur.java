@@ -1,6 +1,7 @@
 package com.soccer.servlet;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -78,11 +79,13 @@ public class Controleur extends HttpServlet {
 		facade.initDB();
 
 		String action = request.getParameter("action");
+		if (action == null)
+			action = ACTION_HOME;
 		System.out.println("Action=" + action);
 		String dispatcher = "";
 
 		// si l'action est nulle ou l'action égale à home
-		if ((action == null) || (action.equals(ACTION_HOME))) {
+		if (action.equals(ACTION_HOME)) {
 			request.setAttribute("tournois", facade.getTournois());
 			// direction la page d'accueil
 			dispatcher = jsp(JSP_HOME);
@@ -157,6 +160,11 @@ public class Controleur extends HttpServlet {
 			dispatcher = jsp(JSP_FAQ);
 		} else if (action.equals(ACTION_404)) {
 			dispatcher = jsp(JSP_404);
+		}
+		// S'il faut rediriger...
+		else if (action.equals("redirect")) {
+			request.setAttribute("redirect", request.getParameter("redirect"));
+			dispatcher = jsp(JSP_REDIRECT);
 		} else if (request.getSession().getAttribute(SESSION_ADMIN) != null) {
 			if (action.equals(ACTION_ADMIN_HOME)) {
 				request.setAttribute("tournois", facade.getTournois());
@@ -172,6 +180,8 @@ public class Controleur extends HttpServlet {
 			} else if (action.equals(ACTION_TOURNAMENT)) {
 				String nomTournoi = request.getParameter("id");
 				System.out.println(nomTournoi);
+				facade.validerRencontre(GregorianCalendar.getInstance(), 10);
+				facade.validerRencontre(GregorianCalendar.getInstance(), 11);
 				if (nomTournoi != null) {
 					request.setAttribute("rencontres",
 							facade.getRencontres(nomTournoi));
@@ -179,11 +189,6 @@ public class Controleur extends HttpServlet {
 				} else
 					dispatcher = redirect(ACTION_404);
 			}
-		}
-		// S'il faut rediriger...
-		if (action.equals("redirect")) {
-			request.setAttribute("redirect", request.getParameter("redirect"));
-			dispatcher = jsp(JSP_REDIRECT);
 		}
 		// Sinon, la page n'existe pas.
 		if (dispatcher.equals("")) {
