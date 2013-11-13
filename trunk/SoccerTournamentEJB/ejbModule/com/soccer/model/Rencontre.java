@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
@@ -19,9 +21,9 @@ public class Rencontre implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;	
-	private Tournoi tournoi;	
-	private Equipe hotes;	
+	private int id;
+	private Tournoi tournoi;
+	private Equipe hotes;
 	private Equipe visiteurs;
 	private Arbitre arbitre;
 	private int tour;
@@ -128,6 +130,7 @@ public class Rencontre implements Serializable {
 	/**
 	 * @return the debut
 	 */
+	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getDebut() {
 		return debut;
 	}
@@ -143,6 +146,7 @@ public class Rencontre implements Serializable {
 	/**
 	 * @return the fin
 	 */
+	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getFin() {
 		return fin;
 	}
@@ -199,6 +203,19 @@ public class Rencontre implements Serializable {
 				score++;
 		}
 		return score;
+	}
+
+	/**
+	 * Gets the winner team.
+	 * 
+	 * @return the winner team.
+	 */
+	@Transient
+	public Equipe getGagnant() {
+		if (getScoreHotes() > getScoreVisiteurs())
+			return hotes;
+		else
+			return visiteurs;
 	}
 
 }
