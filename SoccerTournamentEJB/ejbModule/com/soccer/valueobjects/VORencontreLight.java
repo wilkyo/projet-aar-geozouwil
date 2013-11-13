@@ -30,6 +30,10 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 	 */
 	private int scoreVisiteurs;
 	/**
+	 * Round of the match.
+	 */
+	private int tour;
+	/**
 	 * Date of the match.
 	 */
 	private Calendar dateRencontre;
@@ -46,6 +50,7 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 		this.visiteurs = rencontre.getVisiteurs().getNom();
 		this.scoreHotes = rencontre.getScoreHotes();
 		this.scoreVisiteurs = rencontre.getScoreVisiteurs();
+		this.tour = rencontre.getTour();
 		this.dateRencontre = rencontre.getDebut();
 	}
 
@@ -91,6 +96,13 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 	}
 
 	/**
+	 * @return the tour
+	 */
+	public int getTour() {
+		return tour;
+	}
+
+	/**
 	 * @return the dateRencontre
 	 */
 	public Calendar getDateRencontre() {
@@ -109,11 +121,11 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 	@Override
 	public int compareTo(VORencontreLight o) {
 		if (this.isFake())
-			return -1;
+			return -10;
 		else if (o.isFake())
-			return 1;
+			return 10;
 		else {
-			return 0;
+			return o.getTour() - this.getTour();
 		}
 	}
 }

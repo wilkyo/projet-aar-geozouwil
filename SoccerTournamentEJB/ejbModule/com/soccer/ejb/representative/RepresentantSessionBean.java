@@ -14,8 +14,7 @@ import com.soccer.model.Joueur;
  * Session Bean implementation class RepresentantSessionBean
  */
 @Stateless
-public class RepresentantSessionBean implements RepresentantRemote,
-		RepresentantLocal {
+public class RepresentantSessionBean implements RepresentantLocal {
 
 	@PersistenceContext(unitName = "soccerTournament")
 	EntityManager em;
