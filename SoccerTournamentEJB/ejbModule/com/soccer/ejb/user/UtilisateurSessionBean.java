@@ -34,6 +34,12 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		System.out.println("Utilisateur connecté");
 	}
 
+	@Override
+	public VOTournoi getTournoi(String nomTournoi) {
+		Tournoi t = em.find(Tournoi.class, nomTournoi);
+		return new VOTournoi(t);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<VOTournoi> getTournois() {

@@ -18,6 +18,8 @@ public interface SoccerTournamentFacade {
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs, int[] numeroJoueurs);
 
+	public VOTournoi getTournoi(String nomTournoi);
+
 	public List<VOTournoi> getTournois();
 
 	public List<VOEquipe> getEquipes(String nomTournoi);
@@ -46,6 +48,6 @@ public interface SoccerTournamentFacade {
 
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure);
 
-	public void validerRencontre(Calendar heureFin,int idRencontre);
+	public void validerRencontre(Calendar heureFin, int idRencontre);
 
 }
