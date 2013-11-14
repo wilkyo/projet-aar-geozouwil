@@ -6,6 +6,8 @@ import com.soccer.valueobjects.*;
 
 public interface Utilisateur {
 
+	public VOTournoi getTournoi(String nomTournoi);
+
 	public List<VOTournoi> getTournois();
 
 	public List<VOEquipe> getEquipes(String nomTournoi);

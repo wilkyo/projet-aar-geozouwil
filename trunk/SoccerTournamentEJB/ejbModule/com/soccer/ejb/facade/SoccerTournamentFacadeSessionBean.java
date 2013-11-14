@@ -139,6 +139,11 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
+	public VOTournoi getTournoi(String nomTournoi) {
+		return utilisateur.getTournoi(nomTournoi);
+	}
+
+	@Override
 	public List<VOTournoi> getTournois() {
 		return utilisateur.getTournois();
 	}
@@ -209,8 +214,8 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
-	public void validerRencontre(Calendar heureFin,int idRencontre) {
-		administrateur.validerRencontre(heureFin,idRencontre);
+	public void validerRencontre(Calendar heureFin, int idRencontre) {
+		administrateur.validerRencontre(heureFin, idRencontre);
 	}
 
 }

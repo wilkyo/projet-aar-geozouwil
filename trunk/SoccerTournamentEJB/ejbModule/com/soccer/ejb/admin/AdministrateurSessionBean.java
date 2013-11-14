@@ -129,37 +129,40 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	public void validerRencontre(Calendar fin, int idRencontre) {
 		Rencontre rencontre = new Rencontre();
 		rencontre = em.find(Rencontre.class, idRencontre);
+		boolean dejaFait = rencontre.getFin() != null;
 		rencontre.setFin(fin);
 		em.persist(rencontre);
-		// Checking the others
-		List<Rencontre> rencontres = new ArrayList<Rencontre>();
-		int cpt = 0;
-		// Récupère les rencontres du même tour
-		Query query = em
-				.createQuery("FROM Rencontre e WHERE e.tournoi = ? AND e.tour = ?");
-		query.setParameter(1, rencontre.getTournoi());
-		query.setParameter(2, rencontre.getTour());
-		for (Object r : query.getResultList()) {
-			Rencontre tmp = (Rencontre) r;
-			if (tmp.getFin() != null)
-				cpt++;
-			rencontres.add(tmp);
-		}
-		// Si toutes les rencontres de ce tour ont étés validées
-		if (cpt == rencontres.size() && rencontres.size() > 1) {
-			// Parcours deux à deux des rencontres pour créer les nouvelles
-			// (dans l'ordre)
-			for (int i = 0; i < rencontres.size(); i += 2) {
-				Rencontre hotes = rencontres.get(i);
-				Rencontre visiteurs = rencontres.get(i + 1);
-				if (hotes.getTour() < rencontre.getTour())
-					break;
-				Rencontre newRencontre = new Rencontre();
-				newRencontre.setHotes(hotes.getGagnant());
-				newRencontre.setVisiteurs(visiteurs.getGagnant());
-				newRencontre.setTour(rencontre.getTour() + 1);
-				newRencontre.setTournoi(rencontre.getTournoi());
-				em.persist(newRencontre);
+		if (!dejaFait) {
+			// Checking the others
+			List<Rencontre> rencontres = new ArrayList<Rencontre>();
+			int cpt = 0;
+			// Récupère les rencontres du même tour
+			Query query = em
+					.createQuery("FROM Rencontre e WHERE e.tournoi = ? AND e.tour = ?");
+			query.setParameter(1, rencontre.getTournoi());
+			query.setParameter(2, rencontre.getTour());
+			for (Object r : query.getResultList()) {
+				Rencontre tmp = (Rencontre) r;
+				if (tmp.getFin() != null)
+					cpt++;
+				rencontres.add(tmp);
+			}
+			// Si toutes les rencontres de ce tour ont étés validées
+			if (cpt == rencontres.size() && rencontres.size() > 1) {
+				// Parcours deux à deux des rencontres pour créer les nouvelles
+				// (dans l'ordre)
+				for (int i = 0; i < rencontres.size(); i += 2) {
+					Rencontre hotes = rencontres.get(i);
+					Rencontre visiteurs = rencontres.get(i + 1);
+					if (hotes.getTour() < rencontre.getTour())
+						break;
+					Rencontre newRencontre = new Rencontre();
+					newRencontre.setHotes(hotes.getGagnant());
+					newRencontre.setVisiteurs(visiteurs.getGagnant());
+					newRencontre.setTour(rencontre.getTour() + 1);
+					newRencontre.setTournoi(rencontre.getTournoi());
+					em.persist(newRencontre);
+				}
 			}
 		}
 	}
