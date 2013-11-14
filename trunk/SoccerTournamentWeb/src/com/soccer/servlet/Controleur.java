@@ -37,14 +37,14 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
 
-	public static final String JSP_HOME = "index.jsp";
-	public static final String JSP_TEAM = "team.jsp";
-	public static final String JSP_MATCH = "match.jsp";
+	public static final String JSP_HOME = "user/index.jsp";
+	public static final String JSP_TEAM = "user/team.jsp";
+	public static final String JSP_MATCH = "user/match.jsp";
 	public static final String JSP_NEW_TEAM = "newteam.jsp";
-	public static final String JSP_FAQ = "faq.jsp";
-	public static final String JSP_LOGIN = "login.jsp";
-	public static final String JSP_ADMIN_HOME = "adminindex.jsp";
-	public static final String JSP_TOURNAMENT = "tournament.jsp";
+	public static final String JSP_FAQ = "user/faq.jsp";
+	public static final String JSP_LOGIN = "admin/login.jsp";
+	public static final String JSP_ADMIN_HOME = "admin/adminindex.jsp";
+	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
 	public static final String JSP_404 = "404.jsp";
 	public static final String JSP_REDIRECT = "redirect.jsp";
 
@@ -89,17 +89,15 @@ public class Controleur extends HttpServlet {
 			request.setAttribute("tournois", facade.getTournois());
 			// direction la page d'accueil
 			dispatcher = jsp(JSP_HOME);
-		}
-		// si l'action est de voir une ou plusieurs équipes
-		else if (action.equals(ACTION_TEAM)) {
-			String idEquipe = request.getParameter("id");
-			System.out.println(idEquipe);
-			if (idEquipe != null) {
-				request.setAttribute("equipe", facade.getEquipe(idEquipe));
-			} else {
-				request.setAttribute("equipes", facade.getEquipes());
-			}
-			dispatcher = jsp(JSP_TEAM);
+		} else if (action.equals(ACTION_TOURNAMENT)) {
+			String nomTournoi = request.getParameter("id");
+			facade.validerRencontre(GregorianCalendar.getInstance(), 10);
+			facade.validerRencontre(GregorianCalendar.getInstance(), 11);
+			if (nomTournoi != null) {
+				request.setAttribute("tournoi", facade.getTournoi(nomTournoi));
+				dispatcher = jsp(JSP_TOURNAMENT);
+			} else
+				dispatcher = redirect(ACTION_404);
 		}
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
@@ -112,6 +110,17 @@ public class Controleur extends HttpServlet {
 			} else {
 				dispatcher = redirect(ACTION_HOME);
 			}
+		}
+		// si l'action est de voir une ou plusieurs équipes
+		else if (action.equals(ACTION_TEAM)) {
+			String idEquipe = request.getParameter("id");
+			System.out.println(idEquipe);
+			if (idEquipe != null) {
+				request.setAttribute("equipe", facade.getEquipe(idEquipe));
+			} else {
+				request.setAttribute("equipes", facade.getEquipes());
+			}
+			dispatcher = jsp(JSP_TEAM);
 		}
 		// si l'action est l'inscription d'une équipe
 		else if (action.equals(ACTION_NEW_TEAM)) {
@@ -177,17 +186,6 @@ public class Controleur extends HttpServlet {
 					facade.creerTournoi(nom);
 					dispatcher = redirect(ACTION_ADMIN_HOME);
 				}
-			} else if (action.equals(ACTION_TOURNAMENT)) {
-				String nomTournoi = request.getParameter("id");
-				System.out.println(nomTournoi);
-				facade.validerRencontre(GregorianCalendar.getInstance(), 10);
-				facade.validerRencontre(GregorianCalendar.getInstance(), 11);
-				if (nomTournoi != null) {
-					request.setAttribute("rencontres",
-							facade.getRencontres(nomTournoi));
-					dispatcher = jsp(JSP_TOURNAMENT);
-				} else
-					dispatcher = redirect(ACTION_404);
 			}
 		}
 		// Sinon, la page n'existe pas.

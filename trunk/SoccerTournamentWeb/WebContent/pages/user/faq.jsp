@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div id="header"></div>
-	<jsp:include page="includes/menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
 		<!-- Utilisateur -->
 		<!-- Représentant -->
@@ -25,6 +25,6 @@
 			<!-- Admin -->
 		</c:if>
 	</div>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>

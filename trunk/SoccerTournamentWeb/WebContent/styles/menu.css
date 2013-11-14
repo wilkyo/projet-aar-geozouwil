@@ -2,7 +2,11 @@
 
 /* Début Menu */
 #menu {
-	background: #444488;	
+	border: 4px ridge #98F;
+	border-left: none;
+	border-right: none;
+	padding-bottom: 2px;
+	background-color: #444488;
 }
 
 #menu ul {
@@ -25,23 +29,25 @@
 	background: #4444aa;
 }
 /* Fin Menu */
-
 #menu ul li a img {
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
-	box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
-
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .2), inset 0 4px 5px
+		rgba(0, 0, 0, .6), inset 0 1px 0 rgba(0, 0, 0, .6);
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .2), inset 0 4px 5px
+		rgba(0, 0, 0, .6), inset 0 1px 0 rgba(0, 0, 0, .6);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .2), inset 0 4px 5px
+		rgba(0, 0, 0, .6), inset 0 1px 0 rgba(0, 0, 0, .6);
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
-	background-color:#455658;
+	background-color: #455658;
 	width: 80px;
 	padding: 0 10px;
 }
 
 #imLog {
+	
 }
 
-
 #imPass {
+	
 }

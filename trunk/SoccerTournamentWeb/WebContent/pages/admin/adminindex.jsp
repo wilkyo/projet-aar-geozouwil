@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div id="header">Administration</div>
-	<jsp:include page="includes/menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
 		<div id="tournois">
 			<c:forEach items="${tournois}" var="tournoi">
@@ -51,6 +51,6 @@
 			</c:forEach>
 		</div>
 	</div>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>

@@ -14,24 +14,11 @@
 <title>Home</title>
 </head>
 <body>
-	<div id="header">Welcome!</div>
-	<jsp:include page="includes/menu.jsp" />
+	<div id="header"><%=request.getParameter("id")%></div>
+	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
-		<%
-			// <%=request.getAttribute(\"tournois\")% > == ${tournois}
-		%>
-		<c:forEach items="${tournois}" var="tournoi">
-			<custom:tournoi-diagramme tournoi="${tournoi}" />
-			<c:out value="${tournoi.nom}" />
-			<c:forEach items="${tournoi.rencontres}" var="rencontre">
-				<jsp:useBean id="rencontre"
-					class="com.soccer.valueobjects.VORencontreLight" scope="page" />
-				<%=rencontre.getId()%>
-				<br />
-				<c:out value="${rencontre.id}" />
-			</c:forEach>__<br />
-		</c:forEach>
+		<custom:tournoi-diagramme tournoi="${tournoi}" />
 	</div>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>
