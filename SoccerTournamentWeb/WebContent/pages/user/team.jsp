@@ -18,19 +18,24 @@
 <body>
 	<div id="header">
 		Équipe<%=request.getParameter("id") == null ? "s" : ""%></div>
-	<jsp:include page="includes/menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
 		<c:if test="${equipe != null}">
 			<!-- Une équipe -->
-			${equipe.nom}
+			${equipe.nom}<br />
+			<c:forEach items="${equipe.joueurs}" var="joueur">
+				${joueur.prenom} ${joueur.nom}<br />
+			</c:forEach>
 		</c:if>
 		<c:if test="${equipes != null}">
 			<!-- Les équipes -->
 			<c:forEach items="${equipes}" var="equipe">
-				${equipe.nom}
+				<a
+					href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM%>&id=${equipe.nom}">${equipe.nom}</a>
+				<br />
 			</c:forEach>
 		</c:if>
 	</div>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>

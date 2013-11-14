@@ -18,7 +18,7 @@
 	<div id="header">
 		Login to Soccer Tournament
 	</div>
-	<jsp:include page="includes/menu.jsp" />
+	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
 		<c:if test="${error}">
 			<span class="error">Mauvais login ou mot de passe !</span>
@@ -32,6 +32,6 @@
 			</fieldset>
 		</form>
 	</div>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>
