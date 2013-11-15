@@ -32,6 +32,7 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_LOGIN = "login";
 	public static final String ACTION_ADMIN_HOME = "adminhome";
 	public static final String ACTION_CREATE_TOURNAMENT = "createtournament";
+	public static final String ACTION_NEW_REFEREE = "newreferee";
 	public static final String ACTION_TOURNAMENT = "tournament";
 	public static final String ACTION_MATCH = "match";
 	public static final String ACTION_FAQ = "faq";
@@ -184,6 +185,15 @@ public class Controleur extends HttpServlet {
 				System.out.println(nom);
 				if (nom != null) {
 					facade.creerTournoi(nom);
+					dispatcher = redirect(ACTION_ADMIN_HOME);
+				}
+			}
+			// si l'admin souhaite ajouter un arbitre
+			else if (action.equals(ACTION_NEW_REFEREE)) {
+				String nom = request.getParameter("nomReferee");
+				String prenom = request.getParameter("prenomReferee");
+				if (nom != null && prenom != null) {
+					facade.ajouterArbitre(nom, prenom);
 					dispatcher = redirect(ACTION_ADMIN_HOME);
 				}
 			}

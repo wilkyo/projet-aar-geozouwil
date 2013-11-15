@@ -20,13 +20,16 @@
 	<div id="body">
 		<div id="tournois">
 			<c:forEach items="${tournois}" var="tournoi">
-				<a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a><br />
+				<a
+					href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out
+						value="${tournoi.nom}" /></a>
+				<br />
 			</c:forEach>
 		</div>
 		<c:set var="nbEquipes" value="${equipes.size()}" />
 		<jsp:useBean id="nbEquipes" type="java.lang.Integer" scope="page" />
 		<%
-		if (nbEquipes == null)
+			if (nbEquipes == null)
 				nbEquipes = 0;
 			boolean nbEquipesCorrect = Integer.lowestOneBit(nbEquipes) == nbEquipes;
 		%>
@@ -35,8 +38,7 @@
 				action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_CREATE_TOURNAMENT%>">
 				<fieldset>
 					<legend>Création du Tournoi</legend>
-					<label for="nom">Nom du Tournoi</label>
-					<input type="text" id="nom"
+					<label for="nom">Nom du Tournoi</label> <input type="text" id="nom"
 						name="nom" placeholder="Nom du Tournoi" required="required" /><br />
 					<input type="submit" value="Créer Tournoi" />
 				</fieldset>
@@ -45,11 +47,27 @@
 		<c:if test="<%=!nbEquipesCorrect%>">
 			Le tournoi ne peut pas être créé car le nombre d'équipes n'est pas une puissance de deux.
 		</c:if>
+
+		<!--  Ajouter un arbitre  -->
+		<form method="post"
+			action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_REFEREE%>">
+			<fieldset>
+				<legend>Ajout d'un arbitre</legend>
+				<input type="text" id="nomReferee" name="nomReferee"
+					placeholder="Nom" required="required" /><br /> <input type="text"
+					id="prenomReferee" name="prenomReferee" placeholder="Prénom"
+					required="required" /><br /> <input type="submit"
+					value="Ajouter arbitre" />
+			</fieldset>
+		</form>
+
 		<div id="equipes">
 			<c:forEach items="${equipes}" var="equipe">
-				<c:out value="${equipe.nom}" /><br />
+				<c:out value="${equipe.nom}" />
+				<br />
 			</c:forEach>
 		</div>
+		
 	</div>
 	<jsp:include page="../includes/footer.jsp" />
 </body>
