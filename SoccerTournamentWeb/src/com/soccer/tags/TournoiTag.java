@@ -16,6 +16,7 @@ public class TournoiTag extends TagSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	private VOTournoi tournoi;
+	private boolean admin;
 
 	/**
 	 * @return the tournoi
@@ -32,6 +33,22 @@ public class TournoiTag extends TagSupport {
 		this.tournoi = tournoi;
 	}
 
+	/**
+	 * @return the admin
+	 */
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	/**
+	 * @param admin
+	 *            the admin to set
+	 */
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	@Override
 	public int doEndTag() throws JspException {
 		try {
 			if (Integer.lowestOneBit(tournoi.getRencontres().size() + 1) != tournoi
@@ -47,14 +64,23 @@ public class TournoiTag extends TagSupport {
 					pageContext.getOut().write(
 							"<div class=\"bloc_rencontre\">En attente");
 				} else {
-					pageContext.getOut().write(
-							"<div class=\"bloc_rencontre not_fake\" onclick=\"window.location='"
+					pageContext
+							.getOut()
+							.write("<div class=\"bloc_rencontre not_fake\" onclick=\"window.location='"
 									+ Controleur.SERVLET_PATH
-									+ Controleur.ACTION_MATCH + "&id="
-									+ r.getId() + "';\">" + r.getHotes()
-									+ " VS " + r.getVisiteurs() + "<br />"
-									+ r.getScoreHotes() + " - "
-									+ r.getScoreVisiteurs() + "<br />"
+									+ (isAdmin() ? Controleur.ACTION_ADMIN_MATCH
+											: Controleur.ACTION_MATCH)
+									+ "&id="
+									+ r.getId()
+									+ "';\">"
+									+ r.getHotes()
+									+ " VS "
+									+ r.getVisiteurs()
+									+ "<br />"
+									+ r.getScoreHotes()
+									+ " - "
+									+ r.getScoreVisiteurs()
+									+ "<br />"
 									+ r.getDateRencontre());
 				}
 				pageContext.getOut().write("</div>");
