@@ -27,25 +27,27 @@ public class Controleur extends HttpServlet {
 	public static final String REDIRECT_PATH = "&redirect=";
 	public static final String ACTION_REDIRECT = "redirect";
 	public static final String ACTION_HOME = "home";
+	public static final String ACTION_TOURNAMENT = "tournament";
+	public static final String ACTION_MATCH = "match";
 	public static final String ACTION_TEAM = "team";
 	public static final String ACTION_NEW_TEAM = "newteam";
 	public static final String ACTION_LOGIN = "login";
 	public static final String ACTION_ADMIN_HOME = "adminhome";
 	public static final String ACTION_CREATE_TOURNAMENT = "createtournament";
 	public static final String ACTION_NEW_REFEREE = "newreferee";
-	public static final String ACTION_TOURNAMENT = "tournament";
-	public static final String ACTION_MATCH = "match";
+	public static final String ACTION_ADMIN_MATCH = "adminmatch";
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
 
 	public static final String JSP_HOME = "user/index.jsp";
+	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
 	public static final String JSP_TEAM = "user/team.jsp";
 	public static final String JSP_MATCH = "user/match.jsp";
 	public static final String JSP_NEW_TEAM = "newteam.jsp";
 	public static final String JSP_FAQ = "user/faq.jsp";
 	public static final String JSP_LOGIN = "admin/login.jsp";
 	public static final String JSP_ADMIN_HOME = "admin/adminindex.jsp";
-	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
+	public static final String JSP_ADMIN_MATCH = "admin/adminmatch.jsp";
 	public static final String JSP_404 = "404.jsp";
 	public static final String JSP_REDIRECT = "redirect.jsp";
 
@@ -92,8 +94,8 @@ public class Controleur extends HttpServlet {
 			dispatcher = jsp(JSP_HOME);
 		} else if (action.equals(ACTION_TOURNAMENT)) {
 			String nomTournoi = request.getParameter("id");
-			facade.validerRencontre(GregorianCalendar.getInstance(), 10);
-			facade.validerRencontre(GregorianCalendar.getInstance(), 11);
+			facade.validerRencontre(GregorianCalendar.getInstance(), 48);
+			facade.validerRencontre(GregorianCalendar.getInstance(), 49);
 			if (nomTournoi != null) {
 				request.setAttribute("tournoi", facade.getTournoi(nomTournoi));
 				dispatcher = jsp(JSP_TOURNAMENT);
@@ -103,7 +105,6 @@ public class Controleur extends HttpServlet {
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
 			String idRencontre = request.getParameter("id");
-			System.out.println(idRencontre);
 			if (idRencontre != null) {
 				request.setAttribute("rencontre",
 						facade.getRencontre(Integer.parseInt(idRencontre)));
@@ -176,10 +177,12 @@ public class Controleur extends HttpServlet {
 			request.setAttribute("redirect", request.getParameter("redirect"));
 			dispatcher = jsp(JSP_REDIRECT);
 		} else if (request.getSession().getAttribute(SESSION_ADMIN) != null) {
+			// Page d'accueil de l'admin
 			if (action.equals(ACTION_ADMIN_HOME)) {
 				request.setAttribute("tournois", facade.getTournois());
 				request.setAttribute("equipes", facade.getEquipes());
 				dispatcher = jsp(JSP_ADMIN_HOME);
+				// Si l'admin souhaite créer un tournoi
 			} else if (action.equals(ACTION_CREATE_TOURNAMENT)) {
 				String nom = request.getParameter("nom");
 				System.out.println(nom);
@@ -194,8 +197,24 @@ public class Controleur extends HttpServlet {
 				String prenom = request.getParameter("prenomReferee");
 				if (nom != null && prenom != null) {
 					facade.ajouterArbitre(nom, prenom);
-					dispatcher = redirect(ACTION_ADMIN_HOME);
 				}
+				dispatcher = redirect(ACTION_ADMIN_HOME);
+			} else if (action.equals(ACTION_ADMIN_MATCH)) {
+				// Si l'admin veut modifier une rencontre
+				String idRencontre = request.getParameter("id");
+				if (idRencontre != null) {
+					request.setAttribute("rencontre",
+							facade.getRencontre(Integer.parseInt(idRencontre)));
+					request.setAttribute("arbitres", facade.getArbitres());
+					String arbitre = request.getParameter("arbitre");
+					if (arbitre != null) {
+						if (!arbitre.equals("0"))
+							facade.affecterArbitre(Integer.parseInt(arbitre),
+									Integer.parseInt(idRencontre));
+					}
+					dispatcher = jsp(JSP_ADMIN_MATCH);
+				} else
+					dispatcher = redirect(ACTION_404);
 			}
 		}
 		// Sinon, la page n'existe pas.
