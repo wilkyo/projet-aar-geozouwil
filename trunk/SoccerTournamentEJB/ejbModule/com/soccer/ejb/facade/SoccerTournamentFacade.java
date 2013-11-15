@@ -3,6 +3,7 @@ package com.soccer.ejb.facade;
 import java.util.Calendar;
 import java.util.List;
 
+import com.soccer.model.Arbitre;
 import com.soccer.valueobjects.*;
 
 public interface SoccerTournamentFacade {
@@ -41,6 +42,8 @@ public interface SoccerTournamentFacade {
 	public void creerTournoi(String nomTournoi);
 
 	public void setDebutRencontre(int idRencontre, Calendar debut);
+
+	public List<Arbitre> getArbitres();
 
 	public void ajouterArbitre(String nom, String prenom);
 
