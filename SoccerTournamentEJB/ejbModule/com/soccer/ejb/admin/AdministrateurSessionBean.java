@@ -95,6 +95,12 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	}
 
 	@Override
+	public List<Arbitre> getArbitres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public void ajouterArbitre(String nom, String prenom) {
 		Arbitre a = new Arbitre();
 		a.setNom(nom);

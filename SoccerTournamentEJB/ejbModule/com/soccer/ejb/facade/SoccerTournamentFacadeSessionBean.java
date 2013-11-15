@@ -199,6 +199,11 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
+	public List<Arbitre> getArbitres() {
+		return administrateur.getArbitres();
+	}
+
+	@Override
 	public void ajouterArbitre(String nom, String prenom) {
 		administrateur.ajouterArbitre(nom, prenom);
 	}
