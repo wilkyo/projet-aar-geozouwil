@@ -23,8 +23,9 @@
 		<c:if test="${equipe != null}">
 			<!-- Une équipe -->
 			<h4>${equipe.nom}</h4>
+			<h4>${equipe.prenomRepresentant} ${equipe.nomRepresentant}</h4>
 			<c:forEach items="${equipe.joueurs}" var="joueur">
-				<ol class="rounded-list"><li>${joueur.prenom} ${joueur.nom}</li></ol>
+				<ol class="rounded-list"><li>${joueur.numero} - ${joueur.prenom} ${joueur.nom}</li></ol>
 			</c:forEach>
 		</c:if>
 		<c:if test="${equipes != null}">
