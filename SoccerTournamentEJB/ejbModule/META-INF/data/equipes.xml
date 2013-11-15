@@ -6,11 +6,55 @@
 		<Joueur nom="Douchez" prenom="Nicolas" numero="1" />
 		<Joueur nom="Silva" prenom="Thiago" numero="2" />
 		<Joueur nom="" prenom="Marquinhos" numero="5" />
+		<Joueur nom="Ménez" prenom="Jérémy" numero="7" />
+		<Joueur nom="Motta" prenom="Thiago" numero="8" />
+		<Joueur nom="Cavani" prenom="Edinson" numero="9" />
+		<Joueur nom="Ibrahimovic" prenom="Zlatan" numero="10" />
+		<Joueur nom="Matuidi" prenom="Blaise" numero="14" />
+		<Joueur nom="Jallet" prenom="Christophe" numero="26" />
+		<Joueur nom="" prenom="Lucas" numero="29" />
+		<Joueur nom="Sirigu" prenom="Salvatore" numero="30" />
 	</Equipe>
 	<Equipe nom="Olympique de Marseille" nomRepresentant="Baup"
 		prenomRepresentant="Élie">
 		<Joueur nom="Gennaro" prenom="Bracigliano" numero="1" />
-		<Joueur nom="André" prenom="Ayew" numero="10" />
-		<Joueur nom="Jordan" prenom="Ayew" numero="11" />
+		<Joueur nom="Cheyrou" prenom="Benoît" numero="7" />
+		<Joueur nom="Ayew" prenom="André" numero="10" />
+		<Joueur nom="Ayew" prenom="Jordan" numero="11" />
+		<Joueur nom="Thauvin" prenom="Florian" numero="14" />
+		<Joueur nom="Morel" prenom="Jérémy" numero="15" />
+		<Joueur nom="Payet" prenom="Dimitri" numero="17" />
+		<Joueur nom="Diawara" prenom="Souleymane" numero="21" />
+		<Joueur nom="Fanni" prenom="Rod" numero="24" />
+		<Joueur nom="Valbuena" prenom="Mathieu" numero="28" />
+		<Joueur nom="Mandanda" prenom="Steve" numero="30" />
+	</Equipe>
+	<Equipe nom="Saint-Etienne" nomRepresentant="Galtier"
+		prenomRepresentant="Christophe">
+		<Joueur nom="Zouma" prenom="Kurt" numero="4" />
+		<Joueur nom="Clément" prenom="Jérémy" numero="6" />
+		<Joueur nom="Saadi" prenom="Idriss" numero="8" />
+		<Joueur nom="" prenom="Brandao" numero="9" />
+		<Joueur nom="Cohade" prenom="Renaud" numero="10" />
+		<Joueur nom="Mollo" prenom="Yohan" numero="11" />
+		<Joueur nom="Ruffier" prenom="Stéphane" numero="16" />
+		<Joueur nom="Brison" prenom="Jonathan" numero="20" />
+		<Joueur nom="Hamouma" prenom="Romain" numero="21" />
+		<Joueur nom="Perrin" prenom="Loic" numero="24" />
+		<Joueur nom="Clerc" prenom="François" numero="29" />
+	</Equipe>
+	<Equipe nom="Olympique Lyonnais" nomRepresentant="Garde"
+		prenomRepresentant="Rémi">
+		<Joueur nom="Vercoutre" prenom="Rémy" numero="1" />
+		<Joueur nom="Koné" prenom="Bakary" numero="4" />
+		<Joueur nom="Bisevac" prenom="Milan" numero="5" />
+		<Joueur nom="Grenier" prenom="Clément" numero="7" />
+		<Joueur nom="Gourcuff" prenom="Yoann" numero="8" />
+		<Joueur nom="Lacazette" prenom="Alexandre" numero="10" />
+		<Joueur nom="Lopes" prenom="Anthony" numero="16" />
+		<Joueur nom="Malbranque" prenom="Steed" numero="17" />
+		<Joueur nom="Gomis" prenom="Bafetimbi" numero="18" />
+		<Joueur nom="Briand" prenom="Jimmy" numero="19" />
+		<Joueur nom="Gonalons" prenom="Maxime" numero="21" />
 	</Equipe>
 </Equipes>
