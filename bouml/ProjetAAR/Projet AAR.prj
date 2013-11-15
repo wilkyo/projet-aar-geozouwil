@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 19
+  revision 23
   modified_by 42 "Willy"
 
 
@@ -587,6 +587,19 @@ ${members}};
 	
       end
 
+      operation 178474 "getTournoi"
+	public return_type class_ref 169770 // VOTournoi
+	nparams 1
+	  param in name "nomTournoi" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 128170 "getEquipes"
 	public explicit_return_type "List<VOEquipe>"
 	nparams 1
@@ -702,30 +715,6 @@ ${members}};
       end
     end
 
-    class 155178 "UtilisateurRemote"
-      visibility package stereotype "interface"
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
-${members}}
-"
-      php_decl "${comment}${visibility}interface ${name} {
-${members}}
-"
-      python_2_2 python_decl ""
-      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
-${members}};
-"
-      explicit_switch_type ""
-      
-      classrelation 149930 // <generalisation>
-	relation 148778 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 149930 // <generalisation>
-	  b parent class_ref 148138 // Utilisateur
-      end
-    end
-
     class 155306 "UtilisateurSessionBean"
       visibility package 
       cpp_decl ""
@@ -737,14 +726,6 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 157098 // <realization>
-	relation 155946 -_-|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 157098 // <realization>
-	  b parent class_ref 155178 // UtilisateurRemote
-      end
-
       classrelation 157226 // <realization>
 	relation 156074 -_-|>
 	  a public
@@ -810,6 +791,18 @@ ${members}};
 	
       end
 
+      operation 185130 "getArbitres"
+	public explicit_return_type "List<Arbitre>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 128938 "ajouterArbitre"
 	public explicit_return_type ""
 	nparams 2
@@ -855,40 +848,18 @@ ${members}};
 
       operation 129450 "validerRencontre"
 	public explicit_return_type ""
-	nparams 1
-	  param in name "fin" explicit_type "Calendar"
+	nparams 2
+	  param in name "idRencontre" explicit_type "int"
+	  param in name "heureFin" explicit_type "Calendar"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
 	
 	
       end
-    end
 
-    class 161962 "AdministrateurRemote"
-      visibility package stereotype "interface"
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
-${members}}
-"
-      php_decl "${comment}${visibility}interface ${name} {
-${members}}
-"
-      python_2_2 python_decl ""
-      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
-${members}};
-"
-      explicit_switch_type ""
-      
-      classrelation 156586 // <generalisation>
-	relation 155434 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 156586 // <generalisation>
-	  b parent class_ref 155434 // Administrateur
-      end
     end
 
     class 162090 "AdministrateurLocal"
@@ -926,14 +897,6 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 156842 // <realization>
-	relation 155690 -_-|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 156842 // <realization>
-	  b parent class_ref 161962 // AdministrateurRemote
-      end
-
       classrelation 156970 // <realization>
 	relation 155818 -_-|>
 	  a public
@@ -1001,30 +964,6 @@ ${members}};
       end
     end
 
-    class 162602 "RepresentantRemote"
-      visibility package stereotype "interface"
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
-${members}}
-"
-      php_decl "${comment}${visibility}interface ${name} {
-${members}}
-"
-      python_2_2 python_decl ""
-      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
-${members}};
-"
-      explicit_switch_type ""
-      
-      classrelation 157610 // <generalisation>
-	relation 156458 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 157610 // <generalisation>
-	  b parent class_ref 162346 // Representant
-      end
-    end
-
     class 162730 "RepresentantSessionBean"
       visibility package 
       cpp_decl ""
@@ -1036,14 +975,6 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 157354 // <realization>
-	relation 156202 -_-|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 157354 // <realization>
-	  b parent class_ref 162602 // RepresentantRemote
-      end
-
       classrelation 157482 // <realization>
 	relation 156330 -_-|>
 	  a public
@@ -1068,6 +999,18 @@ ${members}};
 "
       explicit_switch_type ""
       
+      operation 185258 "getArbitres"
+	public explicit_return_type "List<Arbitre>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 165034 "initDB"
 	public explicit_return_type ""
 	nparams 0
@@ -1103,6 +1046,19 @@ ${members}};
 	nparams 0
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 178602 "getTournoi"
+	public return_type class_ref 169770 // VOTournoi
+	nparams 1
+	  param in name "nomTournoi" explicit_type "string"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1286,10 +1242,11 @@ ${members}};
 
       operation 144042 "validerRencontre"
 	public explicit_return_type ""
-	nparams 1
+	nparams 2
+	  param in name "idRencontre" explicit_type "int"
 	  param in name "heureFin" explicit_type "date"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1600,6 +1557,16 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
+      attribute 186794 "nomTournoi"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
       attribute 172074 "hotes"
 	private type class_ref 170154 // VOEquipe
 	cpp_decl ""
