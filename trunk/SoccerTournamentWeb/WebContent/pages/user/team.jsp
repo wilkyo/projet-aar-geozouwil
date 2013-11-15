@@ -22,17 +22,15 @@
 	<div id="body">
 		<c:if test="${equipe != null}">
 			<!-- Une équipe -->
-			${equipe.nom}<br />
+			<h4>${equipe.nom}</h4>
 			<c:forEach items="${equipe.joueurs}" var="joueur">
-				${joueur.prenom} ${joueur.nom}<br />
+				<ol class="rounded-list"><li>${joueur.prenom} ${joueur.nom}</li></ol>
 			</c:forEach>
 		</c:if>
 		<c:if test="${equipes != null}">
 			<!-- Les équipes -->
 			<c:forEach items="${equipes}" var="equipe">
-				<a
-					href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM%>&id=${equipe.nom}">${equipe.nom}</a>
-				<br />
+				<ol class="rectangle-list"><li><a href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM%>&id=${equipe.nom}">${equipe.nom}</a></li></ol>
 			</c:forEach>
 		</c:if>
 	</div>
