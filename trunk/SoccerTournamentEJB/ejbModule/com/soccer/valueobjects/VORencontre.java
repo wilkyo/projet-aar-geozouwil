@@ -60,6 +60,7 @@ public class VORencontre {
 		this.hotes = new VOEquipe(rencontre.getHotes());
 		this.visiteurs = new VOEquipe(rencontre.getVisiteurs());
 		this.arbitre = rencontre.getArbitre();
+		this.tour = rencontre.getTour();
 		this.debut = rencontre.getDebut();
 		this.fin = rencontre.getFin();
 		this.nomTournoi=rencontre.getTournoi().getNom();
