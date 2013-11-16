@@ -21,5 +21,5 @@ public interface Administrateur {
 
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure);
 
-	public void validerRencontre(Calendar fin, int idRencontre);
+	public void validerRencontre(int idRencontre, Calendar fin);
 }

@@ -82,9 +82,9 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	 * @return Mixed Array.
 	 */
 	private Equipe[] melangerEquipes(Equipe[] equipes) {
-		List<Equipe> listeEquipe=Arrays.asList(equipes);
+		List<Equipe> listeEquipe = Arrays.asList(equipes);
 		Collections.shuffle(listeEquipe);
-		equipes=listeEquipe.toArray(new Equipe[listeEquipe.size()]);
+		equipes = listeEquipe.toArray(new Equipe[listeEquipe.size()]);
 		return equipes;
 	}
 
@@ -99,7 +99,8 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	@Override
 	public List<Arbitre> getArbitres() {
 		@SuppressWarnings("unchecked")
-		List<Arbitre> arbitres=em.createQuery("From Arbitre a").getResultList();
+		List<Arbitre> arbitres = em.createQuery("From Arbitre a")
+				.getResultList();
 		return arbitres;
 	}
 
@@ -135,7 +136,7 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	}
 
 	@Override
-	public void validerRencontre(Calendar fin, int idRencontre) {
+	public void validerRencontre(int idRencontre, Calendar fin) {
 		Rencontre rencontre = new Rencontre();
 		rencontre = em.find(Rencontre.class, idRencontre);
 		boolean dejaFait = rencontre.getFin() != null;
