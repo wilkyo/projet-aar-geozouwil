@@ -222,8 +222,8 @@ public class SoccerTournamentFacadeSessionBean implements
 	}
 
 	@Override
-	public void validerRencontre(Calendar heureFin, int idRencontre) {
-		administrateur.validerRencontre(heureFin, idRencontre);
+	public void validerRencontre(int idRencontre, Calendar heureFin) {
+		administrateur.validerRencontre(idRencontre, heureFin);
 	}
 
 }
