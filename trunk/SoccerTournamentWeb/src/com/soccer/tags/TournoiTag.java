@@ -1,6 +1,7 @@
 package com.soccer.tags;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -81,7 +82,12 @@ public class TournoiTag extends TagSupport {
 									+ " - "
 									+ r.getScoreVisiteurs()
 									+ "<br />"
-									+ r.getDateRencontre());
+									+ (r.getDateRencontre() == null ? "Non défini"
+											: Controleur.formatDate(r
+													.getDateRencontre())
+													+ " "
+													+ Controleur.formatHour(r
+															.getDateRencontre())));
 				}
 				pageContext.getOut().write("</div>");
 				cpt++;

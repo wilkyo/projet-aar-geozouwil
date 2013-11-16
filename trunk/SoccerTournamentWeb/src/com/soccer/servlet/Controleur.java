@@ -1,6 +1,7 @@
 package com.soccer.servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.ejb.EJB;
@@ -20,11 +21,11 @@ public class Controleur extends HttpServlet {
 	public static final long serialVersionUID = 1L;
 	public static final String WEB_PATH = "/SoccerTournamentWeb/";
 	public static final String CSS_PATH = "styles/";
+	public static final String SCRIPTS_PATH = "scripts/";
 	public static final String PAGES_PATH = "pages/";
 	public static final String INCLUDES_PATH = "includes/";
 
 	public static final String SERVLET_PATH = "index?action=";
-	public static final String REDIRECT_PATH = "&redirect=";
 	public static final String ACTION_REDIRECT = "redirect";
 	public static final String ACTION_HOME = "home";
 	public static final String ACTION_TOURNAMENT = "tournament";
@@ -86,6 +87,7 @@ public class Controleur extends HttpServlet {
 			action = ACTION_HOME;
 		System.out.println("Action=" + action);
 		String dispatcher = "";
+		String redirect = "";
 
 		// si l'action est nulle ou l'action égale à home
 		if (action.equals(ACTION_HOME)) {
@@ -94,13 +96,11 @@ public class Controleur extends HttpServlet {
 			dispatcher = jsp(JSP_HOME);
 		} else if (action.equals(ACTION_TOURNAMENT)) {
 			String nomTournoi = request.getParameter("id");
-			facade.validerRencontre(GregorianCalendar.getInstance(), 48);
-			facade.validerRencontre(GregorianCalendar.getInstance(), 49);
 			if (nomTournoi != null) {
 				request.setAttribute("tournoi", facade.getTournoi(nomTournoi));
 				dispatcher = jsp(JSP_TOURNAMENT);
 			} else
-				dispatcher = redirect(ACTION_404);
+				redirect = action(ACTION_404);
 		}
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
@@ -110,7 +110,7 @@ public class Controleur extends HttpServlet {
 						facade.getRencontre(Integer.parseInt(idRencontre)));
 				dispatcher = jsp(JSP_MATCH);
 			} else {
-				dispatcher = redirect(ACTION_HOME);
+				redirect = action(ACTION_HOME);
 			}
 		}
 		// si l'action est de voir une ou plusieurs équipes
@@ -140,7 +140,7 @@ public class Controleur extends HttpServlet {
 				if (facade.creerEquipe(nomEquipe, nomRepresentant,
 						prenomRepresentant, nomsJoueurs, prenomsJoueurs,
 						toIntegerArray(numeroJoueurs)))
-					dispatcher = redirect(ACTION_HOME);
+					redirect = action(ACTION_HOME);
 				else {
 					request.setAttribute("exists", true);
 					dispatcher = jsp(JSP_NEW_TEAM);
@@ -156,14 +156,14 @@ public class Controleur extends HttpServlet {
 			if (login != null && password != null) {
 				if (facade.connexion(login, password)) {
 					request.getSession().setAttribute(SESSION_ADMIN, login);
-					dispatcher = redirect(ACTION_ADMIN_HOME);
+					redirect = action(ACTION_ADMIN_HOME);
 				} else {
 					request.setAttribute("error", true);
 					dispatcher = jsp(JSP_LOGIN);
 				}
 			} else if (request.getSession().getAttribute(SESSION_ADMIN) != null) {
 				request.getSession().removeAttribute(SESSION_ADMIN);
-				dispatcher = redirect(ACTION_HOME);
+				redirect = action(ACTION_HOME);
 			} else
 				// direction la page d'inscription
 				dispatcher = jsp(JSP_LOGIN);
@@ -171,11 +171,6 @@ public class Controleur extends HttpServlet {
 			dispatcher = jsp(JSP_FAQ);
 		} else if (action.equals(ACTION_404)) {
 			dispatcher = jsp(JSP_404);
-		}
-		// S'il faut rediriger...
-		else if (action.equals("redirect")) {
-			request.setAttribute("redirect", request.getParameter("redirect"));
-			dispatcher = jsp(JSP_REDIRECT);
 		} else if (request.getSession().getAttribute(SESSION_ADMIN) != null) {
 			// Page d'accueil de l'admin
 			if (action.equals(ACTION_ADMIN_HOME)) {
@@ -189,7 +184,7 @@ public class Controleur extends HttpServlet {
 				System.out.println(nom);
 				if (nom != null) {
 					facade.creerTournoi(nom);
-					dispatcher = redirect(ACTION_ADMIN_HOME);
+					redirect = action(ACTION_ADMIN_HOME);
 				}
 			}
 			// si l'admin souhaite ajouter un arbitre
@@ -199,41 +194,73 @@ public class Controleur extends HttpServlet {
 				if (nom != null && prenom != null) {
 					facade.ajouterArbitre(nom, prenom);
 				}
-				dispatcher = redirect(ACTION_ADMIN_HOME);
+				redirect = action(ACTION_ADMIN_HOME);
 			} else if (action.equals(ACTION_ADMIN_MATCH)) {
 				// Si l'admin veut modifier une rencontre
-				String idRencontre = request.getParameter("id");
-				if (idRencontre != null) {
-					request.setAttribute("rencontre",
-							facade.getRencontre(Integer.parseInt(idRencontre)));
+				String id = request.getParameter("id");
+				if (id != null) {
+					int idRencontre = Integer.parseInt(id);
 					request.setAttribute("arbitres", facade.getArbitres());
+					String debutD = request.getParameter("debutD");
+					String debutH = request.getParameter("debutH");
+					String finH = request.getParameter("fin");
 					String arbitre = request.getParameter("arbitre");
-					if (arbitre != null) {
+					System.out.println(debutD);
+					System.out.println(debutH);
+					System.out.println(finH);
+					if (debutD != null && debutH != null && arbitre != null) {
+						if (!debutD.equals("") && !debutH.equals("")) {
+							int[] dDebut = toIntegerArray(debutD.split("/"));
+							int[] hDebut = toIntegerArray(debutH.split(":"));
+							if (dDebut.length == 3 && hDebut.length == 2) {
+								facade.setDebutRencontre(idRencontre,
+										new GregorianCalendar(dDebut[2],
+												dDebut[1], dDebut[0],
+												hDebut[0], hDebut[1], 0));
+							}
+							if (finH != null) {
+								int[] hFin = toIntegerArray(finH.split(":"));
+								facade.validerRencontre(idRencontre,
+										new GregorianCalendar(dDebut[2],
+												dDebut[1], dDebut[0], hFin[0],
+												hFin[1], 0));
+							}
+						}
 						if (!arbitre.equals("0"))
 							facade.affecterArbitre(Integer.parseInt(arbitre),
-									Integer.parseInt(idRencontre));
+									idRencontre);
+						redirect = action(ACTION_TOURNAMENT
+								+ "&id="
+								+ facade.getRencontre(idRencontre)
+										.getNomTournoi());
+					} else {
+						request.setAttribute("rencontre",
+								facade.getRencontre(idRencontre));
+						dispatcher = jsp(JSP_ADMIN_MATCH);
 					}
-					dispatcher = jsp(JSP_ADMIN_MATCH);
 				} else
-					dispatcher = redirect(ACTION_404);
+					redirect = action(ACTION_404);
 			}
 		}
+		// Si on veut rediriger
+		if (redirect.length() > 0)
+			response.sendRedirect(redirect);
 		// Sinon, la page n'existe pas.
-		if (dispatcher.equals("")) {
-			dispatcher = redirect(ACTION_404);
-		}
-		request.getRequestDispatcher(dispatcher).forward(request, response);
+		else if (dispatcher.equals("")) {
+			response.sendRedirect(action(ACTION_404));
+		} else
+			request.getRequestDispatcher(dispatcher).forward(request, response);
 	}
 
 	/**
-	 * Builds the redirection path for the given action.
+	 * Builds the path for the given action.
 	 * 
 	 * @param action
 	 *            String of the action.
-	 * @return String of the path to the redirect action.
+	 * @return String of the path to the action.
 	 */
-	private String redirect(String action) {
-		return SERVLET_PATH + ACTION_REDIRECT + REDIRECT_PATH + action;
+	private String action(String action) {
+		return WEB_PATH + SERVLET_PATH + action;
 	}
 
 	/**
@@ -264,5 +291,41 @@ public class Controleur extends HttpServlet {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Formats a number into a 2 digits number.
+	 * 
+	 * @param number
+	 *            Integer to format.
+	 * @return The formatted String.
+	 */
+	private static String formatNumber2Digits(int number) {
+		return (number < 10 ? "0" : "") + number;
+	}
+
+	/**
+	 * Formats the date.
+	 * 
+	 * @param date
+	 *            Calendar of the date.
+	 * @return Date on format dd/mm/yyyy.
+	 */
+	public static String formatDate(Calendar date) {
+		return formatNumber2Digits(date.get(Calendar.DAY_OF_MONTH)) + "/"
+				+ formatNumber2Digits(date.get(Calendar.MONTH)) + "/"
+				+ date.get(Calendar.YEAR);
+	}
+
+	/**
+	 * Formats the hour.
+	 * 
+	 * @param date
+	 *            Calendar of the date.
+	 * @return Date on format hh:mm.
+	 */
+	public static String formatHour(Calendar date) {
+		return formatNumber2Digits(date.get(Calendar.HOUR_OF_DAY)) + ":"
+				+ formatNumber2Digits(date.get(Calendar.MINUTE));
 	}
 }

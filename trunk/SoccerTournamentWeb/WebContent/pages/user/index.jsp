@@ -16,26 +16,28 @@
 <body>
 	<div id="header">Welcome!</div>
 	<jsp:include page="../includes/menu.jsp" />
-	<div id="box">
-		<%
-			// <%=request.getAttribute(\"tournois\")% > == ${tournois}
-		%>
-		<div id="tournois">
+	<div id="body">
+		<div id="box">
+			<%
+				// <%=request.getAttribute(\"tournois\")% > == ${tournois}
+			%>
+			<div id="tournois">
+				<c:forEach items="${tournois}" var="tournoi">
+					<a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a><br />
+				</c:forEach>
+			</div>
 			<c:forEach items="${tournois}" var="tournoi">
-				<a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a><br />
+				<custom:tournoi-diagramme tournoi="${tournoi}" />
+				<c:out value="${tournoi.nom}" />
+				<c:forEach items="${tournoi.rencontres}" var="rencontre">
+					<jsp:useBean id="rencontre"
+						class="com.soccer.valueobjects.VORencontreLight" scope="page" />
+					<%=rencontre.getId()%>
+					<br />
+					<c:out value="${rencontre.id}" />
+				</c:forEach>__<br />
 			</c:forEach>
 		</div>
-		<c:forEach items="${tournois}" var="tournoi">
-			<custom:tournoi-diagramme tournoi="${tournoi}" />
-			<c:out value="${tournoi.nom}" />
-			<c:forEach items="${tournoi.rencontres}" var="rencontre">
-				<jsp:useBean id="rencontre"
-					class="com.soccer.valueobjects.VORencontreLight" scope="page" />
-				<%=rencontre.getId()%>
-				<br />
-				<c:out value="${rencontre.id}" />
-			</c:forEach>__<br />
-		</c:forEach>
 	</div>
 	<jsp:include page="../includes/footer.jsp" />
 </body>
