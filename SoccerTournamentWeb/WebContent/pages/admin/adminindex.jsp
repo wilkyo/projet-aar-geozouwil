@@ -11,6 +11,8 @@
 <link type="text/css" rel="stylesheet"
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>base.css" />
 <link type="text/css" rel="stylesheet"
+	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>form.css" />
+<link type="text/css" rel="stylesheet"
 	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>menu.css" />
 <title>Accueil Admin</title>
 </head>
@@ -38,9 +40,10 @@
 				action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_CREATE_TOURNAMENT%>">
 				<fieldset>
 					<legend>Création du Tournoi</legend>
-					<label for="nom">Nom du Tournoi</label> <input type="text" id="nom"
+					<label for="nom">Nom du Tournoi</label> 
+					<input type="text" class="nom" id="nom"
 						name="nom" placeholder="Nom du Tournoi" required="required" /><br />
-					<input type="submit" value="Créer Tournoi" />
+					<input  type="submit" value="Créer Tournoi" />
 				</fieldset>
 			</form>
 		</c:if>
@@ -53,17 +56,28 @@
 			action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_REFEREE%>">
 			<fieldset>
 				<legend>Ajout d'un arbitre</legend>
-				<input type="text" id="nomReferee" name="nomReferee"
-					placeholder="Nom" required="required" /><br /> <input type="text"
+				<input type="text" class="nom" id="nomReferee" name="nomReferee"
+					placeholder="Nom" required="required" /><br /> 
+				<input type="text" class="prenom"
 					id="prenomReferee" name="prenomReferee" placeholder="Prénom"
-					required="required" /><br /> <input type="submit"
+					required="required" /><br /> 
+				<input type="submit"
 					value="Ajouter arbitre" />
 			</fieldset>
 		</form>
-
+		
+		<!-- Listes des équipes -->
 		<div id="equipes">
 			<c:forEach items="${equipes}" var="equipe">
 				<c:out value="${equipe.nom}" />
+				<br />
+			</c:forEach>
+		</div>
+		
+		<!-- Listes des arbitres -->
+		<div id="arbitres">
+			<c:forEach items="${arbitres}" var="arbitre">
+				<c:out value="${arbitre.nom} ${arbitre.prenom}" />
 				<br />
 			</c:forEach>
 		</div>

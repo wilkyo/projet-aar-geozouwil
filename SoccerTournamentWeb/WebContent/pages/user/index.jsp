@@ -16,7 +16,7 @@
 <body>
 	<div id="header">Welcome!</div>
 	<jsp:include page="../includes/menu.jsp" />
-	<div id="body">
+	<div id="box">
 		<%
 			// <%=request.getAttribute(\"tournois\")% > == ${tournois}
 		%>
