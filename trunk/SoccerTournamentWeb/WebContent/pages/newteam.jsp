@@ -17,7 +17,7 @@
 <body>
 	<div id="header">Nouvelle Equipe</div>
 	<jsp:include page="includes/menu.jsp" />
-	<div id="body">
+	<div id="box">
 		<form method="post" action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_TEAM%>">
 			<fieldset>
 				<legend> Equipe </legend>
@@ -36,7 +36,7 @@
 			<fieldset>
 				<legend> Les joueurs </legend>
 				<c:forEach begin="1" end="11" step="1" var="i">
-					<label for="nom${i}">Joueur ${i}</label>
+					<label for="nom${i}">Joueur ${i}</label><br/>
 					<input type="text" class="numero" id="numero" name="numero[]"
 						placeholder="N°" maxlength="2" width="5" />
 					<input type="text" class="nom" id="nom${i}" name="nom[]"

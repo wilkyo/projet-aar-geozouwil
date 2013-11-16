@@ -25,7 +25,7 @@
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM %>&id=${rencontre.hotes.nom}">${rencontre.hotes.nom}</a><br />
 		Visiteurs: <a
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM %>&id=${rencontre.visiteurs.nom}">${rencontre.visiteurs.nom}</a>
-		<form method="post"
+		<form method="post" 
 			action="<%=Controleur.SERVLET_PATH + Controleur.ACTION_ADMIN_MATCH%>&id=${rencontre.hotes.nom}">
 			<label for="arbitre">Arbitre</label>
 			<select id="arbitre" name="arbitre">

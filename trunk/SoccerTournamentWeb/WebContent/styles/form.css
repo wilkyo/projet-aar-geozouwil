@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+/*BEGIN index*/
 #login, #pass{
 	border: 1px solid #D4DEF1;
 	border-radius: 3px;
@@ -12,6 +13,9 @@
 	color: #222233;
 }
 
+/*END index*/
+
+/*BEGIN newteam*/
 .nom, .prenom{
 	border: 1px solid #D4DEF1;
 	border-radius: 3px;
@@ -50,3 +54,10 @@
 #labequipe, #labrep{
 	display: block;
 }
+
+/*END newteam*/
+
+/*BEGIN adminIndex*/
+
+
+/*END adminIndex*/

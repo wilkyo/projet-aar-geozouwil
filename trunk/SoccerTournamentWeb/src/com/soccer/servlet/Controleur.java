@@ -181,6 +181,7 @@ public class Controleur extends HttpServlet {
 			if (action.equals(ACTION_ADMIN_HOME)) {
 				request.setAttribute("tournois", facade.getTournois());
 				request.setAttribute("equipes", facade.getEquipes());
+				request.setAttribute("arbitres", facade.getArbitres());
 				dispatcher = jsp(JSP_ADMIN_HOME);
 				// Si l'admin souhaite créer un tournoi
 			} else if (action.equals(ACTION_CREATE_TOURNAMENT)) {
