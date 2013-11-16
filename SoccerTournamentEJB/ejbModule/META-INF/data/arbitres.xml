@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE equipes SYSTEM "arbitres.dtd">
 <Arbitres>
-	<Arbitre nom="Robert" prenom="Wurtz" />
-	<Arbitre nom="Héliès" prenom="Robert" />
-	<Arbitre nom="Kitabdjian" prenom="Michel" />
+	<Arbitre nom="Anton" prenom="Patrick" />
+	<Arbitre nom="Ariiotima" prenom="Charles" />
+	<Arbitre nom="Auriac" prenom="Thierry" />
+	<Arbitre nom="Baert" prenom="Jules" />
+	<Arbitre nom="Balvay" prenom="Thomas" />
+	<Arbitre nom="Barbéran" prenom="Joseph" />
+	<Arbitre nom="Barde" prenom="Roger" />
+	<Arbitre nom="Bastien" prenom="Benoît" />
+	<Arbitre nom="Bataille" prenom="Jacques" />
+	<Arbitre nom="Batta" prenom="Marc" />
+	<Arbitre nom="Becret" prenom="René" />
+	<Arbitre nom="Besory" prenom="Gabriel" />
+	<Arbitre nom="Bien" prenom="Wilfried" />
+	<Arbitre nom="Biguet" prenom="Gérard" />
+	<Arbitre nom="Billong" prenom="Silas" />
+	<Arbitre nom="Biton" prenom="Sandryk" />
+	<Arbitre nom="Boes" prenom="Léon" />
+	<Arbitre nom="Bois" prenom="Marcel" />
+	<Arbitre nom="Bondon" prenom="Maurice" />
+	<Arbitre nom="Bouillet" prenom="Claude" />
+	<Arbitre nom="Bré" prenom="Stéphane" />
+	<Arbitre nom="Buquet" prenom="Ruddy" />
+	<Arbitre nom="Bureloux" prenom="Joseph" />
 </Arbitres>

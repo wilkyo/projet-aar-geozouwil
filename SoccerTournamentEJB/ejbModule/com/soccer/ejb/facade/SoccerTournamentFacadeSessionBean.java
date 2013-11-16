@@ -8,6 +8,8 @@ import java.util.concurrent.Semaphore;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.xml.parsers.ParserConfigurationException;
@@ -54,6 +56,7 @@ public class SoccerTournamentFacadeSessionBean implements
 	private UtilisateurLocal utilisateur;
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void initDB() {
 		try {
 			mutex.acquire();
