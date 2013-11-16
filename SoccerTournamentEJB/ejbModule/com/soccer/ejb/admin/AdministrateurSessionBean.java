@@ -1,14 +1,14 @@
 package com.soccer.ejb.admin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import com.soccer.model.Arbitre;
 import com.soccer.model.But;
 import com.soccer.model.Equipe;
@@ -82,7 +82,9 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	 * @return Mixed Array.
 	 */
 	private Equipe[] melangerEquipes(Equipe[] equipes) {
-		// TODO
+		List<Equipe> listeEquipe=Arrays.asList(equipes);
+		Collections.shuffle(listeEquipe);
+		equipes=listeEquipe.toArray(new Equipe[listeEquipe.size()]);
 		return equipes;
 	}
 
@@ -96,8 +98,9 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 
 	@Override
 	public List<Arbitre> getArbitres() {
-		// TODO Auto-generated method stub
-		return null;
+		@SuppressWarnings("unchecked")
+		List<Arbitre> arbitres=em.createQuery("From Arbitre a").getResultList();
+		return arbitres;
 	}
 
 	@Override

@@ -30,7 +30,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 	 * Default constructor.
 	 */
 	public UtilisateurSessionBean() {
-		// TODO Auto-generated constructor stub
 		System.out.println("Utilisateur connecté");
 	}
 
