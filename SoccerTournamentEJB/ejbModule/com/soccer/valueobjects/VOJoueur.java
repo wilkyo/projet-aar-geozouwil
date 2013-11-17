@@ -8,6 +8,10 @@ import com.soccer.model.Joueur;
 public class VOJoueur {
 
 	/**
+	 * Id of the player.
+	 */
+	private int id;
+	/**
 	 * Name of the player.
 	 */
 	private String nom;
@@ -27,9 +31,17 @@ public class VOJoueur {
 	 *            The player.
 	 */
 	public VOJoueur(Joueur joueur) {
+		this.id = joueur.getId();
 		this.nom = joueur.getNom();
 		this.prenom = joueur.getPrenom();
 		this.numero = joueur.getNumero();
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return this.id;
 	}
 
 	/**

@@ -11,7 +11,7 @@ import com.soccer.model.Rencontre;
  * ValueObject of Rencontre.
  */
 public class VORencontre {
-	
+
 	/**
 	 * name of the Tournement
 	 */
@@ -63,14 +63,16 @@ public class VORencontre {
 		this.tour = rencontre.getTour();
 		this.debut = rencontre.getDebut();
 		this.fin = rencontre.getFin();
-		this.nomTournoi=rencontre.getTournoi().getNom();
+		this.nomTournoi = rencontre.getTournoi().getNom();
 		this.butsHotes = new ArrayList<VOBut>();
 		for (But b : rencontre.getButs()) {
-			this.butsHotes.add(new VOBut(b));
+			if (b.getAuteur().getEquipe() == rencontre.getHotes())
+				this.butsHotes.add(new VOBut(b));
 		}
 		this.butsVisiteurs = new ArrayList<VOBut>();
 		for (But b : rencontre.getButs()) {
-			this.butsVisiteurs.add(new VOBut(b));
+			if (b.getAuteur().getEquipe() == rencontre.getVisiteurs())
+				this.butsVisiteurs.add(new VOBut(b));
 		}
 	}
 
@@ -101,7 +103,6 @@ public class VORencontre {
 	public int getTour() {
 		return tour;
 	}
-	
 
 	/**
 	 * @return the nomTournoi
