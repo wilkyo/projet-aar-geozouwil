@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.soccer.ejb.facade.SoccerTournamentFacadeLocal;
+import com.soccer.valueobjects.VOJoueur;
+import com.soccer.valueobjects.VORencontre;
 
 /**
  * Servlet implementation class Controleur
@@ -37,8 +39,10 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_CREATE_TOURNAMENT = "createtournament";
 	public static final String ACTION_NEW_REFEREE = "newreferee";
 	public static final String ACTION_ADMIN_MATCH = "adminmatch";
+	public static final String ACTION_NEW_BUT = "newbut";
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
+	public static final String ACTION_AJAX = "ajax";
 
 	public static final String JSP_HOME = "user/index.jsp";
 	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
@@ -205,9 +209,6 @@ public class Controleur extends HttpServlet {
 					String debutH = request.getParameter("debutH");
 					String finH = request.getParameter("fin");
 					String arbitre = request.getParameter("arbitre");
-					System.out.println(debutD);
-					System.out.println(debutH);
-					System.out.println(finH);
 					if (debutD != null && debutH != null && arbitre != null) {
 						if (!debutD.equals("") && !debutH.equals("")) {
 							int[] dDebut = toIntegerArray(debutD.split("/"));
@@ -240,7 +241,53 @@ public class Controleur extends HttpServlet {
 					}
 				} else
 					redirect = action(ACTION_404);
+			} else if (action.equals(ACTION_NEW_BUT)) {
+				String id = request.getParameter("id");
+				if (id != null) {
+					int idRencontre = Integer.parseInt(id);
+					VORencontre rencontre = facade.getRencontre(idRencontre);
+					String buteur = request.getParameter("butJoueur");
+					String butHeure = request.getParameter("butHeure");
+					if (buteur != null && butHeure != null) {
+						if (!buteur.equals("--") && !butHeure.equals("")) {
+							int[] hBut = toIntegerArray(butHeure.split(":"));
+							facade.ajouterBut(
+									idRencontre,
+									Integer.parseInt(buteur),
+									new GregorianCalendar(rencontre.getDebut()
+											.get(Calendar.DAY_OF_YEAR),
+											rencontre.getDebut().get(
+													Calendar.MONTH),
+											rencontre.getDebut().get(
+													Calendar.DAY_OF_MONTH),
+											hBut[0], hBut[1], 0));
+						}
+						redirect = action(ACTION_TOURNAMENT + "&id="
+								+ rencontre.getNomTournoi());
+					} else {
+						request.setAttribute("rencontre", rencontre);
+						dispatcher = jsp(JSP_ADMIN_MATCH);
+					}
+				} else
+					redirect = action(ACTION_404);
 			}
+		}
+		if (action.equals(ACTION_AJAX)) {
+			String nomEquipe = request.getParameter("butEquipe");
+			StringBuffer content = new StringBuffer(
+					"<option value=\"0\">--</option>");
+			if (nomEquipe != null) {
+				for (VOJoueur j : facade.getEquipe(nomEquipe).getJoueurs()) {
+					content.append("<option value=\"" + j.getId() + "\">"
+							+ j.getPrenom() + " " + j.getNom() + "</option>");
+				}
+			}
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.setHeader("Cache-Control", "no-cache");
+			response.getWriter().write(content.toString());
+			// Ne pas redispatcher
+			return;
 		}
 		// Si on veut rediriger
 		if (redirect.length() > 0)
