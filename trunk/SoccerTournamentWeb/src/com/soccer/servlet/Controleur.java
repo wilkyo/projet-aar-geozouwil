@@ -1,8 +1,10 @@
 package com.soccer.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.soccer.ejb.facade.SoccerTournamentFacadeLocal;
+import com.soccer.valueobjects.VOBut;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
 
@@ -109,6 +112,18 @@ public class Controleur extends HttpServlet {
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
 			String idRencontre = request.getParameter("id");
+			/*
+			 * facade.setDebutRencontre(68, new GregorianCalendar(2013, 10, 17,
+			 * 16, 00, 00)); facade.ajouterBut(68, 2, new
+			 * GregorianCalendar(2013, 10, 17, 16, 10, 00));
+			 * facade.ajouterBut(68, 8, new GregorianCalendar(2013, 10, 17, 16,
+			 * 40, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
+			 * 10, 17, 17, 10, 00)); facade.validerRencontre(68, new
+			 * GregorianCalendar(2013, 10, 17, 17, 30, 00));
+			 * facade.ajouterBut(68, 2, new GregorianCalendar(2013, 10, 17, 17,
+			 * 35, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
+			 * 10, 17, 17, 55, 00));
+			 */
 			if (idRencontre != null) {
 				request.setAttribute("rencontre",
 						facade.getRencontre(Integer.parseInt(idRencontre)));
@@ -374,5 +389,94 @@ public class Controleur extends HttpServlet {
 	public static String formatHour(Calendar date) {
 		return formatNumber2Digits(date.get(Calendar.HOUR_OF_DAY)) + ":"
 				+ formatNumber2Digits(date.get(Calendar.MINUTE));
+	}
+
+	/**
+	 * Returns the time between two dates in minutes.
+	 * 
+	 * @param debut
+	 *            The date of the beginning.
+	 * @param fin
+	 *            The date of the end.
+	 * @return The time between the two dates.
+	 */
+	public static int getIntervalleDate(Calendar debut, Calendar fin) {
+		long tmp1 = debut.getTimeInMillis();
+		long tmp2 = fin.getTimeInMillis();
+		long diff = tmp2 - tmp1;
+		int nbMinutes = (int) diff / 60000;
+		return nbMinutes;
+	}
+
+	/**
+	 * Sort the goals by date of the goal.
+	 * 
+	 * @param butsHotes
+	 *            The goals of the host team.
+	 * @param butsVisiteurs
+	 *            The goals of the visitor team.
+	 * @return List of value objects of goals sorting by date of goal.
+	 */
+	public static List<VOBut> trierButs(List<VOBut> butsHotes,
+			List<VOBut> butsVisiteurs) {
+		List<VOBut> lesbuts = new ArrayList<VOBut>();
+		lesbuts.addAll(butsHotes);
+		boolean ajout = false;
+		for (int i = 0; i < butsVisiteurs.size(); i++) {
+			ajout = false;
+			for (int j = 0; j < lesbuts.size(); j++) {
+
+				if (butsVisiteurs.get(i).getHeure()
+						.before(lesbuts.get(j).getHeure())
+						&& !ajout) {
+					lesbuts.add(j, butsVisiteurs.get(i));
+					ajout = true;
+				}
+			}
+			if (!ajout) {
+				lesbuts.add(lesbuts.size(), butsVisiteurs.get(i));
+			}
+		}
+		return lesbuts;
+	}
+
+	/**
+	 * Returns the goals of a match before the prolongation.
+	 * 
+	 * @param debut
+	 *            The date of the beginning of the match.
+	 * @param buts
+	 *            List of value objects of goals.
+	 * @return List of value objects of goals before the prolongation.
+	 */
+	public static List<VOBut> getButsAvantProlongation(Calendar debut,
+			List<VOBut> buts) {
+		List<VOBut> lesbuts = new ArrayList<VOBut>();
+		for (int i = 0; i < buts.size(); i++) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) <= 90) {
+				lesbuts.add(buts.get(i));
+			}
+		}
+		return lesbuts;
+	}
+
+	/**
+	 * Returns the goals of a match after the prolongation.
+	 * 
+	 * @param debut
+	 *            The date of the beginning of the match.
+	 * @param buts
+	 *            List of value objects of goals.
+	 * @return List of value objects of goals after the prolongation.
+	 */
+	public static List<VOBut> getButsApresProlongation(Calendar debut,
+			List<VOBut> buts) {
+		List<VOBut> lesbuts = new ArrayList<VOBut>();
+		for (int i = 0; i < buts.size(); i++) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) > 90) {
+				lesbuts.add(buts.get(i));
+			}
+		}
+		return lesbuts;
 	}
 }
