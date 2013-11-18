@@ -77,6 +77,84 @@ a:active {
 }
 /* END links */
 
+/* BEGIN match */
+#entete {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+}
+
+#entete li {
+	text-align: center;
+	list-style: none;
+}
+
+#bloc_vs {
+	padding: 5px;
+}
+
+#bloc_vs_left {
+	background: #444488;
+	float: left;
+}
+
+#bloc_vs_left h4 {
+	text-align: left;
+}
+
+#bloc_vs_right {
+	background: #444488;
+	float: right;
+}
+
+#bloc_vs_right h4 {
+	text-align: right;
+}
+
+#bloc_vs_left li,#bloc_vs_right li {
+	position: relative;
+	display: block;
+	padding: .4em .4em .4em 2em;
+	*padding: .4em;
+	margin: .5em 8em;
+	background: #ddd;
+	color: #444;
+	text-decoration: none;
+	border-radius: .3em;
+	transition: all .3s ease-out;
+}
+
+#bloc_vs_left li:before,#bloc_vs_right li:before {
+	content: no-open-quote;
+	position: absolute;
+	left: -1.3em;
+	top: 50%;
+	margin-top: -1.3em;
+	background: #6655ff;
+	height: 2em;
+	width: 2em;
+	line-height: 2em;
+	border: .3em solid #aaa;
+	border-radius: 2em;
+}
+
+#buts {
+	background: #f0f;
+	overflow: hidden;
+}
+
+#buts li {
+	position: relative;
+	display: block;
+	margin: 0 0 1.5em 2em;
+}
+
+#buts h4 {
+	text-align: center;
+}
+
+/*END match */
+
 /* BEGIN list */
 ol {
 	counter-reset: li; /* Initiate a counter */
