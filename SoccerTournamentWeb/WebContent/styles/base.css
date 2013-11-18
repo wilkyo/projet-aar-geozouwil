@@ -280,6 +280,10 @@ input[type=submit] {
 	cursor: pointer;
 }
 
+.bloc_tournoi .bloc_rencontre.ended {
+	background-color: #66BB44;
+}
+
 #body form#buts {
 	display: none;
 }

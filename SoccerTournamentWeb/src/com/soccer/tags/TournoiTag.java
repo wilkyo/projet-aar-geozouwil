@@ -66,9 +66,12 @@ public class TournoiTag extends TagSupport {
 				} else {
 					pageContext
 							.getOut()
-							.write("<div class=\"bloc_rencontre not_fake\" onclick=\"window.location='"
+							.write("<div class=\"bloc_rencontre not_fake"
+									+ (r.getFinie() ? " ended" : "")
+									+ "\""
+									+ " onclick=\"window.location='"
 									+ Controleur.SERVLET_PATH
-									+ (isAdmin() ? Controleur.ACTION_ADMIN_MATCH
+									+ (!r.getFinie() && isAdmin() ? Controleur.ACTION_ADMIN_MATCH
 											: Controleur.ACTION_MATCH)
 									+ "&id="
 									+ r.getId()
