@@ -20,6 +20,10 @@ public class VOJoueur {
 	 */
 	private String prenom;
 	/**
+	 * Name of the player's team.
+	 */
+	private String nomEquipe;
+	/**
 	 * Number of the player.
 	 */
 	private int numero;
@@ -34,6 +38,7 @@ public class VOJoueur {
 		this.id = joueur.getId();
 		this.nom = joueur.getNom();
 		this.prenom = joueur.getPrenom();
+		this.nomEquipe = joueur.getEquipe().getNom();
 		this.numero = joueur.getNumero();
 	}
 
@@ -56,6 +61,13 @@ public class VOJoueur {
 	 */
 	public String getPrenom() {
 		return prenom;
+	}
+
+	/**
+	 * @return the nomEquipe
+	 */
+	public String getNomEquipe() {
+		return nomEquipe;
 	}
 
 	/**
