@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.soccer.ejb.facade.SoccerTournamentFacadeLocal;
+import com.soccer.model.Rencontre;
 import com.soccer.valueobjects.VOBut;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
@@ -43,6 +44,7 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_NEW_REFEREE = "newreferee";
 	public static final String ACTION_ADMIN_MATCH = "adminmatch";
 	public static final String ACTION_NEW_BUT = "newbut";
+	public static final String ACTION_VALIDATE_MATCH = "validatematch";
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
 	public static final String ACTION_AJAX = "ajax";
@@ -112,18 +114,18 @@ public class Controleur extends HttpServlet {
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
 			String idRencontre = request.getParameter("id");
-			/*
-			 * facade.setDebutRencontre(68, new GregorianCalendar(2013, 10, 17,
-			 * 16, 00, 00)); facade.ajouterBut(68, 2, new
-			 * GregorianCalendar(2013, 10, 17, 16, 10, 00));
-			 * facade.ajouterBut(68, 8, new GregorianCalendar(2013, 10, 17, 16,
-			 * 40, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
-			 * 10, 17, 17, 10, 00)); facade.validerRencontre(68, new
-			 * GregorianCalendar(2013, 10, 17, 17, 30, 00));
-			 * facade.ajouterBut(68, 2, new GregorianCalendar(2013, 10, 17, 17,
-			 * 35, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
-			 * 10, 17, 17, 55, 00));
-			 */
+			//
+			// facade.setDebutRencontre(68, new GregorianCalendar(2013, 10, 17,
+			// 16, 00, 00)); facade.ajouterBut(68, 2, new
+			// GregorianCalendar(2013, 10, 17, 16, 10, 00));
+			// facade.ajouterBut(68, 8, new GregorianCalendar(2013, 10, 17, 16,
+			// 40, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
+			// 10, 17, 17, 10, 00)); facade.validerRencontre(68, new
+			// GregorianCalendar(2013, 10, 17, 17, 30, 00));
+			// facade.ajouterBut(68, 2, new GregorianCalendar(2013, 10, 17, 17,
+			// 35, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
+			// 10, 17, 17, 55, 00));
+			//
 			if (idRencontre != null) {
 				request.setAttribute("rencontre",
 						facade.getRencontre(Integer.parseInt(idRencontre)));
@@ -219,10 +221,8 @@ public class Controleur extends HttpServlet {
 				String id = request.getParameter("id");
 				if (id != null) {
 					int idRencontre = Integer.parseInt(id);
-					request.setAttribute("arbitres", facade.getArbitres());
 					String debutD = request.getParameter("debutD");
 					String debutH = request.getParameter("debutH");
-					String finH = request.getParameter("fin");
 					String arbitre = request.getParameter("arbitre");
 					if (debutD != null && debutH != null && arbitre != null) {
 						if (!debutD.equals("") && !debutH.equals("")) {
@@ -234,13 +234,6 @@ public class Controleur extends HttpServlet {
 												dDebut[1], dDebut[0],
 												hDebut[0], hDebut[1], 0));
 							}
-							if (finH != null) {
-								int[] hFin = toIntegerArray(finH.split(":"));
-								facade.validerRencontre(idRencontre,
-										new GregorianCalendar(dDebut[2],
-												dDebut[1], dDebut[0], hFin[0],
-												hFin[1], 0));
-							}
 						}
 						if (!arbitre.equals("0"))
 							facade.affecterArbitre(Integer.parseInt(arbitre),
@@ -250,6 +243,7 @@ public class Controleur extends HttpServlet {
 								+ facade.getRencontre(idRencontre)
 										.getNomTournoi());
 					} else {
+						request.setAttribute("arbitres", facade.getArbitres());
 						request.setAttribute("rencontre",
 								facade.getRencontre(idRencontre));
 						dispatcher = jsp(JSP_ADMIN_MATCH);
@@ -270,9 +264,8 @@ public class Controleur extends HttpServlet {
 									idRencontre,
 									Integer.parseInt(buteur),
 									new GregorianCalendar(rencontre.getDebut()
-											.get(Calendar.DAY_OF_YEAR),
-											rencontre.getDebut().get(
-													Calendar.MONTH),
+											.get(Calendar.YEAR), rencontre
+											.getDebut().get(Calendar.MONTH),
 											rencontre.getDebut().get(
 													Calendar.DAY_OF_MONTH),
 											hBut[0], hBut[1], 0));
@@ -280,9 +273,37 @@ public class Controleur extends HttpServlet {
 						redirect = action(ACTION_TOURNAMENT + "&id="
 								+ rencontre.getNomTournoi());
 					} else {
+						request.setAttribute("arbitres", facade.getArbitres());
 						request.setAttribute("rencontre", rencontre);
 						dispatcher = jsp(JSP_ADMIN_MATCH);
 					}
+				} else
+					redirect = action(ACTION_404);
+			} else if (action.equals(ACTION_VALIDATE_MATCH)) {
+				String id = request.getParameter("id");
+				if (id != null) {
+					int idRencontre = Integer.parseInt(id);
+					VORencontre rencontre = facade.getRencontre(idRencontre);
+					String prolongations = request
+							.getParameter("finProlongation");
+					String tirAuxButs = request.getParameter("finTaB");
+					facade.validerRencontre(
+							idRencontre,
+							new GregorianCalendar(
+									rencontre.getDebut().get(Calendar.YEAR),
+									rencontre.getDebut().get(Calendar.MONTH),
+									rencontre.getDebut().get(
+											Calendar.DAY_OF_MONTH),
+									rencontre.getDebut().get(
+											Calendar.HOUR_OF_DAY),
+									rencontre.getDebut().get(Calendar.MINUTE)
+											+ Rencontre.TEMPS_RENCONTRE
+											+ (prolongations != null ? Rencontre.TEMPS_PROLONGATIONS
+													+ (tirAuxButs != null ? Rencontre.TEMPS_TIRS_AUX_BUTS
+															: 0)
+													: 0), 0));
+					redirect = action(ACTION_TOURNAMENT + "&id="
+							+ rencontre.getNomTournoi());
 				} else
 					redirect = action(ACTION_404);
 			}

@@ -36,7 +36,7 @@
 					<%=action.equals(Controleur.ACTION_NEW_TEAM) ? " class=\"active\""
 						: ""%>></a></li>
 		</c:if>
-		<li><a
+		<li><a id="item_login"
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_LOGIN%>"><img
 				id="imLog" alt="Se connecter"
 				title="<%=logged ? "Se déconnecter" : "Se connecter"%>"
