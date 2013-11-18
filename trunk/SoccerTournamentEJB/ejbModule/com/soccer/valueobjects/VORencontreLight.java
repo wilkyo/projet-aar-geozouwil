@@ -37,6 +37,10 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 	 * Date of the match.
 	 */
 	private Calendar dateRencontre;
+	/**
+	 * Tells whether the match is ended or not.
+	 */
+	private boolean finie;
 
 	/**
 	 * Initializes the ValueObject.
@@ -52,6 +56,7 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 		this.scoreVisiteurs = rencontre.getScoreVisiteurs();
 		this.tour = rencontre.getTour();
 		this.dateRencontre = rencontre.getDebut();
+		this.finie = rencontre.getFin() != null;
 	}
 
 	/**
@@ -107,6 +112,13 @@ public class VORencontreLight implements Comparable<VORencontreLight> {
 	 */
 	public Calendar getDateRencontre() {
 		return dateRencontre;
+	}
+
+	/**
+	 * @return the finie
+	 */
+	public boolean getFinie() {
+		return finie;
 	}
 
 	/**

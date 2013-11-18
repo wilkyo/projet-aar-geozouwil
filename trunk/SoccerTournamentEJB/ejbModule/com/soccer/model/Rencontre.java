@@ -21,6 +21,10 @@ public class Rencontre implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final int TEMPS_RENCONTRE = 90;
+	public static final int TEMPS_PROLONGATIONS = 30;
+	public static final int TEMPS_TIRS_AUX_BUTS = 15;
+
 	private int id;
 	private Tournoi tournoi;
 	private Equipe hotes;
