@@ -8,13 +8,11 @@ body {
 #body {
 	position: relative;
 	z-index: 10;
-	background-color: #b5a0ff;
 	min-height: 420px;
 	padding: 20px 0;
-	background:#313131 url(../images/background.png) no-repeat top center;
+	background: #ffaaff url(../../images/background.png) no-repeat top
+		center;
 }
-
-
 /* END body */
 
 /* BEGIN links */
@@ -49,28 +47,36 @@ a:active {
 }
 
 #bloc_vs {
-	padding: 5px;
+	position: relative;
+	width: 100%;
+	min-height: 650px;
 }
 
-#bloc_vs_left {
+#bloc_vs #bloc_vs_left {
+	position: absolute;
+	left: 0;
+	padding-left: 10px;
 	background: #444488;
-	float: left;
+	width: 450px;
 }
 
-#bloc_vs_left h4 {
+#bloc_vs #bloc_vs_left h4 {
 	text-align: left;
 }
 
-#bloc_vs_right {
+#bloc_vs #bloc_vs_right {
+	position: absolute;
+	right: 0;
+	padding-right: 10px;
 	background: #444488;
-	float: right;
+	width: 450px;
 }
 
-#bloc_vs_right h4 {
+#bloc_vs #bloc_vs_right h4 {
 	text-align: right;
 }
 
-#bloc_vs_left li,#bloc_vs_right li {
+#bloc_vs #bloc_vs_left li,#bloc_vs #bloc_vs_right li {
 	position: relative;
 	display: block;
 	padding: .4em .4em .4em 2em;
@@ -83,7 +89,7 @@ a:active {
 	transition: all .3s ease-out;
 }
 
-#bloc_vs_left li:before,#bloc_vs_right li:before {
+#bloc_vs #bloc_vs_left li:before,#bloc_vs #bloc_vs_right li:before {
 	content: no-open-quote;
 	position: absolute;
 	left: -1.3em;
@@ -97,21 +103,22 @@ a:active {
 	border-radius: 2em;
 }
 
-#buts {
-	background: #f0f;
-	overflow: hidden;
+#bloc_vs #buts {
+	background: #b47;
+	padding: 10px;
+	width: 410px;
+	margin: auto;
 }
 
-#buts li {
+#bloc_vs #buts li {
 	position: relative;
 	display: block;
 	margin: 0 0 1.5em 2em;
 }
 
-#buts h4 {
+#bloc_vs #buts h4 {
 	text-align: center;
 }
-
 /*END match */
 
 /* BEGIN list */
@@ -196,7 +203,7 @@ ol {
 	border-left-color: #d04;
 }
 
-#tournois{
+#tournois {
 	height: 150px;
 	width: 220px;
 	padding-top: 50px;
@@ -223,29 +230,23 @@ ol {
 	color: white;
 	background: transparent;
 	width: 250px;
-	-moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
-    line-height: 20px;
+	-moz-transition: all .5s;
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+	line-height: 20px;
 }
 
 #tournois ul li a:hover {
-	background: #5466A8;
+	background: #54B6A8;
 	padding-left: 25px;
 	width: 140px;
-	-moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
+	-moz-transition: all .5s;
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
 }
 
-#coupe img{
-	width: 2%;
-	margin-top: 50px;
-	margin-left: 566px;
-	margin-bottom: -122px;
-}
 /* END list */
 input[type=submit] {
 	cursor: pointer;
@@ -257,11 +258,11 @@ input[type=submit] {
 }
 
 #header {
-	background-color: #313131 ;
+	background-color: #ffaaff;
 	font-size: 3em;
 	padding: 20px 0 25px 0;
 	font-weight: bold;
-	color:#020212;
+	color: #020212;
 	text-align: center;
 	text-shadow: 0 1px 0 rgba(250, 250, 250, .5);
 }
@@ -281,15 +282,9 @@ input[type=submit] {
 	display: inline-block;
 	width: 160px;
 	margin: 15px 20px;
-	border: 7px solid rgba(0,0,0,.05);
+	border: 3px ridge #bbbbbb;
 	background-color: #dddddd;
 	text-align: center;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	text-shadow: 0px 1px 0px #fff;
-	line-height: 1.5;
-	box-shadow: 0 1px 10px rgba(0, 0, 0, .5);
-	background-clip: padding-box;
 }
 
 .bloc_tournoi .bloc_rencontre.not_fake:hover {
@@ -310,9 +305,9 @@ input[type=submit] {
 	height: 40px;
 	margin: 0;
 	padding-top: 2px;
-	background-color: #888888;
+	background-color: #ff00ff;
 	text-align: center;
-	border-top: inset #aaaaaa 4px
+	border-top: inset #d4d 4px
 }
 /* Fin Footer */
 #_404 {

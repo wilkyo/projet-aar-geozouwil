@@ -14,10 +14,8 @@
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="<%=Controleur.WEB_PATH + Controleur.CSS_PATH%>jquery-ui.css" />
 	<link rel="stylesheet" href="<%=Controleur.WEB_PATH + Controleur.CSS_PATH%>jquery.ui.timepicker.css" />
-	<link type="text/css" rel="stylesheet"
-		href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>base.css" />
-	<link type="text/css" rel="stylesheet"
-		href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>menu.css" />
+	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_BASE)%>" />
+	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_MENU)%>" />
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>buts.js"></script>
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>jquery-1.9.1.js"></script>
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>jquery-ui.js"></script>

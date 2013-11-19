@@ -12,12 +12,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8" />
-<link type="text/css" rel="stylesheet"
-	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>base.css" />
-<link type="text/css" rel="stylesheet"
-	href="<%=Controleur.WEB_PATH%><%=Controleur.CSS_PATH%>menu.css" />
-<title>Rencontre</title>
+	<meta charset="UTF-8" />
+	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_BASE)%>" />
+	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_MENU)%>" />
+	<title>Rencontre</title>
 </head>
 <body>
 	<div id="header">Rencontre</div>
@@ -119,7 +117,8 @@
 					</ol>
 				</c:forEach>
 			</div>
-
+			
+			<!-- Début buts -->
 			<div id="buts">
 				<h4>
 					Faits du match
@@ -134,16 +133,14 @@
 							${rencontre.arbitre.prenom} ${rencontre.arbitre.nom} lance la
 							rencontre.
 						</li>
-					</ol>
-					<c:forEach
-						items="<%=Controleur.getButsAvantProlongation(rencontre
-							.getDebut(), Controleur.trierButs(
-							rencontre.getButsHotes(),
-							rencontre.getButsVisiteurs()))%>"
-						var="butsAvantP">
-						<jsp:useBean id="butsAvantP" class="com.soccer.valueobjects.VOBut"
-							scope="page" />
-						<ol>
+						<c:forEach
+							items="<%=Controleur.getButsAvantProlongation(rencontre
+								.getDebut(), Controleur.trierButs(
+								rencontre.getButsHotes(),
+								rencontre.getButsVisiteurs()))%>"
+							var="butsAvantP">
+							<jsp:useBean id="butsAvantP" class="com.soccer.valueobjects.VOBut"
+								scope="page" />
 							<li>
 								<%
 									int MinuteBut = Controleur.getIntervalleDate(debut,
@@ -153,34 +150,28 @@
 								${butsAvantP.auteur.prenom} ${butsAvantP.auteur.nom} inscrit un
 								but pour ${butsAvantP.auteur.nomEquipe}.
 							</li>
-						</ol>
-					</c:forEach>
-					<c:if test="<%=fin != null && !prolongation%>">
-						<ol>
+						</c:forEach>
+						<c:if test="<%=fin != null && !prolongation%>">
 							<li>90' <img id="imSifflet" width="25" height="25"
 								src="images/sifflet.png" /> L'arbitre siffle la fin de la
 								rencontre.
 							</li>
-						</ol>
-					</c:if>
-					<c:if test="<%=fin != null && prolongation%>">
-						<ol>
+						</c:if>
+						<c:if test="<%=fin != null && prolongation%>">
 							<li>90' <img id="imSifflet" width="25" height="25"
 								src="images/sifflet.png" /> A l'issu du temps réglementaire,
 								les deux équipes ne se sont pas départagées. L'arbitre siffle
 								donc le début de la prolongation.
 							</li>
-						</ol>
-					</c:if>
-					<c:forEach
-						items="<%=Controleur.getButsApresProlongation(rencontre
-							.getDebut(), Controleur.trierButs(
-							rencontre.getButsHotes(),
-							rencontre.getButsVisiteurs()))%>"
-						var="butsApresP">
-						<jsp:useBean id="butsApresP" class="com.soccer.valueobjects.VOBut"
-							scope="page" />
-						<ol>
+						</c:if>
+						<c:forEach
+							items="<%=Controleur.getButsApresProlongation(rencontre
+								.getDebut(), Controleur.trierButs(
+								rencontre.getButsHotes(),
+								rencontre.getButsVisiteurs()))%>"
+							var="butsApresP">
+							<jsp:useBean id="butsApresP" class="com.soccer.valueobjects.VOBut"
+								scope="page" />
 							<li>
 								<%
 									int MinuteBut = Controleur.getIntervalleDate(debut,
@@ -190,22 +181,21 @@
 								${butsApresP.auteur.prenom} ${butsApresP.auteur.nom} inscrit un
 								but pour ${butsApresP.auteur.nomEquipe}.
 							</li>
-						</ol>
-					</c:forEach>
-					<c:if test="<%=fin != null && tab%>">
-						<ol>
+						</c:forEach>
+						<c:if test="<%=fin != null && tab%>">
 							<li>120' <img id="imSifflet" width="25" height="25"
 								src="images/sifflet.png" /> Les deux équipes sont encore à
 								égalité à l'issu de la prolongation. L'arbitre lance donc
 								les tirs aux buts.
 							</li>
-						</ol>
-					</c:if>
+						</c:if>
+					</ol>
 				</c:if>
 			</div>
+			<!-- Fin buts -->
+			<div class="clear"></div>
 
 		</div>
-		<div class="clear"></div>
 
 	</div>
 
