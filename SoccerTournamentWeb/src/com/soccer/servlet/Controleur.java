@@ -48,6 +48,7 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_FAQ = "faq";
 	public static final String ACTION_404 = "404";
 	public static final String ACTION_AJAX = "ajax";
+	public static final String ACTION_SWITCH_CSS = "switchcss";
 
 	public static final String JSP_HOME = "user/index.jsp";
 	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
@@ -62,6 +63,11 @@ public class Controleur extends HttpServlet {
 	public static final String JSP_REDIRECT = "redirect.jsp";
 
 	public static final String SESSION_ADMIN = "admin";
+	private static int cssId = 0;
+	private static final String[] CSS_BASE_STYLES = { "nice", "gay" };
+	public static final String CSS_BASE = "base.css";
+	public static final String CSS_MENU = "menu.css";
+	public static final String CSS_FORM = "form.css";
 
 	@EJB
 	private SoccerTournamentFacadeLocal facade;
@@ -324,9 +330,12 @@ public class Controleur extends HttpServlet {
 			response.getWriter().write(content.toString());
 			// Ne pas redispatcher
 			return;
+		} else if (action.equals(ACTION_SWITCH_CSS)) {
+			cssId = (cssId + 1) % 2;
+			redirect = action(ACTION_HOME);
 		}
 		// Si on veut rediriger
-		if (redirect.length() > 0)
+		if (!redirect.equals(""))
 			response.sendRedirect(redirect);
 		// Sinon, la page n'existe pas.
 		else if (dispatcher.equals("")) {
@@ -499,5 +508,26 @@ public class Controleur extends HttpServlet {
 			}
 		}
 		return lesbuts;
+	}
+
+	/**
+	 * Builds the path to the correct CSS file.
+	 * 
+	 * @param cssFile
+	 *            String of the wanted CSS file.
+	 * 
+	 * @return String of the path to the CSS file.
+	 */
+	public static String getCSSPath(String cssFile) {
+		return WEB_PATH + CSS_PATH + CSS_BASE_STYLES[cssId] + "/" + cssFile;
+	}
+
+	/**
+	 * Returns the current CSS id.
+	 * 
+	 * @return the current CSS id.
+	 */
+	public static String getCSS() {
+		return CSS_BASE_STYLES[cssId];
 	}
 }
