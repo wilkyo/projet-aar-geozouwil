@@ -23,10 +23,10 @@
 			%>
 			<div id="tournois">
 				<c:forEach items="${tournois}" var="tournoi">
-					<a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a><br />
+					<ul><li><a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a></li></ul>
 				</c:forEach>
 			</div>
-			<c:forEach items="${tournois}" var="tournoi">
+			<!--<c:forEach items="${tournois}" var="tournoi">
 				<custom:tournoi-diagramme tournoi="${tournoi}" />
 				<c:out value="${tournoi.nom}" />
 				<c:forEach items="${tournoi.rencontres}" var="rencontre">
@@ -36,7 +36,7 @@
 					<br />
 					<c:out value="${rencontre.id}" />
 				</c:forEach>__<br />
-			</c:forEach>
+			</c:forEach>-->
 		</div>
 	</div>
 	<jsp:include page="../includes/footer.jsp" />

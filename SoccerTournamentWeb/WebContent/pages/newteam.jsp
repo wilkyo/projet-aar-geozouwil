@@ -28,11 +28,13 @@
 					<c:if test="${exists}"><br />
 						<span class="error">Ce nom d'équipe est déjà pris !</span>
 					</c:if>
-					<label id="labrep">Représentant</label> <input type="text"
-						class="nom" id="nomRepresentant" name="nomRepresentant"
-						placeholder="Nom" /> <input type="text" class="prenom"
+					<label id="labrep">Représentant</label>  
+					<input type="text" class="prenom"
 						id="prenomRepresentant" name="prenomRepresentant"
 						placeholder="Prénom" />
+					<input type="text"
+						class="nom" id="nomRepresentant" name="nomRepresentant"
+						placeholder="Nom" />
 				</fieldset>
 				<fieldset>
 					<legend> Les joueurs </legend>
@@ -40,10 +42,11 @@
 						<label for="nom${i}">Joueur ${i}</label><br/>
 						<input type="text" class="numero" id="numero" name="numero[]"
 							placeholder="N°" maxlength="2" width="5" />
-						<input type="text" class="nom" id="nom${i}" name="nom[]"
-							placeholder="Nom" />
 						<input type="text" class="prenom" id="prenom" name="prenom[]"
 							placeholder="Prénom" />
+						<input type="text" class="nom" id="nom${i}" name="nom[]"
+							placeholder="Nom" />
+						
 						<br />
 					</c:forEach>
 					<input type="submit" value="Ajout" />

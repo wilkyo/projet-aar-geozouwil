@@ -8,11 +8,14 @@
 	color: #333;
 	margin: 0 0 10px;
 	padding: 10px 40px 10px 10px;
-	width: 10%;
+	width: 40%;
 	text-shadow: 0.8px 1px 1px rgba(0,0,0,0.3);
 	color: #222233;
 }
 
+.body-login{
+	margin: 0px 500px 0px 500px;
+}
 /*END index*/
 
 /*BEGIN newteam*/
@@ -53,6 +56,8 @@
 
 #labequipe, #labrep{
 	display: block;
+	font-weight: bold;
+	text-align: center;
 }
 
 /*END newteam*/

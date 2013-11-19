@@ -22,10 +22,9 @@
 	<div id="body">
 		<div id="tournois">
 			<c:forEach items="${tournois}" var="tournoi">
-				<a
+				<ul><li><a
 					href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out
-						value="${tournoi.nom}" /></a>
-				<br />
+						value="${tournoi.nom}" /></a></li></ul>
 			</c:forEach>
 		</div>
 		<c:set var="nbEquipes" value="${equipes.size()}" />
@@ -70,15 +69,15 @@
 		<div id="equipes">
 			<c:forEach items="${equipes}" var="equipe">
 				<c:out value="${equipe.nom}" />
-				<br />
+				
 			</c:forEach>
 		</div>
-		
+		<br />
 		<!-- Listes des arbitres -->
 		<div id="arbitres">
 			<c:forEach items="${arbitres}" var="arbitre">
 				<c:out value="${arbitre.nom} ${arbitre.prenom}" />
-				<br />
+				
 			</c:forEach>
 		</div>
 		

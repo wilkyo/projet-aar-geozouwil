@@ -19,12 +19,12 @@
 		Login to Soccer Tournament
 	</div>
 	<jsp:include page="../includes/menu.jsp" />
-	<div id="body">
+	<div id="body" >
 		<c:if test="${error}">
 			<span class="error">Mauvais login ou mot de passe !</span>
 		</c:if>
 		<form action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_LOGIN%>" method="post">
-			<fieldset>
+			<fieldset class="body-login">
 				<legend>Connexion</legend>
 				<input type="text" id="login" name="login" placeholder="Login" required="required" /><br />
 				<input type="password" id="pass" name="password" placeholder="Password" required="required" /><br />
