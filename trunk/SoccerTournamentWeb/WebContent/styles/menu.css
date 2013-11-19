@@ -50,7 +50,8 @@
 }
 
 #imLog {
-	
+	float: right;
+	margin-right: 10px;
 }
 
 #imPass {
