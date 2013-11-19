@@ -20,6 +20,7 @@
 	<div id="header"><%=request.getParameter("id")%></div>
 	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
+		<div  id="coupe"><img alt="" src="images/coupe.png"></div>
 		<custom:tournoi-diagramme tournoi="${tournoi}" admin="<%=logged%>" />
 	</div>
 	<jsp:include page="../includes/footer.jsp" />
