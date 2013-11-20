@@ -13,13 +13,14 @@
 	color: #222233;
 }
 
+
 .body-login{
 	margin: 0px 500px 0px 500px;
 }
 /*END index*/
 
 /*BEGIN newteam*/
-.nom, .prenom{
+.nom, .prenom, .date, .heure, .liste-arbitre, .nouveau-but{
 	border: 1px solid #D4DEF1;
 	border-radius: 3px;
 	background: #eae7e5;

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="<%=Controleur.WEB_PATH + Controleur.CSS_PATH%>jquery.ui.timepicker.css" />
 	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_BASE)%>" />
 	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_MENU)%>" />
+	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_FORM)%>" />
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>buts.js"></script>
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>jquery-1.9.1.js"></script>
 	<script src="<%=Controleur.WEB_PATH + Controleur.SCRIPTS_PATH%>jquery-ui.js"></script>
@@ -54,11 +55,11 @@
 								|| rencontre.getButsHotes().size() == rencontre.getButsVisiteurs().size();
 					%>
 					<label for="debutD">Date du match</label>
-					<input type="text" id="debutD" name="debutD" value="<%=dDebut%>" /><br />
+					<input type="text" class="date" id="debutD" name="debutD" value="<%=dDebut%>" /><br />
 					<label for="debutH">Heure du match</label>
-					<input type="text" id="debutH" name="debutH" value="<%=hDebut%>" /><br />
+					<input type="text" class="date" id="debutH" name="debutH" value="<%=hDebut%>" /><br />
 					<label for="arbitre">Arbitre</label>
-					<select id="arbitre" name="arbitre">
+					<select id="arbitre" class="liste-arbitre" name="arbitre">
 						<option value="0">--</option>
 						<c:forEach items="${arbitres}" var="arbitre">
 							<option value="${arbitre.id}"<c:if test="${arbitre.id == rencontre.arbitre.id}"> selected="selected"</c:if>>${arbitre.prenom}
@@ -85,15 +86,15 @@
 					</div>
 					<div class="clear"></div>
 					<label for="butEquipe">Nouveau but</label><br />
-					<select id="butEquipe" onChange="getJoueurs();">
+					<select id="butEquipe" class="nouveau-but" onChange="getJoueurs();">
 						<option value="--">--</option>
 						<option value="<%=rencontre.getHotes().getNom()%>"><c:out value="<%=rencontre.getHotes().getNom()%>" /></option>
 						<option value="<%=rencontre.getVisiteurs().getNom()%>"><c:out value="<%=rencontre.getVisiteurs().getNom()%>" /></option>
 					</select>
-					<select id="butJoueur" name="butJoueur">
+					<select id="butJoueur" class="nouveau-but" name="butJoueur">
 					</select><br />
 					<label for="butHeure">Heure du but</label>
-					<input type="text" id="butHeure" name="butHeure" /><br />
+					<input type="text" class="heure" id="butHeure" name="butHeure" /><br />
 					<input type="submit" value="Ajouter But" />
 				</fieldset>
 			</form>
@@ -102,9 +103,9 @@
 					<fieldset>
 						<legend>Valider Rencontre</legend>
 						<label for="finProlongation">Prolongations ?</label>
-						<input type="checkbox" id="finProlongation" name="finProlongation" onclick="checkProlong();" /><br />
+						<input type="checkbox" class="date" id="finProlongation" name="finProlongation" onclick="checkProlong();" /><br />
 						<label for="finTaB">Tir aux Buts ?</label>
-						<input type="checkbox" id="finTaB" name="finTaB" onclick="checkProlong();" /><br />
+						<input type="checkbox" class="date" id="finTaB" name="finTaB" onclick="checkProlong();" /><br />
 						<input type="submit" value="Valider" />
 					</fieldset>
 				</form>
