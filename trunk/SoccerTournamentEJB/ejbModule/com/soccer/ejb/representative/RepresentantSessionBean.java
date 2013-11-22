@@ -23,7 +23,6 @@ public class RepresentantSessionBean implements RepresentantLocal {
 	 * Default constructor.
 	 */
 	public RepresentantSessionBean() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -45,7 +44,9 @@ public class RepresentantSessionBean implements RepresentantLocal {
 			newTeam.setNomRepresentant(nomRepresentant);
 			newTeam.setPrenomRepresentant(prenomRepresentant);
 			List<Joueur> lesjoueurs = new ArrayList<Joueur>();
-			for (int i = 0; i < nomJoueurs.length; i++) {
+			for (int i = 0; i < prenomJoueurs.length; i++) {
+				if(prenomJoueurs[i].equals(""))
+					break;
 				Joueur j = new Joueur();
 				j.setNom(nomJoueurs[i]);
 				j.setPrenom(prenomJoueurs[i]);
