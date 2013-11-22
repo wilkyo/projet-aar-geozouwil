@@ -164,12 +164,29 @@ public class Controleur extends HttpServlet {
 			if (nomEquipe != null && nomRepresentant != null
 					&& prenomRepresentant != null && nomsJoueurs != null
 					&& prenomsJoueurs != null && numeroJoueurs != null) {
-				if (facade.creerEquipe(nomEquipe, nomRepresentant,
-						prenomRepresentant, nomsJoueurs, prenomsJoueurs,
-						toIntegerArray(numeroJoueurs)))
-					redirect = action(ACTION_HOME);
+				boolean error = false;
+				for (int i = 0; i < prenomsJoueurs.length; i++) {
+					if (prenomsJoueurs[i].equals("") && i < 10)
+						error = true;
+				}
+				// En cas de retour...
+				request.setAttribute("nomEquipe", nomEquipe);
+				request.setAttribute("prenomRepresentant", prenomRepresentant);
+				request.setAttribute("nomRepresentant", nomRepresentant);
+				request.setAttribute("nom", nomsJoueurs);
+				request.setAttribute("prenom", prenomsJoueurs);
+				request.setAttribute("numero", numeroJoueurs);
+				if (!error)
+					if (facade.creerEquipe(nomEquipe, nomRepresentant,
+							prenomRepresentant, nomsJoueurs, prenomsJoueurs,
+							toIntegerArray(numeroJoueurs)))
+						redirect = action(ACTION_HOME);
+					else {
+						request.setAttribute("exists", true);
+						dispatcher = jsp(JSP_NEW_TEAM);
+					}
 				else {
-					request.setAttribute("exists", true);
+					request.setAttribute("notEnough", true);
 					dispatcher = jsp(JSP_NEW_TEAM);
 				}
 			} else

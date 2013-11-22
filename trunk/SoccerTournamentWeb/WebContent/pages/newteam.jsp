@@ -35,19 +35,23 @@
 			<form method="post" action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_TEAM%>">
 				<fieldset>
 					<legend> Equipe </legend>
-					<label id="labequipe">Nom de l'Equipe</label> <input type="text"
+					<label id="labequipe">Nom de l'Equipe</label>
+					<input type="text"
 						id="nomEquipe" name="nomEquipe" placeholder="Nom de l'Equipe"
-						required="required" />
+						required="required" value="${nomEquipe}" />
 					<c:if test="${exists}"><br />
 						<span class="error">Ce nom d'équipe est déjà pris !</span>
+					</c:if>
+					<c:if test="${notEnough}"><br />
+						<span class="error">Il faut au moins 11 joueurs !</span>
 					</c:if>
 					<label id="labrep">Représentant</label>  
 					<input type="text" class="prenom"
 						id="prenomRepresentant" name="prenomRepresentant"
-						placeholder="Prénom" />
+						placeholder="Prénom" value="${prenomRepresentant}" />
 					<input type="text"
 						class="nom" id="nomRepresentant" name="nomRepresentant"
-						placeholder="Nom" />
+						placeholder="Nom" value="${nomRepresentant}" />
 				</fieldset>
 				<fieldset>
 					<legend> Les joueurs </legend>
@@ -55,11 +59,11 @@
 						<c:set var="cpt_players" value="${i + 1}" />
 						<label for="nom${i}">Joueur ${i}</label><br/>
 						<input type="text" class="numero" id="numero${i}" name="numero[]"
-							placeholder="N°" maxlength="2" width="5" />
+							placeholder="N°" maxlength="2" width="5" value="${numero[i - 1]}" />
 						<input type="text" class="prenom" id="prenom${i}" name="prenom[]"
-							placeholder="Prénom" />
+							placeholder="Prénom" value="${prenom[i - 1]}" />
 						<input type="text" class="nom" id="nom${i}" name="nom[]"
-							placeholder="Nom" />
+							placeholder="Nom" value="${nom[i - 1]}" />
 						
 						<br />
 					</c:forEach>
