@@ -10,6 +10,22 @@
 	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_MENU)%>" />
 	<link type="text/css" rel="stylesheet" href="<%=Controleur.getCSSPath(Controleur.CSS_FORM)%>" />
 	<title>New Team</title>
+		<script type="text/javascript">
+			function add_player() {
+				var elt = document.getElementById('player_' + (last_player_id));
+				elt.style.display = 'block';
+				if(last_player_id >= 15) {
+					document.getElementById('boutonAdd').style.display = 'none';
+				} else {
+					elt.outerHTML += '<div style="display:none;" id="player_' + (++last_player_id) + '">' +
+								'<label for="nom' + last_player_id + '">Joueur ' + last_player_id + '</label><br/>' +
+								'<input type="text" class="numero" id="numero' + last_player_id + '" name="numero[]" placeholder="N°" maxlength="2" width="5" />' +
+								'<input type="text" class="prenom" id="prenom' + last_player_id + '" name="prenom[]" placeholder="Prénom" />' +
+								'<input type="text" class="nom" id="nom' + last_player_id + '" name="nom[]" placeholder="Nom" />'
+							'</div>';
+				}
+			}
+		</script>
 </head>
 <body>
 	<div id="header">Nouvelle Equipe</div>
@@ -36,19 +52,33 @@
 				<fieldset>
 					<legend> Les joueurs </legend>
 					<c:forEach begin="1" end="11" step="1" var="i">
+						<c:set var="cpt_players" value="${i + 1}" />
 						<label for="nom${i}">Joueur ${i}</label><br/>
-						<input type="text" class="numero" id="numero" name="numero[]"
+						<input type="text" class="numero" id="numero${i}" name="numero[]"
 							placeholder="N°" maxlength="2" width="5" />
-						<input type="text" class="prenom" id="prenom" name="prenom[]"
+						<input type="text" class="prenom" id="prenom${i}" name="prenom[]"
 							placeholder="Prénom" />
 						<input type="text" class="nom" id="nom${i}" name="nom[]"
 							placeholder="Nom" />
 						
 						<br />
 					</c:forEach>
-					<input type="submit" value="Ajout" />
+					<div style="display:none;" id="player_${cpt_players}">
+						<label for="nom${cpt_players}">Joueur ${cpt_players}</label><br/>
+						<input type="text" class="numero" id="numero${cpt_players}" name="numero[]"
+							placeholder="N°" maxlength="2" width="5" />
+						<input type="text" class="prenom" id="prenom${cpt_players}" name="prenom[]"
+							placeholder="Prénom" />
+						<input type="text" class="nom" id="nom${cpt_players}" name="nom[]"
+							placeholder="Nom" />
+					</div>
+					<input type="button" id="boutonAdd" onclick="add_player();" value="Ajouter Joueur" /><br />
+					<input type="submit" value="Créer Équipe" />
 				</fieldset>
 			</form>
+			<script type="text/javascript">
+				var last_player_id = ${cpt_players};
+			</script>
 			<c:if test="${exists}">
 			<script type="text/javascript">
 				var elt = document.getElementById("nomEquipe");
