@@ -2,6 +2,7 @@ package com.soccer.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -254,7 +255,7 @@ public class Controleur extends HttpServlet {
 							if (dDebut.length == 3 && hDebut.length == 2) {
 								facade.setDebutRencontre(idRencontre,
 										new GregorianCalendar(dDebut[2],
-												dDebut[1], dDebut[0],
+												dDebut[1] - 1, dDebut[0],
 												hDebut[0], hDebut[1], 0));
 							}
 						}
@@ -422,7 +423,7 @@ public class Controleur extends HttpServlet {
 	 */
 	public static String formatDate(Calendar date) {
 		return formatNumber2Digits(date.get(Calendar.DAY_OF_MONTH)) + "/"
-				+ formatNumber2Digits(date.get(Calendar.MONTH)) + "/"
+				+ formatNumber2Digits(date.get(Calendar.MONTH) + 1) + "/"
 				+ date.get(Calendar.YEAR);
 	}
 
@@ -468,22 +469,12 @@ public class Controleur extends HttpServlet {
 			List<VOBut> butsVisiteurs) {
 		List<VOBut> lesbuts = new ArrayList<VOBut>();
 		lesbuts.addAll(butsHotes);
-		boolean ajout = false;
-		for (int i = 0; i < butsVisiteurs.size(); i++) {
-			ajout = false;
-			for (int j = 0; j < lesbuts.size(); j++) {
-
-				if (butsVisiteurs.get(i).getHeure()
-						.before(lesbuts.get(j).getHeure())
-						&& !ajout) {
-					lesbuts.add(j, butsVisiteurs.get(i));
-					ajout = true;
-				}
-			}
-			if (!ajout) {
-				lesbuts.add(lesbuts.size(), butsVisiteurs.get(i));
-			}
-		}
+		lesbuts.addAll(butsVisiteurs);
+		VOBut[] buts = lesbuts.toArray(new VOBut[0]);
+		lesbuts.removeAll(lesbuts);
+		Arrays.sort(buts);
+		for (int i = 0; i < buts.length; i++)
+			lesbuts.add(buts[i]);
 		return lesbuts;
 	}
 
