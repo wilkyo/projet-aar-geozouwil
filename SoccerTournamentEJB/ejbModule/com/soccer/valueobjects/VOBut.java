@@ -1,12 +1,13 @@
 package com.soccer.valueobjects;
 
 import java.util.Calendar;
+
 import com.soccer.model.But;
 
 /**
  * ValueObject of But.
  */
-public class VOBut {
+public class VOBut implements Comparable<VOBut> {
 
 	/**
 	 * ValueObject of the goal's author.
@@ -40,6 +41,11 @@ public class VOBut {
 	 */
 	public Calendar getHeure() {
 		return heure;
+	}
+
+	@Override
+	public int compareTo(VOBut o) {
+		return this.getHeure().before(o.getHeure()) ? -1 : 1;
 	}
 
 }
