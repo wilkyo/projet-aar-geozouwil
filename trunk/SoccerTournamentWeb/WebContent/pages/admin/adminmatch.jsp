@@ -56,17 +56,15 @@
 					<%
 						Calendar debut = rencontre.getDebut(), fin = rencontre.getFin();
 							String dDebut = "", hDebut = "";
+							boolean encours = false;
 							if (debut != null) {
 								dDebut = Controleur.formatDate(debut);
 								hDebut = Controleur.formatHour(debut);
+								encours = debut.before(Calendar.getInstance());
 							}
 							String hFin = "";
 							if (fin != null) {
 								hFin = Controleur.formatHour(fin);
-							}
-							boolean encours = false;
-							if (debut != null) {
-								encours = debut.before(Calendar.getInstance());
 							}
 							boolean nonValidable = dDebut.equals("")
 									&& hDebut.equals("")
