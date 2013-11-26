@@ -1,6 +1,6 @@
 format 75
 "Projet AAR"
-  revision 23
+  revision 25
   modified_by 42 "Willy"
 
 
@@ -859,7 +859,6 @@ ${members}};
 	
 	
       end
-
     end
 
     class 162090 "AdministrateurLocal"
@@ -1411,6 +1410,19 @@ ${members}}
 	idl_decl ""
       end
 
+      operation 191914 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "o" type class_ref 169898 // VOBut
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       classrelation 165546 // <aggregation>
 	relation 164010 o---
 	  a role_name "" multiplicity "1" private
@@ -1450,6 +1462,16 @@ ${members}}
       end
 
       attribute 171178 "prenom"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 193450 "nomEquipe"
 	private explicit_type "string"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -1741,6 +1763,29 @@ ${members}}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      attribute 193322 "finie"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 191786 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "o" type class_ref 170410 // VORencontreLight
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
 
       classrelation 166954 // <composition>
