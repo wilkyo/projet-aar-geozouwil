@@ -21,6 +21,8 @@
 	<div id="header">Rencontre</div>
 	<jsp:include page="../includes/menu.jsp" />
 
+<!-- Début body -->
+
 	<div id="body">
 		<h3>
 			<a
@@ -35,6 +37,8 @@
 			String dateDebut = "", dateFin = "", heureDebut = "", heureFin = "";
 			boolean prolongation = false, tab = false, encours = false;
 
+			String nomHotes = rencontre.getHotes().getNom();
+			String nomVisiteurs = rencontre.getVisiteurs().getNom();
 			int nbButsHotes = rencontre.getButsHotes().size();
 			int nbButsVisiteurs = rencontre.getButsVisiteurs().size();
 
@@ -67,6 +71,8 @@
 				encours = debut.before(Calendar.getInstance());
 			}
 		%>
+		
+<!--  Début entete  -->
 
 		<div id="entete">
 			<ol>
@@ -80,6 +86,8 @@
 				<li><h3><%=tab ? "Tirs aux buts" : ""%></h3></li>
 			</ol>
 		</div>
+		
+<!-- Fin entete -->
 
 		<p>
 			Arbitre :<%=arbitre == null ? " Non défini" : " " + prenom + " "
@@ -94,7 +102,11 @@
 					+ " à " + heureFin%>
 		</p>
 
+<!--  Début bloc_vs -->
+
 		<div id="bloc_vs">
+
+	<!-- Début bloc gauche -->
 
 			<div id="bloc_vs_left">
 				<h4>${rencontre.hotes.nom}</h4>
@@ -106,6 +118,10 @@
 					</ol>
 				</c:forEach>
 			</div>
+			
+	<!-- Fin bloc gauche  -->
+
+	<!--  Début bloc droite -->
 
 			<div id="bloc_vs_right">
 				<h4>${rencontre.visiteurs.nom}</h4>
@@ -118,7 +134,10 @@
 				</c:forEach>
 			</div>
 			
-			<!-- Début buts -->
+	<!-- Fin bloc droite -->
+
+	<!-- Début buts -->
+	
 			<div id="buts">
 				<h4>
 					Faits du match
@@ -128,42 +147,44 @@
 				</h4>
 				<c:if test="<%=encours || fin != null%>">
 					<ol>
-						<li>0' <img id="imSifflet" width="25" height="25"
-							src="images/sifflet.png" /> L'arbitre du match
-							${rencontre.arbitre.prenom} ${rencontre.arbitre.nom} lance la
-							rencontre.
+						<li> <c:out value="<%=Controleur.getIntervalleDate(debut,debut)%>"/> ' 					
+							 <img id="imSifflet" width="25" height="25" src="images/sifflet.png" /> 
+						L'arbitre du match ${rencontre.arbitre.prenom} ${rencontre.arbitre.nom} lance la rencontre.
 						</li>
+						
+						<!-- affiche tous les buts marqués avant la prolongation -->
 						<c:forEach
 							items="<%=Controleur.getButsAvantProlongation(rencontre
 								.getDebut(), Controleur.trierButs(
 								rencontre.getButsHotes(),
-								rencontre.getButsVisiteurs()))%>"
-							var="butsAvantP">
+								rencontre.getButsVisiteurs()))%>" var="butsAvantP">
 							<jsp:useBean id="butsAvantP" class="com.soccer.valueobjects.VOBut"
 								scope="page" />
-							<li>
-								<%
-									int MinuteBut = Controleur.getIntervalleDate(debut,
-													butsAvantP.getHeure());
-								%> <c:out value="<%=MinuteBut%>" /> ' <img id="imBallon"
-								width="25" height="25" src="images/ballon.png" />
-								${butsAvantP.auteur.prenom} ${butsAvantP.auteur.nom} inscrit un
-								but pour ${butsAvantP.auteur.nomEquipe}.
+							<li> <c:out value="<%=Controleur.getIntervalleDate(debut,butsAvantP.getHeure())%>" /> ' 
+								 <img id="imBallon" width="25" height="25" src="images/ballon.png" />
+								${butsAvantP.auteur.prenom} ${butsAvantP.auteur.nom} inscrit un but pour ${butsAvantP.auteur.nomEquipe}.
 							</li>
 						</c:forEach>
+						
+						<!-- si le match se termine sans prolongation -->
 						<c:if test="<%=fin != null && !prolongation%>">
-							<li>90' <img id="imSifflet" width="25" height="25"
+							<li>90 ' <img id="imSifflet" width="25" height="25"
 								src="images/sifflet.png" /> L'arbitre siffle la fin de la
 								rencontre.
 							</li>
-						</c:if>
-						<c:if test="<%=fin != null && prolongation%>">
-							<li>90' <img id="imSifflet" width="25" height="25"
-								src="images/sifflet.png" /> A l'issu du temps réglementaire,
-								les deux équipes ne se sont pas départagées. L'arbitre siffle
-								donc le début de la prolongation.
+							<li> <%=rencontre.getButsHotes().size() > rencontre.getButsVisiteurs().size() ? 
+									"L'équipe de " + nomHotes + " remporte la rencontre." :
+									"L'équipe de " + nomVisiteurs + " remporte la rencontre."%>
 							</li>
 						</c:if>
+						
+						<!-- si le match se termine avec prolongation -->
+						<c:if test="<%=fin != null && prolongation%>">
+							<li>90 ' <img id="imSifflet" width="25" height="25"
+								src="images/sifflet.png" /> Les deux équipes ont besoin d'une prolongation pour se départager.							donc le début de la prolongation.
+							</li>
+							
+						<!-- on affiche tous les buts marqués pendant la prolongation -->
 						<c:forEach
 							items="<%=Controleur.getButsApresProlongation(rencontre
 								.getDebut(), Controleur.trierButs(
@@ -172,32 +193,35 @@
 							var="butsApresP">
 							<jsp:useBean id="butsApresP" class="com.soccer.valueobjects.VOBut"
 								scope="page" />
-							<li>
-								<%
-									int MinuteBut = Controleur.getIntervalleDate(debut,
-													butsApresP.getHeure());
-								%> <c:out value="<%=MinuteBut%>" /> ' <img id="imBallon"
-								width="25" height="25" src="images/ballon.png" />
+							<li> <c:out value="<%=Controleur.getIntervalleDate(debut,butsApresP.getHeure())%>" /> ' 
+								 <img id="imBallon" width="25" height="25" src="images/ballon.png" />
 								${butsApresP.auteur.prenom} ${butsApresP.auteur.nom} inscrit un
 								but pour ${butsApresP.auteur.nomEquipe}.
 							</li>
+							<li> <%=rencontre.getButsHotes().size() > rencontre.getButsVisiteurs().size() ? 
+									"L'équipe de " + nomHotes + " remporte la rencontre." :
+									"L'équipe de " + nomVisiteurs + " remporte la rencontre."%>
+							</li>
 						</c:forEach>
+						
+						</c:if>
+						
+						<!-- si le match arrive aux TAB -->
 						<c:if test="<%=fin != null && tab%>">
-							<li>120' <img id="imSifflet" width="25" height="25"
-								src="images/sifflet.png" /> Les deux équipes sont encore à
-								égalité à l'issu de la prolongation. L'arbitre lance donc
-								les tirs aux buts.
+							<li>120 ' <img id="imSifflet" width="25" height="25"
+								src="images/sifflet.png" /> Les deux équipes étant encore à
+								égalité à l'issu de la prolongation, le match se terminera par des tirs aux buts.
 							</li>
 						</c:if>
 					</ol>
 				</c:if>
 			</div>
-			<!-- Fin buts -->
+	<!-- Fin buts -->
 			<div class="clear"></div>
-
 		</div>
-
+<!-- Fin bloc vs -->
 	</div>
+<!-- Fin body -->
 
 	<jsp:include page="../includes/footer.jsp" />
 </body>
