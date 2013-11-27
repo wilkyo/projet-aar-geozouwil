@@ -2,29 +2,45 @@ package com.soccer.model;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Class of Equipe.
+ */
 @Entity
 public class Equipe implements Serializable {
 
+	/**
+	 * The serial version id.
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Constants.
+	 */
 	public static final String XML_EQUIPES = "Equipes";
 	public static final String XML_EQUIPE = "Equipe";
 	public static final String XML_EQUIPE_NOM = "nom";
 	public static final String XML_EQUIPE_NOM_REPRESENTANT = "nomRepresentant";
 	public static final String XML_EQUIPE_PRENOM_REPRESENTANT = "prenomRepresentant";
 	public static final String XML_EQUIPE_JOUEURS = "Joueurs";
-
 	/**
-	 * 
+	 * Name of the team.
 	 */
-	private static final long serialVersionUID = 1L;
 	private String nom;
+	/**
+	 * List of the players.
+	 */
 	private List<Joueur> joueurs;
+	/**
+	 * Name of the representative.
+	 */
 	private String nomRepresentant;
+	/**
+	 * Nickname of the representative.
+	 */
 	private String prenomRepresentant;
 
 	/**

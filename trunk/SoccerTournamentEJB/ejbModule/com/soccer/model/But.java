@@ -2,22 +2,36 @@ package com.soccer.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * Class of But.
+ */
 @Entity
 public class But implements Serializable {
 
 	/**
-	 * 
+	 * The serial version id.
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * The id of the goal.
+	 */
 	private int id;
+	/**
+	 * Match affected to the goal.
+	 */
 	private Rencontre rencontre;
+	/**
+	 * Author of the goal.
+	 */
 	private Joueur auteur;
+	/**
+	 * Hour of the goal.
+	 */
 	private Calendar heure;
 
 	/**

@@ -2,22 +2,36 @@ package com.soccer.model;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Class of Tournoi.
+ */
 @Entity
 public class Tournoi implements Serializable {
 
 	/**
-	 * 
+	 * The serial version id.
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Name of the tounament.
+	 */
 	private String nom;
+	/**
+	 * Number of teams registered in the tournament.
+	 */
 	private int nbEquipes;
+	/**
+	 * The current round of the tournament.
+	 */
 	private int tourActuel;
+	/**
+	 * List of matchs of the tournament.
+	 */
 	private List<Rencontre> rencontres;
 
 	/**
@@ -67,7 +81,7 @@ public class Tournoi implements Serializable {
 	}
 
 	/**
-	 * Got all Match
+	 * Get all Match
 	 * 
 	 * @return the rencontres
 	 */
