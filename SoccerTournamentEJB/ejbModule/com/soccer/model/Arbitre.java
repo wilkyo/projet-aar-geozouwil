@@ -1,25 +1,38 @@
 package com.soccer.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Class of Arbitre.
+ */
 @Entity
 public class Arbitre implements Serializable {
 
+	/**
+	 * The serial version id.
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Constants.
+	 */
 	public static final String XML_ARBITRES = "Arbitres";
 	public static final String XML_ARBITRE = "Arbitre";
 	public static final String XML_ARBITRE_NOM = "nom";
 	public static final String XML_ARBITRE_PRENOM = "prenom";
-
 	/**
-	 * 
+	 * Id of the referee.
 	 */
-	private static final long serialVersionUID = 1L;
 	private int id;
+	/**
+	 * Name of the referee.
+	 */
 	private String nom;
+	/**
+	 * Nickname of the referee.
+	 */
 	private String prenom;
 
 	/**
