@@ -17,14 +17,23 @@ import com.soccer.model.Rencontre;
 import com.soccer.model.Tournoi;
 
 /**
- * Session Bean implementation class AdministrateurSessionBean
+ * Session Bean implementation class AdministrateurSessionBean.
  */
 @Stateless
 public class AdministrateurSessionBean implements AdministrateurLocal {
 
+	/**
+	 * The admin's login.
+	 */
 	private static final String login = "admin";
+	/**
+	 * The admin's password.
+	 */
 	private static final String password = "root";
 
+	/**
+	 * The entity manager.
+	 */
 	@PersistenceContext(unitName = "soccerTournament")
 	EntityManager em;
 
@@ -32,9 +41,17 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	 * Default constructor.
 	 */
 	public AdministrateurSessionBean() {
-		System.out.println("Je suis l'administrateur");
 	}
 
+	/**
+	 * Connect the admin.
+	 * 
+	 * @param login
+	 *            The admin's login.
+	 * @param password
+	 *            The admin's password.
+	 * @return True : connection successful / False : connection failed.
+	 */
 	@Override
 	public boolean connexion(String login, String password) {
 		if (login.equals(AdministrateurSessionBean.login)
@@ -45,6 +62,12 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 			return false;
 	}
 
+	/**
+	 * Create a tournament.
+	 * 
+	 * @param nomTournoi
+	 *            Name of the tournament.
+	 */
 	@Override
 	public void creerTournoi(String nomTournoi) {
 		if (em.find(Tournoi.class, nomTournoi) != null) {
@@ -88,6 +111,14 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		return equipes;
 	}
 
+	/**
+	 * Set the beginning of the match.
+	 * 
+	 * @param idRencontre
+	 *            The id of the match.
+	 * @param debut
+	 *            The date of beginning of the match.
+	 */
 	@Override
 	public void setDebutRencontre(int idRencontre, Calendar debut) {
 		Rencontre r = new Rencontre();
@@ -96,6 +127,11 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(r);
 	}
 
+	/**
+	 * Returns all the referees.
+	 * 
+	 * @return List of referees.
+	 */
 	@Override
 	public List<Arbitre> getArbitres() {
 		@SuppressWarnings("unchecked")
@@ -104,6 +140,14 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		return arbitres;
 	}
 
+	/**
+	 * Add a referee.
+	 * 
+	 * @param nom
+	 *            Name of the referee.
+	 * @param prenom
+	 *            Nickname of the referee.
+	 */
 	@Override
 	public void ajouterArbitre(String nom, String prenom) {
 		Arbitre a = new Arbitre();
@@ -112,6 +156,14 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(a);
 	}
 
+	/**
+	 * Affect a referee to a match.
+	 * 
+	 * @param idArbitre
+	 *            The id of the referee.
+	 * @param idRencontre
+	 *            The id of the match.
+	 */
 	@Override
 	public void affecterArbitre(int idArbitre, int idRencontre) {
 		Rencontre r = new Rencontre();
@@ -122,6 +174,16 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(r);
 	}
 
+	/**
+	 * Add a goal.
+	 * 
+	 * @param idRencontre
+	 *            The id of the match.
+	 * @param idAuteur
+	 *            The id of the goal's author.
+	 * @param heure
+	 *            The Date (hour) of the goal.
+	 */
 	@Override
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure) {
 		But b = new But();
@@ -135,12 +197,20 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(b);
 	}
 
+	/**
+	 * Validate a match.
+	 * 
+	 * @param idRencontre
+	 *            The id of the match.
+	 * @param heureFin
+	 *            The Date of the end of the match.
+	 */
 	@Override
-	public void validerRencontre(int idRencontre, Calendar fin) {
+	public void validerRencontre(int idRencontre, Calendar heureFin) {
 		Rencontre rencontre = new Rencontre();
 		rencontre = em.find(Rencontre.class, idRencontre);
 		boolean dejaFait = rencontre.getFin() != null;
-		rencontre.setFin(fin);
+		rencontre.setFin(heureFin);
 		em.persist(rencontre);
 		if (!dejaFait) {
 			// Checking the others
