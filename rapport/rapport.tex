@@ -4,6 +4,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{ccaption}
+
 \graphicspath{{images/}}%dossier pour les images
 
 \setlength{\hoffset}{-18pt}         
@@ -19,7 +21,7 @@
 \setlength{\footskip}{27pt} % Bas de page + séparation
 \setlength{\textheight}{708pt} % Hauteur de la zone de texte (25cm)
 
-\title{Architecture des Applications Réparties\\ Rapport du Projet\\ Gestion d'un Tournoi de Football}
+\title{Architecture des Applications Réparties\\ Rapport de Projet\\ Gestion d'un Tournoi de Football}
 \author{Geoffrey CROCHET, Zo RABARIJAONA, Willy FRANÇOIS}
 %\date{Vendredi 15 Novembre 2013}
 
@@ -40,21 +42,21 @@
 
 \chapter{Analyse UML}
 \section{Diagramme de classes}
-\subsection{Les modèles}
+\subsection{Le modèle}
 	\begin{figure}[here]
 	      \begin{center}	      
 		\fbox{\includegraphics[scale=0.8]{class}}
 	      \end{center}
-	\caption{\label{val}Diagramme de classes}
+	\legend{\underline{Diagramme de classes du modèle}}
 	\end{figure}
 ~~\\
-\subsection{Value Objects}
+\subsection{Les Value Objects}
 
 	\begin{figure}[here]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.8]{vo}}
 	      \end{center}
-	\caption{\label{val}Diagramme Value objects}
+	\legend{\underline{Diagramme de classes des Value Objects}}
 	\end{figure}
 	
 \subsection{Les EJB}
@@ -62,22 +64,21 @@
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{ejb_ua}}
 	      \end{center}
-	\caption{\label{val}EJB Utilisateur, Administrateur et Représentant}
-	
+	\legend{\underline{Diagramme de classes des EJB Utilisateur et Administrateur}}	
 	\end{figure}
 	
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.8]{ejb_r}}
 	      \end{center}
-	\caption{\label{val}EJB Représentant}
+	\legend{\underline{Diagramme de classes de l'EJB Représentant}}
 	\end{figure}
 	
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{ejb_session}}
 	      \end{center}
-	\caption{\label{val}EJB Session façade}
+	\legend{\underline{Diagramme de l'EJB Session façade}}
 	\end{figure}	
 
 \newpage
@@ -86,7 +87,7 @@
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{use_cases}}
 	      \end{center}
-	\caption{\label{val}Diagramme de classes}
+	\legend{\underline{Diagramme de cas d'utilisation}}
 	\end{figure}
 
 \newpage
@@ -95,7 +96,7 @@
 	      \begin{center}
 		\fbox{\includegraphics[width=18cm]{AAR}}
 	      \end{center}
-	\caption{\label{val}Schéma synthétique avec JBoss}
+	\legend{\underline{Schéma synthétique de l'application}}
 	\end{figure}
 
 \newpage
@@ -105,11 +106,13 @@
 	      \begin{center}
 		\fbox{\includegraphics[width=18cm]{gantt}}
 	      \end{center}
-	\caption{\label{val}Temps de travail (Diagramme de Gantt)}
+	\legend{\underline{Gestion du temps de travail}}
 	\end{figure}
-\section{Travail de chacun}
+	
+\section{Répartition des tâches}
 
 \chapter{Guide d'utilisation}
 
+\chapter*{Conclusion}
 
 \end{document}
