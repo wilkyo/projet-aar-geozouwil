@@ -42,8 +42,8 @@
 \section{Diagramme de classes}
 \subsection{Les modèles}
 	\begin{figure}[here]
-	      \begin{center}	      
-		\fbox{\includegraphics[scale=0.8]{class}}
+	      \begin{center}
+		\includegraphics[scale=0.8]{class}
 	      \end{center}
 	\caption{\label{val}Diagramme de classes}
 	\end{figure}
@@ -52,64 +52,58 @@
 
 	\begin{figure}[here]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.8]{vo}}
+		\includegraphics[scale=0.8]{vo}
 	      \end{center}
 	\caption{\label{val}Diagramme Value objects}
 	\end{figure}
 	
 \subsection{Les EJB}
-	\begin{figure}[hp]
+	\begin{figure}[here]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.7]{ejb_ua}}
+		\includegraphics[scale=0.7]{ejb_ua}
 	      \end{center}
 	\caption{\label{val}EJB Utilisateur, Administrateur et Représentant}
 	
 	\end{figure}
 	
-	\begin{figure}[hp]
+	\begin{figure}[here]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.8]{ejb_r}}
+		\includegraphics[scale=0.8]{ejb_r}
 	      \end{center}
 	\caption{\label{val}EJB Représentant}
 	\end{figure}
 	
-	\begin{figure}[hp]
+	\begin{figure}[here]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.7]{ejb_session}}
+		\includegraphics[scale=0.8]{ejb_session}
 	      \end{center}
 	\caption{\label{val}EJB Session façade}
 	\end{figure}	
-
 \newpage
+\vspace{20\baselineskip}
 \section{Diagramme de cas d'utilisation}
-	\begin{figure}[hp]
-	      \begin{center}
-		\fbox{\includegraphics[scale=0.7]{use_cases}}
-	      \end{center}
-	\caption{\label{val}Diagramme de classes}
-	\end{figure}
-
-\newpage
-\section{Schéma synthétique de l'application}
-	\begin{figure}[hp]
-	      \begin{center}
-		\fbox{\includegraphics[width=18cm]{AAR}}
-	      \end{center}
-	\caption{\label{val}Schéma synthétique avec JBoss}
-	\end{figure}
-
-\newpage
-\chapter{Répartition du travail}
-\section{Gestion du temps de travail}
-	\begin{figure}[hp]
-	      \begin{center}
-		\fbox{\includegraphics[width=18cm]{gantt}}
-	      \end{center}
-	\caption{\label{val}Temps de travail (Diagramme de Gantt)}
-	\end{figure}
-\section{Travail de chacun}
-
-\chapter{Guide d'utilisation}
+% 	\begin{figure}[here]
+% 	      \begin{center}
+% 		\includegraphics[scale=0.8]{use_cases}
+% 	      \end{center}
+% 	\caption{\label{val}Diagramme de classes}
+% 	\end{figure}
+	
+% \section{Schéma synthétique de l'application}
+% // png schéma
+% 
+% 
+% \chapter{Répartition du travail}
+% \section{Gestion du temps de travail}
+% 	\begin{figure}[here]
+% 	      \begin{center}
+% 		\includegraphics[width=18cm]{gantt}
+% 	      \end{center}
+% 	\caption{\label{val}Temps de travail du projet(Diagramme de Gantt)}
+% 	\end{figure}
+% \section{Travail de chacun}
+% 
+% \chapter{Guide d'utilisation}
 
 
 \end{document}
