@@ -13,8 +13,6 @@ public interface SoccerTournamentFacade {
 	 */
 	public void initDB();
 
-	public void initDBBouchon();
-
 	public boolean creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
 			String[] prenomJoueurs, int[] numeroJoueurs);

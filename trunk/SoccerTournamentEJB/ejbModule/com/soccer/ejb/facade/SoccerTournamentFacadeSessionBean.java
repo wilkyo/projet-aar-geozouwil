@@ -18,15 +18,12 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import com.soccer.SoccerTournamentBouchon;
 import com.soccer.ejb.admin.AdministrateurLocal;
 import com.soccer.ejb.representative.RepresentantLocal;
 import com.soccer.ejb.user.UtilisateurLocal;
 import com.soccer.model.Arbitre;
 import com.soccer.model.Equipe;
 import com.soccer.model.Joueur;
-import com.soccer.model.Rencontre;
-import com.soccer.model.Tournoi;
 import com.soccer.valueobjects.VOEquipe;
 import com.soccer.valueobjects.VOJoueur;
 import com.soccer.valueobjects.VORencontre;
@@ -43,7 +40,6 @@ public class SoccerTournamentFacadeSessionBean implements
 		SoccerTournamentFacadeRemote, SoccerTournamentFacadeLocal {
 
 	private boolean dbInitialized = false;
-	private boolean dbInitialized2 = false;
 	private Semaphore mutex = new Semaphore(1);
 
 	@PersistenceContext(unitName = "soccerTournament")
@@ -94,31 +90,6 @@ public class SoccerTournamentFacadeSessionBean implements
 							.println("Erreur d'entrée/sortie Lors de l'appel à parse()");
 				}
 				dbInitialized = true;
-			}
-			mutex.release();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		initDBBouchon();
-	}
-
-	public void initDBBouchon() {
-		try {
-			mutex.acquire();
-			if (dbInitialized && !dbInitialized2) {
-				List<Tournoi> tournois = SoccerTournamentBouchon.creerTouroi(
-						(List<Arbitre>) em.createQuery("FROM Arbitre a")
-								.getResultList(), (List<Equipe>) em
-								.createQuery("FROM Equipe e").getResultList());
-				for (Tournoi tournoi : tournois) {
-					for (Rencontre r : tournoi.getRencontres()) {
-						em.persist(r);
-					}
-					em.persist(tournoi);
-					// System.out.println(tournoi.toXML());
-				}
-
-				dbInitialized2 = true;
 			}
 			mutex.release();
 		} catch (InterruptedException e) {
