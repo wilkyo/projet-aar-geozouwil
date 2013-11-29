@@ -39,13 +39,17 @@
 
 			String nomHotes = rencontre.getHotes().getNom();
 			String nomVisiteurs = rencontre.getVisiteurs().getNom();
-			int nbButsHotes = rencontre.getButsHotes().size();
-			int nbButsVisiteurs = rencontre.getButsVisiteurs().size();
+			int nbButsHotes = 0;
+			int nbButsVisiteurs = 0;
+			int nbButsHotesTAB = 0;
+			int nbButsVisiteursTAB = 0;
 
 			if (debut != null) {
 				dateDebut = Controleur.formatDate(debut);
 				heureDebut = Controleur.formatHour(debut);
+				
 			}
+			
 			if (fin != null) {
 				dateFin = Controleur.formatDate(fin);
 				heureFin = Controleur.formatHour(fin);
@@ -60,6 +64,20 @@
 				}
 			}
 
+			if (debut != null) {
+				encours = debut.before(Calendar.getInstance());
+			}
+			
+			if(encours) {
+				nbButsHotes = Controleur.scoreHorsTAB(debut, rencontre.getButsHotes());
+				nbButsVisiteurs = Controleur.scoreHorsTAB(debut, rencontre.getButsVisiteurs());
+			}
+		
+			if(tab) {
+				nbButsHotesTAB = Controleur.scoreTAB(debut, rencontre.getButsHotes());
+				nbButsVisiteursTAB = Controleur.scoreTAB(debut, rencontre.getButsVisiteurs());
+			}
+			
 			Arbitre arbitre = rencontre.getArbitre();
 			String nom = "", prenom = "";
 			if (arbitre != null) {
@@ -67,9 +85,7 @@
 				prenom = rencontre.getArbitre().getPrenom();
 			}
 
-			if (debut != null) {
-				encours = debut.before(Calendar.getInstance());
-			}
+			
 		%>
 		
 <!--  Début entete  -->
@@ -83,7 +99,7 @@
 					+ nbButsVisiteurs : ""%>
 					</h3></li>
 				<li><h3><%=prolongation ? "Prolongation" : ""%></h3></li>
-				<li><h3><%=tab ? "Tirs aux buts" : ""%></h3></li>
+				<li><h3><%=tab ? "Tirs aux buts (" + nbButsHotesTAB + " - " + nbButsVisiteursTAB + ")" : ""%></h3></li>
 			</ol>
 		</div>
 		
@@ -181,29 +197,23 @@
 						<!-- si le match se termine avec prolongation -->
 						<c:if test="<%=fin != null && prolongation%>">
 							<li>90 ' <img id="imSifflet" width="25" height="25"
-								src="images/sifflet.png" /> Les deux équipes ont besoin d'une prolongation pour se départager.							donc le début de la prolongation.
+								src="images/sifflet.png" /> Les deux équipes ont besoin d'une prolongation pour se départager.
 							</li>
 							
 						<!-- on affiche tous les buts marqués pendant la prolongation -->
 						<c:forEach
-							items="<%=Controleur.getButsApresProlongation(rencontre
+							items="<%=Controleur.getButsPendantProlongation(rencontre
 								.getDebut(), Controleur.trierButs(
 								rencontre.getButsHotes(),
 								rencontre.getButsVisiteurs()))%>"
-							var="butsApresP">
-							<jsp:useBean id="butsApresP" class="com.soccer.valueobjects.VOBut"
+							var="butsPendantP">
+							<jsp:useBean id="butsPendantP" class="com.soccer.valueobjects.VOBut"
 								scope="page" />
-							<li> <c:out value="<%=Controleur.getIntervalleDate(debut,butsApresP.getHeure())%>" /> ' 
+							<li> <c:out value="<%=Controleur.getIntervalleDate(debut,butsPendantP.getHeure())%>" /> ' 
 								 <img id="imBallon" width="25" height="25" src="images/ballon.png" />
-								${butsApresP.auteur.prenom} ${butsApresP.auteur.nom} inscrit un
-								but pour ${butsApresP.auteur.nomEquipe}.
+								${butsPendantP.auteur.prenom} ${butsPendantP.auteur.nom} marque pour ${butsPendantP.auteur.nomEquipe}.
 							</li>
-							<li> <%=rencontre.getButsHotes().size() > rencontre.getButsVisiteurs().size() ? 
-									"L'équipe de " + nomHotes + " remporte la rencontre." :
-									"L'équipe de " + nomVisiteurs + " remporte la rencontre."%>
-							</li>
-						</c:forEach>
-						
+						</c:forEach>						
 						</c:if>
 						
 						<!-- si le match arrive aux TAB -->
@@ -212,6 +222,26 @@
 								src="images/sifflet.png" /> Les deux équipes étant encore à
 								égalité à l'issu de la prolongation, le match se terminera par des tirs aux buts.
 							</li>
+							
+						<!-- on affiche les TAB marqués -->
+						<c:forEach
+							items="<%=Controleur.getTAB(debut, Controleur.trierButs(rencontre.getButsHotes(),
+								rencontre.getButsVisiteurs()))%>"
+							var="butsTAB">
+							<jsp:useBean id="butsTAB" class="com.soccer.valueobjects.VOBut"
+								scope="page" />
+							<li> <img id="imBallon" width="25" height="25" src="images/ballon.png" />
+								${butsTAB.auteur.prenom} ${butsTAB.auteur.nom} marque son pénalty pour ${butsTAB.auteur.nomEquipe}.
+							</li>
+						</c:forEach>
+						</c:if>
+						
+						<!-- affichage vainqueur -->
+						<c:if test="<%=fin != null%>">						
+						<li> <%=rencontre.getButsHotes().size() > rencontre.getButsVisiteurs().size() ? 
+									"<b>L'équipe de " + nomHotes + " remporte la rencontre.</b>" :
+									"<b>L'équipe de " + nomVisiteurs + " remporte la rencontre.</b>"%>
+						</li>
 						</c:if>
 					</ol>
 				</c:if>

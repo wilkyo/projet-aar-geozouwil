@@ -499,23 +499,54 @@ public class Controleur extends HttpServlet {
 	}
 
 	/**
-	 * Returns the goals of a match after the prolongation.
+	 * Returns the goals of a match during the prolongation.
 	 * 
 	 * @param debut
 	 *            The date of the beginning of the match.
 	 * @param buts
 	 *            List of value objects of goals.
-	 * @return List of value objects of goals after the prolongation.
+	 * @return List of value objects of goals during the prolongation.
 	 */
-	public static List<VOBut> getButsApresProlongation(Calendar debut,
+	public static List<VOBut> getButsPendantProlongation(Calendar debut,
 			List<VOBut> buts) {
 		List<VOBut> lesbuts = new ArrayList<VOBut>();
 		for (int i = 0; i < buts.size(); i++) {
-			if (getIntervalleDate(debut, buts.get(i).getHeure()) > 90) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) > 90
+					&& getIntervalleDate(debut, buts.get(i).getHeure()) <= 120) {
 				lesbuts.add(buts.get(i));
 			}
 		}
 		return lesbuts;
+	}
+
+	public static List<VOBut> getTAB(Calendar debut, List<VOBut> buts) {
+		List<VOBut> lesbuts = new ArrayList<VOBut>();
+		for (int i = 0; i < buts.size(); i++) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) > 120) {
+				lesbuts.add(buts.get(i));
+			}
+		}
+		return lesbuts;
+	}
+
+	public static int scoreHorsTAB(Calendar debut, List<VOBut> buts) {
+		int cpt = 0;
+		for (int i = 0; i < buts.size(); i++) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) <= 120) {
+				cpt++;
+			}
+		}
+		return cpt;
+	}
+
+	public static int scoreTAB(Calendar debut, List<VOBut> buts) {
+		int cpt = 0;
+		for (int i = 0; i < buts.size(); i++) {
+			if (getIntervalleDate(debut, buts.get(i).getHeure()) > 120) {
+				cpt++;
+			}
+		}
+		return cpt;
 	}
 
 	/**
