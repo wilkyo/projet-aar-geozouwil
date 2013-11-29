@@ -31,8 +31,11 @@ public class Controleur extends HttpServlet {
 	public static final String SCRIPTS_PATH = "scripts/";
 	public static final String PAGES_PATH = "pages/";
 	public static final String INCLUDES_PATH = "includes/";
-
 	public static final String SERVLET_PATH = "index?action=";
+
+	/**
+	 * Actions
+	 */
 	public static final String ACTION_REDIRECT = "redirect";
 	public static final String ACTION_HOME = "home";
 	public static final String ACTION_TOURNAMENT = "tournament";
@@ -51,6 +54,9 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_AJAX = "ajax";
 	public static final String ACTION_SWITCH_CSS = "switchcss";
 
+	/**
+	 * Pages.
+	 */
 	public static final String JSP_HOME = "user/index.jsp";
 	public static final String JSP_TOURNAMENT = "user/tournament.jsp";
 	public static final String JSP_TEAM = "user/team.jsp";
@@ -63,9 +69,21 @@ public class Controleur extends HttpServlet {
 	public static final String JSP_404 = "404.jsp";
 	public static final String JSP_REDIRECT = "redirect.jsp";
 
+	/**
+	 * Variable name of to store the logged admin.
+	 */
 	public static final String SESSION_ADMIN = "admin";
+	/**
+	 * Id of the current CSS.
+	 */
 	private static int cssId = 0;
+	/**
+	 * Available styles.
+	 */
 	private static final String[] CSS_BASE_STYLES = { "nice", "gay" };
+	/**
+	 * Styles-sheets.
+	 */
 	public static final String CSS_BASE = "base.css";
 	public static final String CSS_MENU = "menu.css";
 	public static final String CSS_FORM = "form.css";
@@ -121,18 +139,6 @@ public class Controleur extends HttpServlet {
 		// si l'action est de voir une rencontre
 		else if (action.equals(ACTION_MATCH)) {
 			String idRencontre = request.getParameter("id");
-			//
-			// facade.setDebutRencontre(68, new GregorianCalendar(2013, 10, 17,
-			// 16, 00, 00)); facade.ajouterBut(68, 2, new
-			// GregorianCalendar(2013, 10, 17, 16, 10, 00));
-			// facade.ajouterBut(68, 8, new GregorianCalendar(2013, 10, 17, 16,
-			// 40, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
-			// 10, 17, 17, 10, 00)); facade.validerRencontre(68, new
-			// GregorianCalendar(2013, 10, 17, 17, 30, 00));
-			// facade.ajouterBut(68, 2, new GregorianCalendar(2013, 10, 17, 17,
-			// 35, 00)); facade.ajouterBut(68, 15, new GregorianCalendar(2013,
-			// 10, 17, 17, 55, 00));
-			//
 			if (idRencontre != null) {
 				request.setAttribute("rencontre",
 						facade.getRencontre(Integer.parseInt(idRencontre)));
@@ -262,10 +268,7 @@ public class Controleur extends HttpServlet {
 						if (!arbitre.equals("0"))
 							facade.affecterArbitre(Integer.parseInt(arbitre),
 									idRencontre);
-						redirect = action(ACTION_TOURNAMENT
-								+ "&id="
-								+ facade.getRencontre(idRencontre)
-										.getNomTournoi());
+						redirect = action(ACTION_ADMIN_MATCH + "&id=" + id);
 					} else {
 						request.setAttribute("arbitres", facade.getArbitres());
 						request.setAttribute("rencontre",
@@ -282,20 +285,39 @@ public class Controleur extends HttpServlet {
 					String buteur = request.getParameter("butJoueur");
 					String butHeure = request.getParameter("butHeure");
 					if (buteur != null && butHeure != null) {
-						if (!buteur.equals("--") && !butHeure.equals("")) {
-							int[] hBut = toIntegerArray(butHeure.split(":"));
-							facade.ajouterBut(
-									idRencontre,
-									Integer.parseInt(buteur),
-									new GregorianCalendar(rencontre.getDebut()
-											.get(Calendar.YEAR), rencontre
-											.getDebut().get(Calendar.MONTH),
-											rencontre.getDebut().get(
-													Calendar.DAY_OF_MONTH),
-											hBut[0], hBut[1], 0));
+						int hBut = toIntegerArray(new String[] { butHeure })[0];
+						List<VOBut> buts = Controleur.trierButs(
+								rencontre.getButsHotes(),
+								rencontre.getButsVisiteurs());
+						boolean egaliteAvantProl = egalite(rencontre.getHotes()
+								.getNom(), Controleur.getButsAvantProlongation(
+								rencontre.getDebut(), buts));
+						boolean egaliteAvantTAB = egalite(rencontre.getHotes()
+								.getNom(),
+								Controleur.getButsPendantProlongation(
+										rencontre.getDebut(), buts));
+						Calendar calendarBut = new GregorianCalendar(rencontre
+								.getDebut().get(Calendar.YEAR), rencontre
+								.getDebut().get(Calendar.MONTH), rencontre
+								.getDebut().get(Calendar.DAY_OF_MONTH),
+								rencontre.getDebut().get(Calendar.HOUR_OF_DAY),
+								rencontre.getDebut().get(Calendar.MINUTE)
+										+ hBut, 0);
+						int intervalle = Controleur.getIntervalleDate(
+								rencontre.getDebut(), calendarBut);
+						System.out.println(hBut);
+						if (!buteur.equals("--")
+								&& hBut > 0
+								&& hBut <= 135
+								&& (!(intervalle > 90 && intervalle <= 120) || egaliteAvantProl)
+								&& (!(intervalle > 120) || egaliteAvantTAB)
+								&& (buts.size() == 0 || buts
+										.get(buts.size() - 1).getHeure()
+										.compareTo(calendarBut) < 0)) {
+							facade.ajouterBut(idRencontre,
+									Integer.parseInt(buteur), calendarBut);
 						}
-						redirect = action(ACTION_TOURNAMENT + "&id="
-								+ rencontre.getNomTournoi());
+						redirect = action(ACTION_ADMIN_MATCH + "&id=" + id);
 					} else {
 						request.setAttribute("arbitres", facade.getArbitres());
 						request.setAttribute("rencontre", rencontre);
@@ -308,9 +330,15 @@ public class Controleur extends HttpServlet {
 				if (id != null) {
 					int idRencontre = Integer.parseInt(id);
 					VORencontre rencontre = facade.getRencontre(idRencontre);
-					String prolongations = request
-							.getParameter("finProlongation");
-					String tirAuxButs = request.getParameter("finTaB");
+					VOBut lastBut = Controleur.trierButs(
+							rencontre.getButsHotes(),
+							rencontre.getButsVisiteurs()).get(
+							rencontre.getButsHotes().size()
+									+ rencontre.getButsVisiteurs().size() - 1);
+					int intervalle = Controleur.getIntervalleDate(
+							rencontre.getDebut(), lastBut.getHeure());
+					boolean prolongations = intervalle > 90;
+					boolean tirAuxButs = intervalle > 120;
 					facade.validerRencontre(
 							idRencontre,
 							new GregorianCalendar(
@@ -322,8 +350,8 @@ public class Controleur extends HttpServlet {
 											Calendar.HOUR_OF_DAY),
 									rencontre.getDebut().get(Calendar.MINUTE)
 											+ Rencontre.TEMPS_RENCONTRE
-											+ (prolongations != null ? Rencontre.TEMPS_PROLONGATIONS
-													+ (tirAuxButs != null ? Rencontre.TEMPS_TIRS_AUX_BUTS
+											+ (prolongations ? Rencontre.TEMPS_PROLONGATIONS
+													+ (tirAuxButs ? Rencontre.TEMPS_TIRS_AUX_BUTS
 															: 0)
 													: 0), 0));
 					redirect = action(ACTION_TOURNAMENT + "&id="
@@ -457,6 +485,24 @@ public class Controleur extends HttpServlet {
 	}
 
 	/**
+	 * Checks if there was equality between the two teams.
+	 * 
+	 * @param nomHotes
+	 *            Name of the Host team.
+	 * @param buts
+	 *            Goals.
+	 * @return The check result.
+	 */
+	private boolean egalite(String nomHotes, List<VOBut> buts) {
+		int scoreHotes = 0;
+		for (VOBut b : buts) {
+			if (b.getAuteur().getNomEquipe().equals(nomHotes))
+				scoreHotes++;
+		}
+		return buts.size() == scoreHotes * 2;
+	}
+
+	/**
 	 * Sort the goals by date of the goal.
 	 * 
 	 * @param butsHotes
@@ -499,13 +545,13 @@ public class Controleur extends HttpServlet {
 	}
 
 	/**
-	 * Returns the goals of a match during the prolongation.
+	 * Returns the goals of a match during the extra time.
 	 * 
 	 * @param debut
 	 *            The date of the beginning of the match.
 	 * @param buts
 	 *            List of value objects of goals.
-	 * @return List of value objects of goals during the prolongation.
+	 * @return List of value objects of goals during the extra time.
 	 */
 	public static List<VOBut> getButsPendantProlongation(Calendar debut,
 			List<VOBut> buts) {
@@ -519,6 +565,15 @@ public class Controleur extends HttpServlet {
 		return lesbuts;
 	}
 
+	/**
+	 * Returns the goals of a match during the shoot on goal.
+	 * 
+	 * @param debut
+	 *            The date of the beginning of the match.
+	 * @param buts
+	 *            List of value objects of goals.
+	 * @return List of value objects of goals after the extra time.
+	 */
 	public static List<VOBut> getTAB(Calendar debut, List<VOBut> buts) {
 		List<VOBut> lesbuts = new ArrayList<VOBut>();
 		for (int i = 0; i < buts.size(); i++) {
@@ -529,6 +584,15 @@ public class Controleur extends HttpServlet {
 		return lesbuts;
 	}
 
+	/**
+	 * Returns the score before the shoot on goal.
+	 * 
+	 * @param debut
+	 *            The date of the beginning of the match.
+	 * @param buts
+	 *            List of value objects of goals.
+	 * @return Score before the shoot on goal.
+	 */
 	public static int scoreHorsTAB(Calendar debut, List<VOBut> buts) {
 		int cpt = 0;
 		for (int i = 0; i < buts.size(); i++) {
@@ -539,6 +603,15 @@ public class Controleur extends HttpServlet {
 		return cpt;
 	}
 
+	/**
+	 * Returns the score during the shoot on goal.
+	 * 
+	 * @param debut
+	 *            The date of the beginning of the match.
+	 * @param buts
+	 *            List of value objects of goals.
+	 * @return Score during the shoot on goal.
+	 */
 	public static int scoreTAB(Calendar debut, List<VOBut> buts) {
 		int cpt = 0;
 		for (int i = 0; i < buts.size(); i++) {

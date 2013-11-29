@@ -20,9 +20,11 @@
 				// <%=request.getAttribute(\"tournois\")% > == ${tournois}
 			%>
 			<div id="tournois">
+				<ul>
 				<c:forEach items="${tournois}" var="tournoi">
-					<ul><li><a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a></li></ul>
+					<li><a href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out value="${tournoi.nom}" /></a></li>
 				</c:forEach>
+				</ul>
 			</div>
 			<!--<c:forEach items="${tournois}" var="tournoi">
 				<custom:tournoi-diagramme tournoi="${tournoi}" />

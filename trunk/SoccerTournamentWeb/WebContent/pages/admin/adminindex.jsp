@@ -18,11 +18,13 @@
 	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
 		<div id="tournois">
+			<ul>
 			<c:forEach items="${tournois}" var="tournoi">
-				<ul><li><a
+				<li><a
 					href="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_TOURNAMENT%>&id=${tournoi.nom}"><c:out
-						value="${tournoi.nom}" /></a></li></ul>
+						value="${tournoi.nom}" /></a></li>
 			</c:forEach>
+			</ul>
 		</div>
 		<c:set var="nbEquipes" value="${equipes.size()}" />
 		<jsp:useBean id="nbEquipes" type="java.lang.Integer" scope="page" />

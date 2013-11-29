@@ -26,6 +26,7 @@ function majIHM() {
 			// exploitation des données de la réponse
 			mdiv = document.getElementById("butJoueur");
 			mdiv.innerHTML = requete.responseText;
+			mdiv.style.display = 'block';
 		}
 	}
 }

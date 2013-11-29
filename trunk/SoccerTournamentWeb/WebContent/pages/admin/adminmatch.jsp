@@ -71,20 +71,20 @@
 									|| rencontre.getButsHotes().size() == rencontre
 											.getButsVisiteurs().size();
 					%>
-					<label for="debutD">Date du match</label> <input type="text"
-						class="date" id="debutD" name="debutD" value="<%=dDebut%>"
-						required="required" /><br /> <label for="debutH">Heure
-						du match</label> <input type="text" class="date" id="debutH" name="debutH"
-						value="<%=hDebut%>" required="required" /><br /> <label
-						for="arbitre">Arbitre</label> <select id="arbitre"
-						class="liste-arbitre" name="arbitre">
+					<label for="debutD">Date du match</label>
+					<input type="text" class="date" id="debutD" name="debutD" value="<%=dDebut%>" required="required" /><br />
+					<label for="debutH">Heure du match</label>
+					<input type="text" class="date" id="debutH" name="debutH" value="<%=hDebut%>" required="required" /><br />
+					<label for="arbitre">Arbitre</label>
+					<select id="arbitre" class="liste-arbitre" name="arbitre">
 						<option value="0">--</option>
-						<c:forEach items="${arbitres}" var="arbitre">
-							<option value="${arbitre.id}"
-								<c:if test="${arbitre.id == rencontre.arbitre.id}"> selected="selected"</c:if>>${arbitre.prenom}
-								${arbitre.nom}</option>
-						</c:forEach>
-					</select><br /> <input type="submit" value="Sauvegarder" />
+					<c:forEach items="${arbitres}" var="arbitre">
+						<option value="${arbitre.id}"
+							<c:if test="${arbitre.id == rencontre.arbitre.id}"> selected="selected"</c:if>>${arbitre.prenom}
+							${arbitre.nom}</option>
+					</c:forEach>
+					</select><br />
+					<input type="submit" value="Sauvegarder" />
 				</fieldset>
 			</form>
 			<c:if test="<%=encours%>">
@@ -110,16 +110,18 @@
 							</c:forEach>
 						</div>
 						<div class="clear"></div>
-						<label for="butEquipe">Nouveau but</label><br /> <select
-							id="butEquipe" class="nouveau-but" onChange="getJoueurs();">
+						<label for="butEquipe">Nouveau but</label><br />
+						<select id="butEquipe" class="nouveau-but" onChange="getJoueurs();">
 							<option value="--">--</option>
 							<option value="<%=rencontre.getHotes().getNom()%>"><c:out
 									value="<%=rencontre.getHotes().getNom()%>" /></option>
 							<option value="<%=rencontre.getVisiteurs().getNom()%>"><c:out
 									value="<%=rencontre.getVisiteurs().getNom()%>" /></option>
-						</select> <select id="butJoueur" class="nouveau-but" name="butJoueur">
-						</select><br /> <label for="butHeure">Heure du but</label> <input
-							type="text" class="heure" id="butHeure" name="butHeure" /><br />
+						</select>
+						<select id="butJoueur" class="nouveau-but" name="butJoueur" style="display: none;">
+						</select><br />
+						<label for="butHeure">Heure du but</label>
+						<input type="text" class="heure" id="butHeure" name="butHeure" required="required" /><br />
 						<input type="submit" value="Ajouter But" />
 					</fieldset>
 				</form>
@@ -127,14 +129,10 @@
 			<c:if test="<%=!nonValidable%>">
 				<form method="post"
 					action="<%=Controleur.SERVLET_PATH
-							+ Controleur.ACTION_VALIDATE_MATCH%>&id=<%=request.getParameter("id")%>">
+							+ Controleur.ACTION_VALIDATE_MATCH%>&id=<%=request.getParameter("id")%>"
+							onsubmit="return confirm('Voulez vous vraiment valider la rencontre ?\nCeci empêchera toute modification.');">
 					<fieldset>
 						<legend>Valider Rencontre</legend>
-						<label for="finProlongation">Prolongations ?</label> <input
-							type="checkbox" class="date" id="finProlongation"
-							name="finProlongation" onclick="checkProlong();" /><br /> <label
-							for="finTaB">Tir aux Buts ?</label> <input type="checkbox"
-							class="date" id="finTaB" name="finTaB" onclick="checkProlong();" /><br />
 						<input type="submit" value="Valider" />
 					</fieldset>
 				</form>
@@ -150,15 +148,9 @@
 			$.datepicker.setDefaults($.datepicker.regional[""]);
 			$("#debutD").datepicker($.datepicker.regional["fr"]);
 			$("#debutH").timepicker();
-			$("#butHeure").timepicker();
-			$("#fin").timepicker();
 		});
 		if (document.getElementById("debutD").value != '')
 			document.getElementById("buts").style.display = 'block';
-		function checkProlong() {
-			if (!document.getElementById('finProlongation').checked)
-				document.getElementById('finTaB').checked = false;
-		}
 	</script>
 </body>
 </html>
