@@ -188,10 +188,6 @@
 								src="images/sifflet.png" /> L'arbitre siffle la fin de la
 								rencontre.
 							</li>
-							<li> <%=rencontre.getButsHotes().size() > rencontre.getButsVisiteurs().size() ? 
-									"L'équipe de " + nomHotes + " remporte la rencontre." :
-									"L'équipe de " + nomVisiteurs + " remporte la rencontre."%>
-							</li>
 						</c:if>
 						
 						<!-- si le match se termine avec prolongation -->
