@@ -10,19 +10,19 @@
 	<ul>
 		<li><a
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_HOME%>"><img
-				id="imLog" alt="Accueil" title="Accueil" src="images/home.png"
+				id="imHome" alt="Accueil" title="Accueil" src="images/home.png"
 				<%=action.equals(Controleur.ACTION_HOME) ? " class=\"active\""
 					: ""%>></a></li>
 		<li><a
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_TEAM%>"><img
-				id="imPass" alt="Équipes" title="Équipes" src="images/equipes.png"
+				id="imTeam" alt="Équipes" title="Équipes" src="images/equipes.png"
 				<%=action.equals(Controleur.ACTION_TEAM) ? " class=\"active\""
 					: ""%>></a></li>
 		<c:if test="<%=logged%>">
 			<li><a
 				href="<%=Controleur.SERVLET_PATH
 						+ Controleur.ACTION_ADMIN_HOME%>"><img
-					id="imLog" alt="Accueil Admin" title="Accueil Admin"
+					id="imAHome" alt="Accueil Admin" title="Accueil Admin"
 					src="images/homeAdmin.png"
 					<%=action.equals(Controleur.ACTION_ADMIN_HOME) ? " class=\"active\""
 						: ""%>></a></li>
@@ -36,6 +36,11 @@
 					<%=action.equals(Controleur.ACTION_NEW_TEAM) ? " class=\"active\""
 						: ""%>></a></li>
 		</c:if>
+		<li><a
+			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_FAQ%>"><img
+				id="imFAQ" alt="FAQ" title="FAQ" src="images/team.png"
+				<%=action.equals(Controleur.ACTION_FAQ) ? " class=\"active\""
+					: ""%>></a></li>
 		<li><a id="item_login"
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_LOGIN%>"><img
 				id="imLog" alt="Se connecter"

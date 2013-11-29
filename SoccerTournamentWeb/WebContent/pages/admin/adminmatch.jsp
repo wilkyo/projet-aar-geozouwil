@@ -87,7 +87,7 @@
 					<input type="submit" value="Sauvegarder" />
 				</fieldset>
 			</form>
-			<c:if test="<%=encours%>">
+			<c:if test="<%=encours && rencontre.getArbitre() != null%>">
 				<form id="buts" method="post"
 					action="<%=Controleur.SERVLET_PATH
 							+ Controleur.ACTION_NEW_BUT%>&id=<%=request.getParameter("id")%>">
@@ -149,8 +149,6 @@
 			$("#debutD").datepicker($.datepicker.regional["fr"]);
 			$("#debutH").timepicker();
 		});
-		if (document.getElementById("debutD").value != '')
-			document.getElementById("buts").style.display = 'block';
 	</script>
 </body>
 </html>

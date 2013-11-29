@@ -87,6 +87,7 @@ public class Controleur extends HttpServlet {
 	public static final String CSS_BASE = "base.css";
 	public static final String CSS_MENU = "menu.css";
 	public static final String CSS_FORM = "form.css";
+	public static final String CSS_FAQ = "faq.css";
 
 	@EJB
 	private SoccerTournamentFacadeLocal facade;

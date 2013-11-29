@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+/* Début FAQ */
+#body #questions_list {
+	
+}
+
+#body #questions_list a {
+	
+}
+
+#body .faq_item {
+	padding: 5px 10px;
+	background: #aaaaaa;
+	width: 50%;
+	margin: 20px 50px;
+}
+
+#body .faq_item .faq_question {
+	font-weight: bold;
+}
+/* Fin FAQ */
