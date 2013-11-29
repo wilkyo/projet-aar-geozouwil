@@ -57,4 +57,66 @@
 		<Joueur nom="Briand" prenom="Jimmy" numero="19" />
 		<Joueur nom="Gonalons" prenom="Maxime" numero="21" />
 	</Equipe>
+	<Equipe nom="Pure Info" nomRepresentant="François"
+		prenomRepresentant="Willy">
+		<Joueur nom="Benkabbou" prenom="Mohammed Hamza" numero="1" />
+		<Joueur nom="Morosi" prenom="Jérémy" numero="3" />
+		<Joueur nom="François" prenom="Willy" numero="5" />
+		<Joueur nom="Chauvin" prenom="Rémi" numero="7" />
+		<Joueur nom="Robillard" prenom="Simon" numero="9" />
+		<Joueur nom="Vogel" prenom="Jimmy" numero="10" />
+		<Joueur nom="Dexmier" prenom="Yoann" numero="14" />
+		<Joueur nom="Bourgeois" prenom="Kévin" numero="15" />
+		<Joueur nom="Poirrier" prenom="Jérôme" numero="16" />
+		<Joueur nom="Nouira" prenom="Nicolas" numero="17" />
+		<Joueur nom="Peres" prenom="Jean-Christophe" numero="18" />
+	</Equipe>
+	<Equipe nom="From IUT" nomRepresentant="Masson"
+		prenomRepresentant="Alexandre">
+		<Joueur nom="Masson" prenom="Alexandre" numero="1" />
+		<Joueur nom="Champigny" prenom="Florent" numero="2" />
+		<Joueur nom="De Jesus Ferreira" prenom="Kevin" numero="3" />
+		<Joueur nom="Mialon" prenom="Julien" numero="6" />
+		<Joueur nom="Perrin" prenom="Jean-Baptiste" numero="7" />
+		<Joueur nom="Leguy" prenom="Antoine" numero="9" />
+		<Joueur nom="Monedière" prenom="Tristan" numero="11" />
+		<Joueur nom="Boyer" prenom="Benoit" numero="13" />
+		<Joueur nom="Bordier" prenom="Christophe" numero="14" />
+		<Joueur nom="Fontorbe" prenom="Jordan" numero="17" />
+		<Joueur nom="Savoure" prenom="Benjamin" numero="18" />
+		<Joueur nom="Rousseau" prenom="Léo" numero="19" />
+		<Joueur nom="Besson" prenom="Tom" numero="22" />
+	</Equipe>
+	<Equipe nom="Teacher Power" nomRepresentant="Ed-dbali"
+		prenomRepresentant="Ali">
+		<Joueur nom="Exbrayat" prenom="Matthieu" numero="1" />
+		<Joueur nom="Moal" prenom="Frédéric" numero="2" />
+		<Joueur nom="Couvreur" prenom="Jean-Michel" numero="3" />
+		<Joueur nom="Boichut" prenom="Yohan" numero="6" />
+		<Joueur nom="Coullon" prenom="Hélène" numero="7" />
+		<Joueur nom="Dabrowski" prenom="Frédéric" numero="8" />
+		<Joueur nom="Robert" prenom="Sophie" numero="9" />
+		<Joueur nom="Ed-dbali" prenom="Ali" numero="12" />
+		<Joueur nom="Todinca" prenom="Ioan" numero="13" />
+		<Joueur nom="Djelloul" prenom="Khalil" numero="15" />
+		<Joueur nom="Liedloff" prenom="Mathieu" numero="17" />
+		<Joueur nom="Dao" prenom="Thi Bich Hanh" numero="19" />
+		<Joueur nom="Loulergue" prenom="Frédéric" numero="22" />
+	</Equipe>
+	<!---->
+	<Equipe nom="MIAGE's spirit" nomRepresentant="Cointepas"
+		prenomRepresentant="Antoine">
+		<Joueur nom="Cointepas" prenom="Cointepas" numero="1" />
+		<Joueur nom="Leloup" prenom="Nicolas" numero="2" />
+		<Joueur nom="Rousseau" prenom="Benjamin" numero="3" />
+		<Joueur nom="Crochet" prenom="Geoffrey" numero="5" />
+		<Joueur nom="" prenom="Ikbal" numero="12" />
+		<Joueur nom="Abas" prenom="Tarik" numero="13" />
+		<Joueur nom="Lambarraa" prenom="Rachid" numero="15" />
+		<Joueur nom="Blivet" prenom="Thibault" numero="17" />
+		<Joueur nom="Château" prenom="Julien" numero="17" />
+		<Joueur nom="San" prenom="Lucas" numero="18" />
+		<Joueur nom="Barruet" prenom="Corentin" numero="19" />
+	</Equipe>
+	<!---->
 </Equipes>
