@@ -30,5 +30,6 @@
 		</form>
 	</div>
 	<jsp:include page="../includes/footer.jsp" />
+	<script type="text/javascript">document.getElementById('login').focus();</script>
 </body>
 </html>
