@@ -78,7 +78,7 @@ Le schéma ci-dessous représente le diagramme de classes de l'EJB Utilisateur c
 	\end{figure}
 \\
 
-L'EJB Utilisateur se compose de deux interfaces (\textit{Utilisateur} et \textit{UtilisateurLocal}) et d'une classe d'implémentation (\textit{UtilisateurSessionBean}). L'interface \textit{Utilisateur} définit les profils des méthodes implémentées par la classe \textit{UtilisateurSessionBean}. L'interface \textit{UtilisateurLocal} correspond à l'interface locale de l'EJB utilisée par la facade de notre application. L'ensemble des méthodes définies dans cet EJB retourne un Value Objet ou une liste de Value Objects. En effet, l'utilisateur ne doit pas être en mesure de connaitre l'ensemble des attributs et méthodes des classes du modèle.
+L'EJB Utilisateur se compose de deux interfaces (\textit{Utilisateur} et \textit{UtilisateurLocal}) et d'une classe d'implémentation (\textit{UtilisateurSessionBean}). L'interface \textit{Utilisateur} définit les profils des méthodes implémentées par la classe \textit{UtilisateurSessionBean}. L'interface \textit{UtilisateurLocal} correspond à l'interface locale de l'EJB utilisée par la facade de notre application. L'ensemble des méthodes définies dans cet EJB retournent un Value Object ou une liste de Value Objects. En effet, l'utilisateur ne doit pas être en mesure de connaitre l'ensemble des attributs et méthodes des classes du modèle.
 
 \newpage
 Le schéma ci-dessous représente le diagramme de classes de l'EJB Administrateur créé.
@@ -154,13 +154,19 @@ blabla
 \newpage
 \chapter{Répartition du travail}
 \section{Gestion du temps de travail}
+
+Le diagramme de Gantt ci-dessous présente la répartition du travail tout au long du projet.
+\\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[width=18cm]{gantt}}
 	      \end{center}
 	\legend{\underline{Gestion du temps de travail}}
 	\end{figure}
-	
+\\
+
+La première semaine de travail fut consacrée à l'analyse UML et à l'élaboration des diagrammes de classes et des diagrammes de cas d'utilisation. Une fois cela fait, nous avons débuté l'implémentation du modèle de l'application à savoir les objets POJO, les EJB ainsi que les Value Objects. Le développpement du controleur et des vues utilisateurs et administrateurs a été réalisé ensuite jusqu'à la fin du projet. Le rapport, quant à lui, a été rédigé dans la dernière semaine de travail.
+
 \section{Répartition des tâches}
 
 \chapter{Guide d'utilisation}
