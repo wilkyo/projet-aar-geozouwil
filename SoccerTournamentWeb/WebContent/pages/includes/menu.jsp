@@ -38,7 +38,7 @@
 		</c:if>
 		<li><a
 			href="<%=Controleur.SERVLET_PATH + Controleur.ACTION_FAQ%>"><img
-				id="imFAQ" alt="FAQ" title="FAQ" src="images/team.png"
+				id="imFAQ" alt="FAQ" title="FAQ" src="images/faq.png" height="100px"
 				<%=action.equals(Controleur.ACTION_FAQ) ? " class=\"active\""
 					: ""%>></a></li>
 		<li><a id="item_login"

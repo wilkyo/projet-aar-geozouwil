@@ -18,41 +18,43 @@
 <title>FAQ</title>
 </head>
 <body>
-	<div id="header"></div>
+	<div id="header">?</div>
 	<jsp:include page="../includes/menu.jsp" />
 	<div id="body">
-		<ol id="questions_list">
-			<li><a href="#aim">À quoi sert ce site ?</a></li>
-			<li><a href="#connection">Comment se connecter à l'interface
-					admin ?</a></li>
-			<li><a href="#team">Peut-on voir les joueurs d'une équipe ?</a></li>
-			<li><a href="#tournament">Comment accéder à un tournoi ?</a></li>
-			<li><a href="#match">Comment voir les détails d'une
-					rencontre ?</a></li>
-			<li><a href="#endedmatch">À quoi reconnaît-on qu'une
-					rencontre est terminée ?</a></li>
-			<li>&nbsp;</li>
-			<li><a href="#newteam">Comment créer une équipe ?</a></li>
-			<li><a href="#errornewteam">Pourquoi mon équipe ne se crée
-					pas ?</a></li>
-			<li><a href="#moreplayers">Peut-on avoir plus de 11 joueurs
-					?</a></li>
-			<c:if test="<%=logged%>">
+		<div id="all_questions">
+			<ol id="questions_list">
+				<li><a href="#aim">À quoi sert ce site ?</a></li>
+				<li><a href="#connection">Comment se connecter à l'interface
+						admin ?</a></li>
+				<li><a href="#team">Peut-on voir les joueurs d'une équipe ?</a></li>
+				<li><a href="#tournament">Comment accéder à un tournoi ?</a></li>
+				<li><a href="#match">Comment voir les détails d'une
+						rencontre ?</a></li>
+				<li><a href="#endedmatch">À quoi reconnaît-on qu'une
+						rencontre est terminée ?</a></li>
 				<li>&nbsp;</li>
-				<li><a href="#createtournament">Comment créer un tournoi ?</a></li>
-				<li><a href="#errortournament">Je ne vois pas l'option
-						permettant de créer un tournoi</a></li>
-				<li><a href="#addreferee">Comment ajouter un arbitre ?</a></li>
-				<li><a href="#editmatch">Comment éditer une rencontre ?</a></li>
-				<li><a href="#addgoal">Comment ajouter un but ?</a></li>
-				<li><a href="#errorgoal">Pourquoi ne puis-je pas ajouter un
-						but ?</a></li>
-				<li><a href="#unvalidable">Pourquoi ne puis-je pas valider
-						la rencontre ?</a></li>
-			</c:if>
-		</ol>
-
+				<li><a href="#newteam">Comment créer une équipe ?</a></li>
+				<li><a href="#errornewteam">Pourquoi mon équipe ne se crée
+						pas ?</a></li>
+				<li><a href="#moreplayers">Peut-on avoir plus de 11 joueurs
+						?</a></li>
+				<c:if test="<%=logged%>">
+					<li>&nbsp;</li>
+					<li><a href="#createtournament">Comment créer un tournoi ?</a></li>
+					<li><a href="#errortournament">Je ne vois pas l'option
+							permettant de créer un tournoi</a></li>
+					<li><a href="#addreferee">Comment ajouter un arbitre ?</a></li>
+					<li><a href="#editmatch">Comment éditer une rencontre ?</a></li>
+					<li><a href="#addgoal">Comment ajouter un but ?</a></li>
+					<li><a href="#errorgoal">Pourquoi ne puis-je pas ajouter un
+							but ?</a></li>
+					<li><a href="#unvalidable">Pourquoi ne puis-je pas valider
+							la rencontre ?</a></li>
+				</c:if>
+			</ol>
+		</div>
 		<!-- Utilisateur -->
+
 		<div class="faq_item" id="aim">
 			<div class="faq_question">À quoi sert ce site ?</div>
 			C'est un site de gestion de tournoi de football. On peut y consulter
@@ -169,6 +171,7 @@
 			</div>
 		</c:if>
 	</div>
+
 	<jsp:include page="../includes/footer.jsp" />
 </body>
 </html>
