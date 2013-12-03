@@ -17,16 +17,17 @@ body {
 
 /* BEGIN links */
 a {
-	color: #a0a;
+	color: #FDFDFD;
 	text-decoration: none;
 }
 
 a:visited {
-	color: #a0a;
+	color: #A80;
 }
 
 a:hover {
 	color: #d04;
+	text-decoration: underline;
 }
 
 a:active {
