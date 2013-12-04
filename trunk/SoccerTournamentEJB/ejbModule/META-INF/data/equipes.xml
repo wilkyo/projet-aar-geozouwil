@@ -106,11 +106,11 @@
 	<!---->
 	<Equipe nom="MIAGE's spirit" nomRepresentant="Cointepas"
 		prenomRepresentant="Antoine">
-		<Joueur nom="Cointepas" prenom="Cointepas" numero="1" />
+		<Joueur nom="Cointepas" prenom="Antoine" numero="1" />
 		<Joueur nom="Leloup" prenom="Nicolas" numero="2" />
 		<Joueur nom="Rousseau" prenom="Benjamin" numero="3" />
 		<Joueur nom="Crochet" prenom="Geoffrey" numero="5" />
-		<Joueur nom="" prenom="Ikbal" numero="12" />
+		<Joueur nom="Fikri" prenom="Ikbal" numero="12" />
 		<Joueur nom="Abas" prenom="Tarik" numero="13" />
 		<Joueur nom="Lambarraa" prenom="Rachid" numero="15" />
 		<Joueur nom="Blivet" prenom="Thibault" numero="17" />
