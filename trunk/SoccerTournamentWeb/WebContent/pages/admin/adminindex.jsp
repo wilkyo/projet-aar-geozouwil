@@ -41,7 +41,7 @@
 					<label for="nom">Nom du Tournoi</label> 
 					<input type="text" class="nom" id="nom"
 						name="nom" placeholder="Nom du Tournoi" required="required" /><br />
-					<input  type="submit" value="Créer Tournoi" />
+					<input  type="submit" value="Créer tournoi" />
 				</fieldset>
 			</form>
 		</c:if>
@@ -49,6 +49,7 @@
 			Le tournoi ne peut pas être créé car le nombre d'équipes n'est pas une puissance de deux.
 		</c:if>
 
+		<br/>
 		<!--  Ajouter un arbitre  -->
 		<form method="post"
 			action="<%=Controleur.SERVLET_PATH%><%=Controleur.ACTION_NEW_REFEREE%>">
