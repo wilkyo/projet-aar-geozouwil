@@ -21,7 +21,7 @@
 \setlength{\footskip}{27pt} % Bas de page + séparation
 \setlength{\textheight}{708pt} % Hauteur de la zone de texte (25cm)
 
-\title{Architecture des Applications Réparties\\ Rapport de Projet\\ Gestion d'un tournoi de football}
+\title{\textbf{Architecture des Applications Réparties\\ Rapport de Projet\\ Gestion d'un tournoi de football}}
 \author{Geoffrey CROCHET, Zo RABARIJAONA, Willy FRANÇOIS}
 %\date{Vendredi 15 Novembre 2013}
 
@@ -47,8 +47,7 @@ Le projet demandé consiste à développer une application permettant la gestion
 Ce rapport présentera tout d'abord une analyse UML de l'ensemble de notre application en visualisant les diagrammes de classes, le diagramme de cas d'utilisation ainsi qu'un schéma synthétique de l'architecture du projet. Nous évoquerons ensuite comment le temps de travail a été géré et la répartition des différentes tâches au sein du groupe. Enfin, un guide d'utilisation sera présenté expliquant le fonctionnement général de l'application.
 
 \chapter{Analyse UML}
-\section{Diagrammes de classes}
-
+\section{Diagrammes de classes} 
 
 Notre application se compose de trois principaux packages : le modèle contenant des objets POJO, les EJB permettant la persistance des objets et les Value Objects utilisés dans les vues de l'application.
 
@@ -63,13 +62,12 @@ Le schéma ci-dessous représente le diagramme de classes de notre modèle.
 	      \end{center}
 	\legend{\underline{Diagramme de classes du modèle}}
 	\end{figure}
-blabla
+\textbf{TODO}
 
 \newpage
 \subsection{Les EJB}
-
-Le schéma ci-dessous représente le diagramme de classes de l'EJB Utilisateur créé.
-\\
+~\\
+Le schéma ci-dessous représente le diagramme de classes de l'EJB Utilisateur créé. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{ejb_u}}
@@ -81,8 +79,7 @@ Le schéma ci-dessous représente le diagramme de classes de l'EJB Utilisateur c
 L'EJB Utilisateur se compose de deux interfaces (\textit{Utilisateur} et \textit{UtilisateurLocal}) et d'une classe d'implémentation (\textit{UtilisateurSessionBean}). L'interface \textit{Utilisateur} définit les profils des méthodes implémentées par la classe \textit{UtilisateurSessionBean}. L'interface \textit{UtilisateurLocal} correspond à l'interface locale de l'EJB utilisée par la facade de notre application. L'ensemble des méthodes définies dans cet EJB retournent un Value Object ou une liste de Value Objects. En effet, l'utilisateur ne doit pas être en mesure de connaitre l'ensemble des attributs et méthodes des classes du modèle.
 
 \newpage
-Le schéma ci-dessous représente le diagramme de classes de l'EJB Administrateur créé.
-\\
+Le schéma ci-dessous représente le diagramme de classes de l'EJB Administrateur créé. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{ejb_a}}
@@ -94,8 +91,7 @@ Le schéma ci-dessous représente le diagramme de classes de l'EJB Administrateu
 L'EJB Administrateur se compose de deux interfaces (\textit{Administrateur} et \textit{AdministrateurLocal}) et d'une classe d'implémentation (\textit{AdministrateurSessionBean}). L'interface \textit{Administrateur} définit les profils des méthodes implémentées par la classe \textit{AdministrateurSessionBean}. L'interface \textit{AdministrateurLocal} correspond à l'interface locale de l'EJB utilisée par la facade de notre application. Les méthodes définies concernent la connexion de l'administrateur à l'application, la création d'un tournoi ou encore le déroulement des matchs (indication des horaires, affectation des arbitres).
 
 \newpage
-Le schéma ci-dessous représente le diagramme de classes de l'EJB Représentant créé.
-\\
+Le schéma ci-dessous représente le diagramme de classes de l'EJB Représentant créé. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.8]{ejb_r}}
@@ -107,8 +103,7 @@ Le schéma ci-dessous représente le diagramme de classes de l'EJB Représentant
 L'EJB Représentant se compose de deux interfaces (\textit{Representant} et \textit{RepresentantLocal}) et d'une classe d'implémentation (\textit{RepresentantSessionBean}). L'interface \textit{Representant} définit le profil de la méthode implémentée par la classe \textit{RepresentantSessionBean}. L'interface \textit{RepresentantLocal} correspond à l'interface locale de l'EJB utilisée par la facade de notre application. La méthode définie consiste à la création d'une équipe au sein de l'application.
 
 \newpage
-Le schéma ci-dessous représente le diagramme de classes de l'EJB session Facade créé.
-\\
+Le schéma ci-dessous représente le diagramme de classes de l'EJB session Facade créé. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{ejb_f}}
@@ -117,46 +112,49 @@ Le schéma ci-dessous représente le diagramme de classes de l'EJB session Facad
 	\end{figure}	
 \\
 
-L'EJB session Facade se compose de trois interfaces (\textit{SoccerTournamentFacade}, \textit{SoccerTournamentFacadeLocal} et \textit{SoccerTournamentFacadeRemote}) et d'une classe d'implémentation (\textit{SoccerTournamentFacadeBean}). L'interface \textit{SoccerTournamentFacadeLocal} correspond à l'interface locale de l'EJB utilisée dans notre application. Nous avons également créé l'interface \textit{SoccerTournamentFacadeRemote} dans le cas où nous devions atteindre la façade à distance. Cet EJB regroupe l'ensemble des méthodes définies dans les EJB créés ainsi qu'une méthode \textit{InitDB()} nous permettant d'initialiser la base de données au lancement de l'application. La base de données se charge ainsi, à l'aide de fichiers XML préalablement remplis. 
+L'EJB session Facade se compose de trois interfaces (\textit{SoccerTournamentFacade}, \textit{SoccerTournamentFacadeLocal} et \textit{SoccerTournamentFacadeRemote}) et d'une classe d'implémentation (\textit{SoccerTournamentFacadeBean}). L'interface \textit{SoccerTournamentFacadeLocal} correspond à l'interface locale de l'EJB utilisée dans notre application. Nous avons également créé l'interface \textit{SoccerTournamentFacadeRemote} dans le cas où nous devions atteindre la façade à distance. Cet EJB regroupe l'ensemble des méthodes définies dans les EJB créés ainsi qu'une méthode \textit{InitDB()} nous permettant d'initialiser la base de données au lancement de l'application. La base de données se charge ainsi, à l'aide de fichiers XML préalablements remplis. 
 
 \newpage
 \subsection{Les Value Objects}
-
-Le schéma ci-dessous représente le diagramme de classes des Value Objects créés.
+~\\
+Le schéma ci-dessous représente le diagramme de classes des Value Objects créés. \\
 	\begin{figure}[here]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.8]{vo}}
 	      \end{center}
 	\legend{\underline{Diagramme de classes des Value Objects}}
 	\end{figure}
-blabla
+\textbf{TODO}
 
 \newpage
 \section{Diagramme de cas d'utilisation}
+~\\
+Le schéma ci-dessous représente le diagramme de cas d'utilisation de notre application. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{use_cases}}
 	      \end{center}
 	\legend{\underline{Diagramme de cas d'utilisation}}
 	\end{figure}
-blabla
+\textbf{TODO}
 
 \newpage
 \section{Schéma synthétique de l'application}
+~\\
+Le schéma ci-dessous représente le schéma synthétique de l'application développée. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[width=18cm]{AAR}}
 	      \end{center}
 	\legend{\underline{Schéma synthétique de l'application}}
 	\end{figure}
-blabla
+\textbf{TODO \\ Il faudrait refaire le screenshot de ce schéma, il y a une faute d'orthographe : \\ \underline{SoccerTournamentFaacadeSession Bean}}
 
 \newpage
 \chapter{Répartition du travail}
 \section{Gestion du temps de travail}
-
-Le diagramme de Gantt ci-dessous présente la répartition du travail tout au long du projet.
-\\
+~\\
+Le diagramme de Gantt ci-dessous présente la répartition du travail tout au long du projet. \\
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[width=18cm]{gantt}}
@@ -165,11 +163,31 @@ Le diagramme de Gantt ci-dessous présente la répartition du travail tout au lo
 	\end{figure}
 \\
 
-La première semaine de travail fut consacrée à l'analyse UML et à l'élaboration des diagrammes de classes et des diagrammes de cas d'utilisation. Une fois cela fait, nous avons débuté l'implémentation du modèle de l'application à savoir les objets POJO, les EJB ainsi que les Value Objects. Le développpement du controleur et des vues utilisateurs et administrateurs a été réalisé ensuite jusqu'à la fin du projet. Le rapport, quant à lui, a été rédigé dans la dernière semaine de travail.
+La première semaine de travail fut consacrée à l'analyse UML et à l'élaboration des diagrammes de classes et des diagrammes de cas d'utilisation. Une fois cela fait, nous avons débuté l'implémentation du modèle de l'application à savoir les objets POJO, les EJB ainsi que les Value Objects. Le développpement du controleur et des vues utilisateurs et administrateurs a été réalisé ensuite jusqu'à la fin du projet. Le rapport, quant à lui, a été rédigé dans la dernière semaine de travail.\\
 
 \section{Répartition des tâches}
+~\\
 
+L'ensemble du groupe a travaillé sur la réalisation de l'analyse UML et la détermination des différentes classes utiles dans l'application. Nous nous sommes répartis équitablement le travail à faire concernant les EJB et les classes du modèle. Geoffrey et Willy se sont chargés de l'implémentation des Value Objects. Willy a également créé le jeu de test au travers de fichiers XML permettant de charger la base de données. Au niveau de la partie web, Zo s'est principalement occupés de la mise en place du CSS et du développement des JSP \textit{tournament} et \textit{team} pour l'affichage du diagramme du tournoi et la visualisation des équipes. Willy a travaillé sur la vue générale de l'administrateur et la réalisation d'une foire à questions. Geoffrey a développé la JSP \textit{match} coté utilisateur, affichant l'ensemble des informations relatifs à une rencontre. L'ensemble du groupe a contribué à la création du controleur ainsi qu'à la rédaction du rapport.
+  
 \chapter{Guide d'utilisation}
+
+
+L'application est accessible par l'URL suivante :
+\begin{center}
+\textit{http://localhost:8080/SoccerTournamentWeb/}
+\end{center}
+
+Vous devez au préalable lancer l'application sur un serveur d'application tel que JBoss. Selon votre configuration, le port de l'application peut varié.
+\\
+
+Pour accéder à notre foire à questions, il vous suffit de cliquer sur l'icône en forme de point d'interrogation. Des renseignements sont aussi disponibles pour l'administrateur sur cette même page, il faut pour cela vous connecter.
+Pour vous connecter en tant qu'administrateur, il vous suffit de cliquer sur l'icône en forme de clé et d'entrer les renseignements suivants :
+\begin{center}
+\textbf{Login} : admin
+\\
+\textbf{Password} : root 
+\end{center}
 
 \chapter*{Conclusion}
 
