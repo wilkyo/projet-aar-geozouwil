@@ -134,7 +134,7 @@
 				administrateur en cliquant sur le menu en forme de maison avec un
 				personnage sur fond rouge.<br /> Ensuite, vers le bas de la page,
 				il faut entrer le nom et le prénom de l'arbitre à ajouter dans les
-				champs correspondant et valider.
+				champs correspondants et valider.
 			</div>
 			<div class="faq_item" id="editmatch">
 				<div class="faq_question">Comment éditer une rencontre ?</div>
@@ -142,12 +142,12 @@
 				tournoi correspondant puis cliquer sur la rencontre que l'on désire
 				éditer.<br /> On commence par définir la date et l'heure de début
 				de la rencontre et l'arbitre qui s'en occupera.<br /> Une fois
-				validé, vous pouvez ajouder des buts puis valider la rencontre.
+				validé, vous pouvez ajouter des buts puis valider la rencontre.
 			</div>
 			<div class="faq_item" id="addgoal">
 				<div class="faq_question">Comment ajouter un but ?</div>
 				Pour ajouter un but, il faut se rendre sur la page d'édition d'une
-				rencontre dont la date de début et l'arbitre ont étés définis,
+				rencontre dont la date de début et l'arbitre ont été définis,
 				choisir l'équipe qui a marqué. Ceci aura pour effet de faire
 				apparaître la liste des joueurs de cette équipe.<br /> Il faut
 				ensuite sélectionner le joueur qui a marqué puis entrer la minute
@@ -166,7 +166,7 @@
 			<div class="faq_item" id="unvalidable">
 				<div class="faq_question">Pourquoi ne puis-je pas valider la
 					rencontre ?</div>
-				Pour pouvoir valider la rencontre, il suffit qu'il n'y ai pas
+				Pour pouvoir valider la rencontre, il suffit qu'il n'y ait pas
 				d'égalité.
 			</div>
 		</c:if>
