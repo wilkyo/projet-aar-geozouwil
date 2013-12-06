@@ -43,15 +43,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 	public AdministrateurSessionBean() {
 	}
 
-	/**
-	 * Connect the admin.
-	 * 
-	 * @param login
-	 *            The admin's login.
-	 * @param password
-	 *            The admin's password.
-	 * @return True : connection successful / False : connection failed.
-	 */
 	@Override
 	public boolean connexion(String login, String password) {
 		if (login.equals(AdministrateurSessionBean.login)
@@ -62,16 +53,10 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 			return false;
 	}
 
-	/**
-	 * Create a tournament.
-	 * 
-	 * @param nomTournoi
-	 *            Name of the tournament.
-	 */
 	@Override
 	public void creerTournoi(String nomTournoi) {
 		if (em.find(Tournoi.class, nomTournoi) != null) {
-			System.out.println("Tournoi existe déjà (en cours ou terminé....)");
+			System.out.println("Le Tournoi existe (en cours ou pas...)");
 		} else {
 			Tournoi newTournoi = new Tournoi();
 			newTournoi.setNom(nomTournoi);
@@ -111,14 +96,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		return equipes;
 	}
 
-	/**
-	 * Set the beginning of the match.
-	 * 
-	 * @param idRencontre
-	 *            The id of the match.
-	 * @param debut
-	 *            The date of beginning of the match.
-	 */
 	@Override
 	public void setDebutRencontre(int idRencontre, Calendar debut) {
 		Rencontre r = new Rencontre();
@@ -127,11 +104,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(r);
 	}
 
-	/**
-	 * Returns all the referees.
-	 * 
-	 * @return List of referees.
-	 */
 	@Override
 	public List<Arbitre> getArbitres() {
 		@SuppressWarnings("unchecked")
@@ -140,14 +112,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		return arbitres;
 	}
 
-	/**
-	 * Add a referee.
-	 * 
-	 * @param nom
-	 *            Name of the referee.
-	 * @param prenom
-	 *            Nickname of the referee.
-	 */
 	@Override
 	public void ajouterArbitre(String nom, String prenom) {
 		Arbitre a = new Arbitre();
@@ -156,14 +120,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(a);
 	}
 
-	/**
-	 * Affect a referee to a match.
-	 * 
-	 * @param idArbitre
-	 *            The id of the referee.
-	 * @param idRencontre
-	 *            The id of the match.
-	 */
 	@Override
 	public void affecterArbitre(int idArbitre, int idRencontre) {
 		Rencontre r = new Rencontre();
@@ -174,16 +130,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(r);
 	}
 
-	/**
-	 * Add a goal.
-	 * 
-	 * @param idRencontre
-	 *            The id of the match.
-	 * @param idAuteur
-	 *            The id of the goal's author.
-	 * @param heure
-	 *            The Date (hour) of the goal.
-	 */
 	@Override
 	public void ajouterBut(int idRencontre, int idAuteur, Calendar heure) {
 		But b = new But();
@@ -197,14 +143,6 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 		em.persist(b);
 	}
 
-	/**
-	 * Validate a match.
-	 * 
-	 * @param idRencontre
-	 *            The id of the match.
-	 * @param heureFin
-	 *            The Date of the end of the match.
-	 */
 	@Override
 	public void validerRencontre(int idRencontre, Calendar heureFin) {
 		Rencontre rencontre = new Rencontre();
@@ -229,7 +167,8 @@ public class AdministrateurSessionBean implements AdministrateurLocal {
 			}
 			// Si toutes les rencontres de ce tour ont étés validées
 			if (cpt == rencontres.size() && rencontres.size() > 1) {
-				// Parcours deux à deux des rencontres pour créer les nouvelles
+				// Parcours deux par deux des rencontres pour construire les
+				// nouvelles
 				// (dans l'ordre)
 				for (int i = 0; i < rencontres.size(); i += 2) {
 					Rencontre hotes = rencontres.get(i);

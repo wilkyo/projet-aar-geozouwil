@@ -16,6 +16,11 @@ public interface SoccerTournamentFacade {
 	public void initDB();
 
 	/**
+	 * Reloads the Database.
+	 */
+	public void reloadDB();
+
+	/**
 	 * Create a team.
 	 * 
 	 * @param nomEquipe

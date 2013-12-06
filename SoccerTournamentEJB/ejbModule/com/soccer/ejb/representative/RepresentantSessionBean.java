@@ -28,23 +28,6 @@ public class RepresentantSessionBean implements RepresentantLocal {
 	public RepresentantSessionBean() {
 	}
 
-	/**
-	 * Create a team.
-	 * 
-	 * @param nomEquipe
-	 *            Name of the team.
-	 * @param nomRepresentant
-	 *            Name of the representative.
-	 * @param prenomRepresentant
-	 *            Nickname of the representative.
-	 * @param nomJoueurs
-	 *            Array of players's names.
-	 * @param prenomJoueurs
-	 *            Array of players's nicknames.
-	 * @param numeroJoueurs
-	 *            Array of players's numbers.
-	 * @return True : creation successful / False : creation failed.
-	 */
 	@Override
 	public boolean creerEquipe(String nomEquipe, String nomRepresentant,
 			String prenomRepresentant, String[] nomJoueurs,
