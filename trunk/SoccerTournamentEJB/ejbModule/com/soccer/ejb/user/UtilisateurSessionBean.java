@@ -33,30 +33,18 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 	public UtilisateurSessionBean() {
 	}
 
-	/**
-	 * Returns a tournament.
-	 * 
-	 * @param nomTournoi
-	 *            Name of the tournament.
-	 * @return Value object of Tournoi.
-	 */
 	@Override
 	public VOTournoi getTournoi(String nomTournoi) {
 		Tournoi t = em.find(Tournoi.class, nomTournoi);
 		return new VOTournoi(t);
 	}
 
-	/**
-	 * Returns all the tournaments.
-	 * 
-	 * @return List of value object of Tournoi.
-	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<VOTournoi> getTournois() {
 		List<VOTournoi> listVOTournoi = new ArrayList<VOTournoi>();
-		List<Tournoi> tournois = em.createQuery("From Tournoi t")
-				.getResultList();
+		List<Tournoi> tournois = new ArrayList<Tournoi>();
+		for (Object o : em.createQuery("From Tournoi t").getResultList())
+			tournois.add((Tournoi) o);
 		for (Tournoi tr : tournois) {
 			VOTournoi voTour = new VOTournoi(tr);
 			listVOTournoi.add(voTour);
@@ -64,13 +52,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return listVOTournoi;
 	}
 
-	/**
-	 * Returns all the teams of a tournament.
-	 * 
-	 * @param nomTournoi
-	 *            Name of the tournament.
-	 * @return List of value object of Equipe.
-	 */
 	@Override
 	public List<VOEquipe> getEquipes(String nomTournoi) {
 		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
@@ -85,13 +66,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return listVOEquipe;
 	}
 
-	/**
-	 * Returns all the players of a team.
-	 * 
-	 * @param nomEquipe
-	 *            Name of the team.
-	 * @return List of value object of Joueur.
-	 */
 	@Override
 	public List<VOJoueur> getJoueurs(String nomEquipe) {
 		List<VOJoueur> listVOJoueur = new ArrayList<VOJoueur>();
@@ -104,13 +78,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return listVOJoueur;
 	}
 
-	/**
-	 * Returns all the matchs of a tournament.
-	 * 
-	 * @param nomTournoi
-	 *            Name of the tournament.
-	 * @return List of value object of RencontreLight.
-	 */
 	@Override
 	public List<VORencontreLight> getRencontres(String nomTournoi) {
 		List<VORencontreLight> listVORencontreLight = new ArrayList<VORencontreLight>();
@@ -123,13 +90,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return listVORencontreLight;
 	}
 
-	/**
-	 * Returns a match.
-	 * 
-	 * @param idRencontre
-	 *            The id of the match.
-	 * @return Value object of Rencontre.
-	 */
 	@Override
 	public VORencontre getRencontre(int idRencontre) {
 		Rencontre r = (Rencontre) em.find(Rencontre.class, idRencontre);
@@ -137,13 +97,6 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return voRencontre;
 	}
 
-	/**
-	 * Returns the teams of a match.
-	 * 
-	 * @param idRencontre
-	 *            The id of the match.
-	 * @return List of value object of Equipe.
-	 */
 	@Override
 	public List<VOEquipe> getEquipes(int idRencontre) {
 		List<VOEquipe> listVOEquipe = new ArrayList<VOEquipe>();
@@ -155,24 +108,12 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 		return listVOEquipe;
 	}
 
-	/**
-	 * Returns a team.
-	 * 
-	 * @param nomEquipe
-	 *            Name of the team.
-	 * @return Value object of Equipe.
-	 */
 	@Override
 	public VOEquipe getEquipe(String nomEquipe) {
 		Equipe e = (Equipe) em.find(Equipe.class, nomEquipe);
 		return new VOEquipe(e);
 	}
 
-	/**
-	 * Returns all the teams.
-	 * 
-	 * @return List of value object of Equipe.
-	 */
 	@Override
 	public List<VOEquipe> getEquipes() {
 		List<VOEquipe> equipes = new ArrayList<VOEquipe>();
@@ -180,5 +121,4 @@ public class UtilisateurSessionBean implements UtilisateurLocal {
 			equipes.add(new VOEquipe((Equipe) e));
 		return equipes;
 	}
-
 }

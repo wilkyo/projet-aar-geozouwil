@@ -60,6 +60,7 @@
 	<Equipe nom="Pure Info" nomRepresentant="François"
 		prenomRepresentant="Willy">
 		<Joueur nom="Benkabbou" prenom="Mohammed Hamza" numero="1" />
+		<Joueur nom="Rabarijaona" prenom="Zo" numero="2" />
 		<Joueur nom="Morosi" prenom="Jérémy" numero="3" />
 		<Joueur nom="François" prenom="Willy" numero="5" />
 		<Joueur nom="Chauvin" prenom="Rémi" numero="7" />
