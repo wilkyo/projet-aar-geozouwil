@@ -62,7 +62,20 @@ Le schéma ci-dessous représente le diagramme de classes de notre modèle.
 	      \end{center}
 	\legend{\underline{Diagramme de classes du modèle}}
 	\end{figure}
-\textbf{TODO}
+
+Un \textit{Tournoi} est composé d'un nom, d'une liste de rencontres et le tour actuel afin de pouvoir l'incrémenter en temps voulu pour les nouvelles rencontres.
+
+Une \textit{Rencontre} garde une référence vers l'équipe hôte et l'équipe visiteur qui vont s'affronter.
+Elle possède aussi l'arbitre, une liste de buts et les dates de début et de fin.
+La date de fin est calculée en fonction des buts marqués. On détecte automatiquement s'il y a eu prolongation ou tirs aux buts.
+
+Une \textit{Equipe} contient une liste de joueurs et le nom et prénom du représentant.
+
+Un \textit{But} contient  le joueur qui l'a marqué et la date (heure) associée.
+ 
+Le \textit{Joueur} et l'\textit{Arbitre} sont simplement composés d'un nom et d'un prénom.
+
+
 
 \newpage
 \subsection{Les EJB}
@@ -124,7 +137,18 @@ Le schéma ci-dessous représente le diagramme de classes des Value Objects cré
 	      \end{center}
 	\legend{\underline{Diagramme de classes des Value Objects}}
 	\end{figure}
-\textbf{TODO}
+
+Les value objects permettent de ne donner aux jsp que les données nécessaires.
+Les notres sont divisés en deux groupes.
+
+La \textbf{VORencontre} possède les informations d'une rencontre et les classes de type \textbf{VOEquipe} et \textbf{VOBut}.
+Nous avons gardé la classe \textbf{Arbitre} telle quelle car elle n'avais aucun lien vers les autres classes du modèle et ne représentait donc pas un risque.
+La \textbf{VOEquipe} contient une liste de \textbf{VOJoueur} et la \textbf{VOBut} un \textbf{VOJoueur}.
+Le \textbf{VOJoueur} est un joueur dans lequel la référence à l'équipe a été remplacée par son nom.
+
+D'un autre coté, nous avons la \textbf{VOTournoi} qui contient une liste de \textbf{VORencontreLight}.
+Cette classe, plus légère, ne contient que le nom des équipes et quelques informations telles que les scores et l'état de terminaison de la rencontre.
+Il était inutile de garder un lien vers les équipes alors qu'on ne veut afficher que peu d'informations.
 
 \newpage
 \section{Diagramme de cas d'utilisation}
@@ -136,7 +160,17 @@ Le schéma ci-dessous représente le diagramme de cas d'utilisation de notre app
 	      \end{center}
 	\legend{\underline{Diagramme de cas d'utilisation}}
 	\end{figure}
-\textbf{TODO}
+
+Ce diagramme nous a permis de définir les différentes EJB et les méthodes nécessaires à chacun.
+
+Pour commencer, le \textbf{Représentant} peut créer une équipe, ce qui crée les joueurs et le représentant.
+
+Ensuite, l'\textbf{Administrateur} peut créer un tournoi, définir le début d'une rencontre y ajouter des buts et la valider.
+De plus, il peut créer un arbitre et l'affecter à une rencontre.
+Toutes ces actions ne peuvent se faire que s'il s'est connecté auparavant.
+
+Pour finir, l'\textbf{Utilisateur} peut consulter les tournois, les rencontres, les équipes et les joueurs.
+L'\textbf{Administrateur} peut aussi effectuer les actions de l'\textbf{Utilisateur}.
 
 \newpage
 \section{Schéma synthétique de l'application}
@@ -167,7 +201,17 @@ La première semaine de travail fut consacrée à l'analyse UML et à l'élabora
 \section{Répartition des tâches}
 ~\\
 
-L'ensemble du groupe a travaillé sur la réalisation de l'analyse UML et la détermination des différentes classes utiles dans l'application. Nous nous sommes répartis équitablement le travail à faire concernant les EJB et les classes du modèle. Geoffrey et Willy se sont chargés de l'implémentation des Value Objects. Willy a également créé le jeu de test au travers de fichiers XML permettant de charger la base de données. Au niveau de la partie web, Zo s'est principalement occupés de la mise en place du CSS et du développement des JSP \textit{tournament} et \textit{team} pour l'affichage du diagramme du tournoi et la visualisation des équipes. Willy a travaillé sur la vue générale de l'administrateur et la réalisation d'une foire à questions. Geoffrey a développé la JSP \textit{match} coté utilisateur, affichant l'ensemble des informations relatifs à une rencontre. L'ensemble du groupe a contribué à la création du controleur ainsi qu'à la rédaction du rapport.
+L'ensemble du groupe a travaillé sur la réalisation de l'analyse UML et la détermination des différentes classes utiles dans l'application.
+Geoffrey s'est vu attribuer l'EJB Utilisateur alors que Zo s'est vu faire le Représentant et une partie de l'Administrateur.
+Zo et Willy se sont occupés des entités.
+Geoffrey et Willy se sont chargés de l'implémentation des Value Objects.
+Willy a également créé le jeu de test au travers de fichiers XML permettant de charger la base de données et la validation de rencontre.
+
+Au niveau de la partie web, Zo s'est principalement occupé de la mise en place du CSS et du développement des JSP  \textit{newteam}, \textit{index}, \textit{login} et \textit{team} pour la visualisation des équipes, des joueurs, la création d'une équipe et la connexion.
+Willy a travaillé sur \textit{adminmatch}, qui permet à l'administrateur d'éditer une rencontre, une taglib permettant d'afficher le diagramme d'un tournoi et la réalisation d'une foire aux questions.
+Geoffrey a développé la JSP \textit{match} coté utilisateur, affichant l'ensemble des informations relatifs à une rencontre.
+
+L'ensemble du groupe a contribué à la création du controleur ainsi que tu déboguage des différentes classes et jsp et la rédaction du rapport.
   
 \chapter{Guide d'utilisation}
 
@@ -177,10 +221,12 @@ L'application est accessible par l'URL suivante :
 \textit{http://localhost:8080/SoccerTournamentWeb/}
 \end{center}
 
-Vous devez au préalable lancer l'application sur un serveur d'application tel que JBoss. Selon votre configuration, le port de l'application peut varié.
+Vous devez au préalable lancer l'application sur un serveur d'application JBoss.
+Selon votre configuration, le port de l'application peut varier.
 \\
 
-Pour accéder à notre foire à questions, il vous suffit de cliquer sur l'icône en forme de point d'interrogation. Des renseignements sont aussi disponibles pour l'administrateur sur cette même page, il faut pour cela vous connecter.
+Pour accéder à notre foire aux questions (qui fait office de manuel), il vous suffit de cliquer sur l'icône en forme de point d'interrogation.
+Des renseignements sont aussi disponibles pour l'administrateur sur cette même page, il faut pour cela vous connecter.
 Pour vous connecter en tant qu'administrateur, il vous suffit de cliquer sur l'icône en forme de clé et d'entrer les renseignements suivants :
 \begin{center}
 \textbf{Login} : admin
@@ -190,6 +236,6 @@ Pour vous connecter en tant qu'administrateur, il vous suffit de cliquer sur l'i
 
 \chapter*{Conclusion}
 
-Ce projet aura permis de mettre en oeuvre les connaissances vues tout au long du semestre. Le groupe a pu améliorer ses compétences dans l'utilisation de la technologie Java EE et a acquis les principales notions de persistence d'objets, dans une base de données, avec l'usage des EJB. L'intérêt des Value Objects a été compris lors de ce projet et, les membres du groupe ont également renforcés leurs compétences dans le domaine du Web en travaillant sur un controleur et ses JSP. 
+Ce projet aura permis de mettre en oeuvre les connaissances vues tout au long du semestre. Le groupe a pu améliorer ses compétences dans l'utilisation de la technologie J2EE et a acquis les principales notions de persistence d'objets, dans une base de données, avec l'usage des EJB. L'intérêt des Value Objects a été compris lors de ce projet et, les membres du groupe ont également renforcés leurs compétences dans le domaine du Web en travaillant sur un controleur et ses JSP. 
 
 \end{document}
