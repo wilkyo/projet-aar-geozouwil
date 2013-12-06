@@ -53,6 +53,7 @@ public class Controleur extends HttpServlet {
 	public static final String ACTION_404 = "404";
 	public static final String ACTION_AJAX = "ajax";
 	public static final String ACTION_SWITCH_CSS = "switchcss";
+	public static final String ACTION_RELOAD_DB = "reloaddb";
 
 	/**
 	 * Pages.
@@ -359,6 +360,9 @@ public class Controleur extends HttpServlet {
 							+ rencontre.getNomTournoi());
 				} else
 					redirect = action(ACTION_404);
+			} else if (action.equals(ACTION_RELOAD_DB)) {
+				facade.reloadDB();
+				redirect = action(ACTION_ADMIN_HOME);
 			}
 		}
 		if (action.equals(ACTION_AJAX)) {
