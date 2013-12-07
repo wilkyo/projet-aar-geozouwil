@@ -183,6 +183,46 @@ Le schéma ci-dessous représente le schéma synthétique de l'application déve
 	\legend{\underline{Schéma synthétique de l'application}}
 	\end{figure}
 
+Ce schéma présente une vision globale de l'application. Elle se décompose en 3 grandes parties montrant ainsi les differentes couche de l'architecture.
+\begin{itemize}
+ \item Le conteneur Web contient la couche vue $\ll$ client léger $\gg$ (JSP) et le contrôleur.\\
+ Voici la description des differentes pages:
+ 
+\begin{table}[here]
+    \begin{center}
+	\begin{tabular}{|c|c|l|}
+	\hline
+	\multicolumn{2}{|l|}{\textbf{Vue}} & \textbf{Description}  \\
+	\hline
+	\textbf{Utilisateur}	& \textbf{Administrateur}& les principaux acteurs  \\
+	\hline
+	\multicolumn{2}{|l|}{index.jsp}	& La page d'accueil \\
+	\hline
+	\multicolumn{2}{|l|}{match.jsp}	& Affiche les rencontres du tournoi\\
+	\hline
+	\multicolumn{2}{|l|}{team.jsp}		& Affiche la liste des équipes\\
+	\hline
+	\multicolumn{2}{|l|}{tournament.jsp}	& Affiche la liste des tournoi\\
+	\hline
+	\multicolumn{2}{|l|}{faq.jsp} 		& Foire à question\\
+	\hline
+				& adminindex.jsp& Page d'accueil de l'administrateur\\
+	\hline
+				& adminmatch.jsp& page d'administration des rencontres par l'administrateur\\
+	\hline
+				& login.jsp& Page d'authentification de l'administrateur\\
+	\hline
+	\multicolumn{2}{|c|}{newteam.jsp}& Page d'inscription pour une nouvelle équipe (par un représentant)\\
+	\hline
+	\end{tabular}
+    \end{center}
+    \caption{\label{}Les pages JSP}
+\end{table} 
+ \item Le conteneur EJB contient la couche métier (les modèles, les applications métiers $\ll$EJB$\gg$) et la couche persistante. On y trouve aussi les
+ $\ll$Value Objects$\gg$ permettant de récupérer des objets spécifiques. La couche métier est constituée d'une façade (SoccerTournamentFacadeSessionBean) permettant
+ au contrôleur d'accéder aux EJB et aux  $\ll$Value Objects$\gg$. Les EJB à leur tour accèdent à la couche persistante (Base de données).
+\end{itemize}
+
 \newpage
 \chapter{Répartition du travail}
 \section{Gestion du temps de travail}
