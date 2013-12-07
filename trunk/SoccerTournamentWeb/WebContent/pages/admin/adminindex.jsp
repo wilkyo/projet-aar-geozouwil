@@ -68,7 +68,7 @@
 		<!-- Listes des équipes -->
 		<div id="equipes">
 			<c:forEach items="${equipes}" var="equipe">
-				<c:out value="${equipe.nom}" />
+				<a class="name_list"><c:out value="${equipe.nom}" /></a>|
 				
 			</c:forEach>
 		</div>
@@ -76,7 +76,7 @@
 		<!-- Listes des arbitres -->
 		<div id="arbitres">
 			<c:forEach items="${arbitres}" var="arbitre">
-				<c:out value="${arbitre.nom} ${arbitre.prenom}" />
+				<a class="name_list"><c:out value="${arbitre.nom} ${arbitre.prenom}" /></a>|
 				
 			</c:forEach>
 		</div>
