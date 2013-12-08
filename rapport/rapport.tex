@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{ccaption}
+\usepackage[babel=true]{csquotes}
+
 
 \graphicspath{{images/}}%dossier pour les images
 
@@ -41,27 +43,27 @@
 \chapter*{Introduction}
 
 
-Le projet demandé consiste à développer une application permettant la gestion d'un tournoi de football. Pour ce faire, nous nous appuierons sur la technologie Java EE et l'utilisation des EJB 3.0 afin de pouvoir persister des objets dans la base de données interne du serveur d'application JBoss.
-\\
+Le projet demandé consiste à développer une application permettant la gestion d'un tournoi de football. Pour ce faire, nous nous appuierons sur la technologie J2EE et l'utilisation des EJB 3.0 afin de pouvoir persister des objets dans la base de données interne du serveur d'application JBoss. \\
 
 Ce rapport présentera tout d'abord une analyse UML de l'ensemble de notre application en visualisant les diagrammes de classes, le diagramme de cas d'utilisation ainsi qu'un schéma synthétique de l'architecture du projet. Nous évoquerons ensuite comment le temps de travail a été géré et la répartition des différentes tâches au sein du groupe. Enfin, un guide d'utilisation sera présenté expliquant le fonctionnement général de l'application.
 
 \chapter{Analyse UML}
 \section{Diagrammes de classes} 
+~\\
 
-Notre application se compose de trois principaux packages : le modèle contenant des objets POJO, les EJB permettant la persistance des objets et les Value Objects utilisés dans les vues de l'application.
+Notre application se compose de trois principaux packages : le modèle contenant des objets POJO, les EJB permettant la persistance des objets et les Value Objects utilisés dans les vues de l'application. 
 
-
+\newpage
 \subsection{Le modèle}
-
-Le schéma ci-dessous représente le diagramme de classes de notre modèle.
-
+~\\
+Le schéma ci-dessous représente le diagramme de classes de notre modèle. \\
 	\begin{figure}[here]
 	      \begin{center}	      
 		\fbox{\includegraphics[scale=0.8]{class}}
 	      \end{center}
 	\legend{\underline{Diagramme de classes du modèle}}
 	\end{figure}
+\\
 
 Un \textit{Tournoi} est composé d'un nom, d'une liste de rencontres et le tour actuel afin de pouvoir l'incrémenter en temps voulu pour les nouvelles rencontres.
 
@@ -74,8 +76,6 @@ Une \textit{Equipe} contient une liste de joueurs et le nom et prénom du repré
 Un \textit{But} contient  le joueur qui l'a marqué et la date (heure) associée.
  
 Le \textit{Joueur} et l'\textit{Arbitre} sont simplement composés d'un nom et d'un prénom.
-
-
 
 \newpage
 \subsection{Les EJB}
@@ -137,12 +137,12 @@ Le schéma ci-dessous représente le diagramme de classes des Value Objects cré
 	      \end{center}
 	\legend{\underline{Diagramme de classes des Value Objects}}
 	\end{figure}
+\\
 
-Les value objects permettent de ne donner aux jsp que les données nécessaires.
-Les notres sont divisés en deux groupes.
+Les Value Objects permettent de ne donner aux JSP que les données nécessaires. Les nôtres sont divisés en deux groupes.
 
 La \textbf{VORencontre} possède les informations d'une rencontre et les classes de type \textbf{VOEquipe} et \textbf{VOBut}.
-Nous avons gardé la classe \textbf{Arbitre} telle quelle car elle n'avais aucun lien vers les autres classes du modèle et ne représentait donc pas un risque.
+Nous avons gardé la classe \textbf{Arbitre} telle quelle car elle n'avait aucun lien vers les autres classes du modèle et ne représentait donc pas un risque.
 La \textbf{VOEquipe} contient une liste de \textbf{VOJoueur} et la \textbf{VOBut} un \textbf{VOJoueur}.
 Le \textbf{VOJoueur} est un joueur dans lequel la référence à l'équipe a été remplacée par son nom.
 
@@ -152,20 +152,21 @@ Il était inutile de garder un lien vers les équipes alors qu'on ne veut affich
 
 \newpage
 \section{Diagramme de cas d'utilisation}
-~\\
-Le schéma ci-dessous représente le diagramme de cas d'utilisation de notre application. \\
+
+Le schéma ci-dessous représente le diagramme de cas d'utilisation de notre application.
 	\begin{figure}[hp]
 	      \begin{center}
 		\fbox{\includegraphics[scale=0.7]{use_cases}}
 	      \end{center}
 	\legend{\underline{Diagramme de cas d'utilisation}}
 	\end{figure}
+\\
 
-Ce diagramme nous a permis de définir les différentes EJB et les méthodes nécessaires à chacun.
+Ce diagramme nous a permis de définir les différents EJB et les méthodes nécessaires à chacun.
 
-Pour commencer, le \textbf{Représentant} peut créer une équipe, ce qui crée les joueurs et le représentant.
+Pour commencer, le \textbf{Représentant} peut créer une équipe, créant ainsi les joueurs de l'équipe et le représentant.
 
-Ensuite, l'\textbf{Administrateur} peut créer un tournoi, définir le début d'une rencontre y ajouter des buts et la valider.
+Ensuite, l'\textbf{Administrateur} peut créer un tournoi, définir le début d'une rencontre, y ajouter des buts et la valider.
 De plus, il peut créer un arbitre et l'affecter à une rencontre.
 Toutes ces actions ne peuvent se faire que s'il s'est connecté auparavant.
 
@@ -182,11 +183,12 @@ Le schéma ci-dessous représente le schéma synthétique de l'application déve
 	      \end{center}
 	\legend{\underline{Schéma synthétique de l'application}}
 	\end{figure}
+\\
 
-Ce schéma présente une vision globale de l'application. Elle se décompose en 3 grandes parties montrant ainsi les differentes couche de l'architecture.
+Ce schéma présente une vision globale de l'application. Elle se décompose en trois grandes parties montrant ainsi les différentes couche de l'architecture. \\
+\renewcommand\labelitemi{\textbullet}
 \begin{itemize}
- \item Le conteneur Web contient la couche vue $\ll$ client léger $\gg$ (JSP) et le contrôleur.\\
- Voici la description des differentes pages:
+ \item Le conteneur Web contient la couche vue \enquote{client léger} (JSP) et le controleur. Voici la description des différentes vues :
  
 \begin{table}[here]
     \begin{center}
@@ -194,7 +196,7 @@ Ce schéma présente une vision globale de l'application. Elle se décompose en 
 	\hline
 	\multicolumn{2}{|l|}{\textbf{Vue}} & \textbf{Description}  \\
 	\hline
-	\textbf{Utilisateur}	& \textbf{Administrateur}& les principaux acteurs  \\
+	\textbf{Utilisateur}	& \textbf{Administrateur}& Les principaux acteurs  \\
 	\hline
 	\multicolumn{2}{|l|}{index.jsp}	& La page d'accueil \\
 	\hline
@@ -204,11 +206,11 @@ Ce schéma présente une vision globale de l'application. Elle se décompose en 
 	\hline
 	\multicolumn{2}{|l|}{tournament.jsp}	& Affiche la liste des tournoi\\
 	\hline
-	\multicolumn{2}{|l|}{faq.jsp} 		& Foire à question\\
+	\multicolumn{2}{|l|}{faq.jsp} 		& Foire aux questions\\
 	\hline
 				& adminindex.jsp& Page d'accueil de l'administrateur\\
 	\hline
-				& adminmatch.jsp& page d'administration des rencontres par l'administrateur\\
+				& adminmatch.jsp& Page d'administration des rencontres par l'administrateur\\
 	\hline
 				& login.jsp& Page d'authentification de l'administrateur\\
 	\hline
@@ -216,11 +218,10 @@ Ce schéma présente une vision globale de l'application. Elle se décompose en 
 	\hline
 	\end{tabular}
     \end{center}
-    \caption{\label{}Les pages JSP}
+    \legend{\underline{Description des vues de l'application}}
 \end{table} 
- \item Le conteneur EJB contient la couche métier (les modèles, les applications métiers $\ll$EJB$\gg$) et la couche persistante. On y trouve aussi les
- $\ll$Value Objects$\gg$ permettant de récupérer des objets spécifiques. La couche métier est constituée d'une façade (SoccerTournamentFacadeSessionBean) permettant
- au contrôleur d'accéder aux EJB et aux  $\ll$Value Objects$\gg$. Les EJB à leur tour accèdent à la couche persistante (Base de données).
+ \item Le conteneur EJB contient la couche métier (le modèle, les applications métiers et la couche persistante). On y trouve aussi les Value Objects permettant de récupérer des objets spécifiques. La couche métier est constituée d'une façade (\textit{SoccerTournamentFacadeSessionBean}) permettant
+ au controleur d'accéder aux EJB et aux Value Objects. Les EJB à leur tour accèdent à la couche persistante (base de données).
 \end{itemize}
 
 \newpage
